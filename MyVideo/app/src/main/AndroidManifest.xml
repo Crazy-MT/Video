@@ -9,15 +9,29 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.DesignDemo">
+
+        <activity android:name=".movie.MovieFragment">
+
+        </activity>
+        <activity android:name=".movie.NewVideoDetailActivity"></activity>
+
+        <activity android:name=".cheesesquare.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".NewVideoDetailActivity"></activity>
+
+        <activity
+            android:name=".cheesesquare.CheeseDetailActivity"
+            android:parentActivityName=".cheesesquare.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".cheesesquare.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

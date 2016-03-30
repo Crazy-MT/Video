@@ -1,6 +1,5 @@
-package com.taguxdesign.maotong.myvideo;
+package com.taguxdesign.maotong.myvideo.movie;
 
-import android.graphics.LinearGradient;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -8,9 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,7 +19,6 @@ public class AllHref {
     private static final String TAG = "AllHref";
     private static String URL = "http://www.dy2018.com/";
     private List<VideoModel> videoMap;
-    private VideoModel videoModel;
 
     public List<VideoModel> getAllHref() {
 
@@ -31,12 +27,10 @@ public class AllHref {
         try {
             doc = Jsoup.connect(URL).get();
             Elements links = doc.select("a[href]");
-            Elements media = doc.select("[src]");
+            /*Elements media = doc.select("[src]");
             Elements imports = doc.select("link[href]");
 
-            for (Element link : imports) {
-                Log.e(TAG, "getAllHref: " + link.attr("abs:href") + " " + link.attr("rel"));
-            }
+            mediaAndImports();*/
 
             for (Element link : links) {
                 Log.e(TAG, "getAllHref: " + link.attr("abs:href") + " " + trim(link.text(), 35));
@@ -45,11 +39,26 @@ public class AllHref {
 
         } catch (Exception e) {
             e.printStackTrace();
-            videoMap.add(new VideoModel(new String() , new String()));
+            videoMap.add(new VideoModel(e.toString() , new String()));
         }
 
         return videoMap;
 
+    }
+
+    private void mediaAndImports() {
+        /*for (Element src : media) {
+                if (src.tagName().equals("img"))
+                    print(" * %s: <%s> %sx%s (%s)",
+                            src.tagName(), src.attr("abs:src"), src.attr("width"), src.attr("height"),
+                            trim(src.attr("alt"), 20));
+                else
+                    print(" * %s: <%s>", src.tagName(), src.attr("abs:src"));
+            }
+
+            for (Element link : imports) {
+                Log.e(TAG, "getAllHref: " + link.attr("abs:href") + " " + link.attr("rel"));
+            }*/
     }
 
     private void addToList(Element link) {

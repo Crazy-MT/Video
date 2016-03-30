@@ -1,25 +1,30 @@
-package com.taguxdesign.maotong.myvideo;
+package com.taguxdesign.maotong.myvideo.movie;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.SimpleAdapter;
+import android.view.ViewGroup;
+
+import com.taguxdesign.maotong.myvideo.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MovieFragment extends Fragment {
 
-    private static final String TAG = "MainActivity";
-    private RecyclerView videoRecyclerView;
+    private static final String TAG = "MovieFragment";
     private List<VideoModel> videoMap;
+    private Context mContext ;
+    private RecyclerView movieRecyclerView;
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -28,15 +33,29 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_movie , container , false);
+
+        movieRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
+
+        initData();
+
+        return view;
+    }
+
     private void sutUpRecyclerView() {
-        MyAdapter myAdapter = new MyAdapter(videoMap , this);
-        videoRecyclerView.setAdapter(myAdapter);
-        videoRecyclerView.setLayoutManager(new LinearLayoutManager(this , LinearLayoutManager.VERTICAL , false));
-        videoRecyclerView.addItemDecoration(new  DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        MyAdapter myAdapter = new MyAdapter(videoMap , getActivity());
+        movieRecyclerView.setAdapter(myAdapter);
+        movieRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity() , LinearLayoutManager.VERTICAL , false));
+        movieRecyclerView.addItemDecoration(new  DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         myAdapter.setOnItemClickListener(new MyAdapter.OnItemClickLister() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(MainActivity.this , NewVideoDetailActivity.class);
+                Intent intent = new Intent(getActivity() , NewVideoDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString(NewVideoDetailActivity.HREF , videoMap.get(position).getHref());
                 intent.putExtra( NewVideoDetailActivity.URL, bundle);
@@ -50,19 +69,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        initData();
-        initView();
-
-    }
-
-    private void initView() {
-        videoRecyclerView = (RecyclerView) findViewById(R.id.id_recycler_view);
-    }
 
     private void initData() {
         videoMap = new ArrayList<>();

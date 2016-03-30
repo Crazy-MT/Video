@@ -1,4 +1,4 @@
-package com.taguxdesign.maotong.myvideo;
+package com.taguxdesign.maotong.myvideo.movie;
 
 import android.util.Log;
 
@@ -43,7 +43,7 @@ public class DownloadHref {
 
         } catch (Exception e) {
             e.printStackTrace();
-
+            downloadHref = e.toString();
             Log.e(TAG, "getDownloadHref: there"+e.toString() );
         }
 

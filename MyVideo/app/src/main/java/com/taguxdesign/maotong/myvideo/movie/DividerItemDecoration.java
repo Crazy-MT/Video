@@ -1,4 +1,4 @@
-package com.taguxdesign.maotong.myvideo;
+package com.taguxdesign.maotong.myvideo.movie;
 
 /*
  * Copyright (C) 2014 The Android Open Source Project

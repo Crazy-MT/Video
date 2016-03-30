@@ -1,15 +1,16 @@
-package com.taguxdesign.maotong.myvideo;
+package com.taguxdesign.maotong.myvideo.movie;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.HashMap;
+import com.taguxdesign.maotong.myvideo.R;
+
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by MaoTong on 2016/3/29.
@@ -17,7 +18,8 @@ import java.util.zip.Inflater;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
-
+    private final TypedValue mTypedValue = new TypedValue();
+    private int mBackground;
     private List<VideoModel> videoMap;
     private LayoutInflater mInflater;
 
@@ -35,15 +37,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     public MyAdapter(List<VideoModel> videoMap , Context context) {
         this.videoMap = videoMap;
         this.mInflater = LayoutInflater.from(context);
+        context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
+        mBackground = mTypedValue.resourceId;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewHolder(mInflater.inflate(R.layout.item_video , parent , false));
+        View view = mInflater.inflate(R.layout.item_moive, parent , false);
+        view.setBackgroundResource(mBackground);
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
+
+        if (videoMap.size() == 1){
+            holder.textText.setText("请重试");
+        }
+
         holder.textText.setText(videoMap.get(position).getText());
         holder.hrefText.setText(videoMap.get(position).getHref());
 

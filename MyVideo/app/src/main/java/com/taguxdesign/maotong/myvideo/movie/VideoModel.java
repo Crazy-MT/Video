@@ -1,4 +1,4 @@
-package com.taguxdesign.maotong.myvideo;
+package com.taguxdesign.maotong.myvideo.movie;
 
 /**
  * Created by MaoTong on 2016/3/29.
@@ -6,8 +6,8 @@ package com.taguxdesign.maotong.myvideo;
  */
 public class VideoModel {
 
-    private String text ;
-    private String href ;
+    protected String text ;
+    protected String href ;
 
     public VideoModel(String text, String href) {
         this.text = text;
