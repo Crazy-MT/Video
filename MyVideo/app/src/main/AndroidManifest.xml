@@ -14,7 +14,7 @@
         <activity android:name=".movie.MovieFragment">
 
         </activity>
-        <activity android:name=".movie.NewVideoDetailActivity"></activity>
+        <activity android:name=".VideoDetailActivity"></activity>
 
         <activity android:name=".cheesesquare.MainActivity">
             <intent-filter>

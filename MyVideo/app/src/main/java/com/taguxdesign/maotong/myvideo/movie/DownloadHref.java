@@ -1,14 +1,9 @@
 package com.taguxdesign.maotong.myvideo.movie;
 
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by MaoTong on 2016/3/29.
@@ -27,7 +22,6 @@ public class DownloadHref {
 
         Document doc = null;
         String downloadHref = "";
-        Log.e(TAG, "getDownloadHref: there" );
         try {
             doc = Jsoup.connect(url).get();
             Elements links = doc.select("a[href]");
@@ -35,7 +29,6 @@ public class DownloadHref {
             Elements imports = doc.select("link[href]");
 
             for (Element link : links) {
-                Log.e(TAG, "DownloadHref: " + link.attr("abs:href") + " " + trim(link.text(), 35));
                 if (link.attr("abs:href").contains("ftp:")){
                     downloadHref = link.attr("abs:href");
                 }
@@ -44,7 +37,6 @@ public class DownloadHref {
         } catch (Exception e) {
             e.printStackTrace();
             downloadHref = e.toString();
-            Log.e(TAG, "getDownloadHref: there"+e.toString() );
         }
 
         return downloadHref;

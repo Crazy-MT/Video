@@ -22,13 +22,10 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.taguxdesign.maotong.myvideo.R;
-
-import java.util.Random;
 
 public class CheeseDetailActivity extends AppCompatActivity {
 

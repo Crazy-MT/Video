@@ -33,9 +33,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.taguxdesign.maotong.myvideo.R;
 import com.taguxdesign.maotong.myvideo.baoman.BaoManFragment;
@@ -107,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new MovieFragment(), "电影");
-        adapter.addFragment(new TVFragment(), "美剧");
-        adapter.addFragment(new BaoManFragment(), "暴漫");
+        adapter.addFragment(new MovieFragment(), getResources().getString(R.string.movie));
+        adapter.addFragment(new TVFragment(), getResources().getString(R.string.tv));
+        adapter.addFragment(new BaoManFragment(), getResources().getString(R.string.bao_man));
         viewPager.setAdapter(adapter);
     }
 

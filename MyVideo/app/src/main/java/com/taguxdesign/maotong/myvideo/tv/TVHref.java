@@ -1,8 +1,6 @@
 package com.taguxdesign.maotong.myvideo.tv;
 
-import android.util.Log;
-
-import com.taguxdesign.maotong.myvideo.movie.VideoModel;
+import com.taguxdesign.maotong.myvideo.VideoModel;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +16,6 @@ import java.util.List;
  */
 public class TVHref {
 
-    private static final String TAG = "TVHref";
     private static String URL = "http://cn163.net/2014the-tv-show/";
     private List<VideoModel> tvList;
     private static final String TAG_LINK = "http://cn163.net/archives/";
@@ -36,7 +33,6 @@ public class TVHref {
             mediaAndImports();*/
 
             for (Element link : links) {
-                Log.e(TAG, "getAllHref: " + link.attr("abs:href") + " " + trim(link.text(), 35));
                 addToList(link);
             }
 

@@ -15,18 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.taguxdesign.maotong.myvideo.R;
-import com.taguxdesign.maotong.myvideo.movie.AllHref;
 import com.taguxdesign.maotong.myvideo.movie.DividerItemDecoration;
 import com.taguxdesign.maotong.myvideo.movie.MyAdapter;
-import com.taguxdesign.maotong.myvideo.movie.NewVideoDetailActivity;
-import com.taguxdesign.maotong.myvideo.movie.VideoModel;
+import com.taguxdesign.maotong.myvideo.VideoDetailActivity;
+import com.taguxdesign.maotong.myvideo.VideoModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TVFragment extends Fragment {
 
-    private static final String TAG = "BaoManFragment";
     private List<VideoModel> tvList;
     private Context mContext ;
     private RecyclerView mTvRv;
@@ -57,10 +55,10 @@ public class TVFragment extends Fragment {
         myAdapter.setOnItemClickListener(new MyAdapter.OnItemClickLister() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity() , NewVideoDetailActivity.class);
+                Intent intent = new Intent(getActivity() , VideoDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString(NewVideoDetailActivity.HREF , tvList.get(position).getHref());
-                intent.putExtra( NewVideoDetailActivity.URL, bundle);
+                bundle.putString(VideoDetailActivity.HREF , tvList.get(position).getHref());
+                intent.putExtra( VideoDetailActivity.URL, bundle);
                 startActivity(intent);
             }
 
@@ -79,7 +77,6 @@ public class TVFragment extends Fragment {
             @Override
             public void run() {
                 tvList = new TVHref().getAllHref();
-                Log.e(TAG, "run: tvList" + tvList.size());
                 mHandler.sendEmptyMessage(0);
 
             }

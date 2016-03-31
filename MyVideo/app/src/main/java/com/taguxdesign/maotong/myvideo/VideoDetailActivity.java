@@ -1,17 +1,16 @@
-package com.taguxdesign.maotong.myvideo.movie;
+package com.taguxdesign.maotong.myvideo;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
-import com.taguxdesign.maotong.myvideo.R;
+import com.taguxdesign.maotong.myvideo.movie.DownloadHref;
 
-public class NewVideoDetailActivity extends AppCompatActivity {
+public class VideoDetailActivity extends AppCompatActivity {
 
     public static final String HREF = "video_detail_href";
     public static final String URL = "video_detail_url";
@@ -59,7 +58,6 @@ public class NewVideoDetailActivity extends AppCompatActivity {
         tvDownloadHref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("TAG", "onClick: " + tvDownloadHref.getText().toString());
                 Intent i = new Intent(Intent.ACTION_VIEW , Uri.parse(tvDownloadHref.getText().toString()));
                 if(i.resolveActivity(getPackageManager()) != null){
                     startActivity(i);

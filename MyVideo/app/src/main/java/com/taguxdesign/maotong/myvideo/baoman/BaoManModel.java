@@ -1,6 +1,6 @@
 package com.taguxdesign.maotong.myvideo.baoman;
 
-import com.taguxdesign.maotong.myvideo.movie.VideoModel;
+import com.taguxdesign.maotong.myvideo.VideoModel;
 
 /**
  * Created by MaoTong on 2016/3/30.

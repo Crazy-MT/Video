@@ -1,4 +1,4 @@
-package com.taguxdesign.maotong.myvideo.movie;
+package com.taguxdesign.maotong.myvideo;
 
 /**
  * Created by MaoTong on 2016/3/29.

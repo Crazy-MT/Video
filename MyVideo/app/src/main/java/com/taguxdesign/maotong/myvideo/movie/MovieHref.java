@@ -1,6 +1,6 @@
 package com.taguxdesign.maotong.myvideo.movie;
 
-import android.util.Log;
+import com.taguxdesign.maotong.myvideo.VideoModel;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,9 +14,8 @@ import java.util.List;
  * Created by MaoTong on 2016/3/29.
  * QQ:974291433
  */
-public class AllHref {
+public class MovieHref {
 
-    private static final String TAG = "AllHref";
     private static String URL = "http://www.dy2018.com/";
     private List<VideoModel> videoMap;
 
@@ -33,13 +32,12 @@ public class AllHref {
             mediaAndImports();*/
 
             for (Element link : links) {
-                Log.e(TAG, "getAllHref: " + link.attr("abs:href") + " " + trim(link.text(), 35));
                 addToList(link);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            videoMap.add(new VideoModel(e.toString() , new String()));
+            videoMap.add(new VideoModel(e.toString(), new String()));
         }
 
         return videoMap;
@@ -63,8 +61,8 @@ public class AllHref {
 
     private void addToList(Element link) {
 
-        if (link.attr("abs:href").contains("http://www.dy2018.com/i/")){
-            VideoModel videoModel = new VideoModel(trim(link.text(), 35) , link.attr("abs:href"));
+        if (link.attr("abs:href").contains("http://www.dy2018.com/i/")) {
+            VideoModel videoModel = new VideoModel(trim(link.text(), 35), link.attr("abs:href"));
             videoMap.add(videoModel);
         }
     }

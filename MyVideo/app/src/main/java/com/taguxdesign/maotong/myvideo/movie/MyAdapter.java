@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.taguxdesign.maotong.myvideo.R;
+import com.taguxdesign.maotong.myvideo.VideoModel;
 
 import java.util.List;
 
@@ -18,7 +19,6 @@ import java.util.List;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
-    private final TypedValue mTypedValue = new TypedValue();
     private int mBackground;
     private List<VideoModel> videoMap;
     private LayoutInflater mInflater;
@@ -37,6 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     public MyAdapter(List<VideoModel> videoMap , Context context) {
         this.videoMap = videoMap;
         this.mInflater = LayoutInflater.from(context);
+        TypedValue mTypedValue = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
     }
@@ -50,10 +51,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-
-        if (videoMap.size() == 1){
-            holder.textText.setText("请重试");
-        }
 
         holder.textText.setText(videoMap.get(position).getText());
         holder.hrefText.setText(videoMap.get(position).getHref());

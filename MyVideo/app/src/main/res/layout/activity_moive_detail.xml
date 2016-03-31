@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".movie.NewVideoDetailActivity">
-
+    android:orientation="vertical"
+    tools:context=".VideoDetailActivity">
 
     <WebView
         android:id="@+id/id_web_href"
@@ -14,8 +13,7 @@
         android:layout_weight="1"></WebView>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/id_text_download_href"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

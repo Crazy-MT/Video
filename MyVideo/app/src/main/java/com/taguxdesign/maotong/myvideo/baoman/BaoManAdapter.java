@@ -1,21 +1,15 @@
 package com.taguxdesign.maotong.myvideo.baoman;
 
 import android.content.Context;
-import android.net.Uri;
-import android.nfc.Tag;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.taguxdesign.maotong.myvideo.R;
-
 import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -24,9 +18,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class BaoManAdapter extends RecyclerView.Adapter<BaoManAdapter.MyViewHolder> {
 
-    private final TypedValue mTypedValue = new TypedValue();
+
     private int mBackground;
-    private List<BaoManModel> videoMap;
+    private List<BaoManModel> mBaoManList;
     private LayoutInflater mInflater;
     private Context mContext;
 
@@ -44,8 +38,9 @@ public class BaoManAdapter extends RecyclerView.Adapter<BaoManAdapter.MyViewHold
 
     public BaoManAdapter(List<BaoManModel> videoMap, Context context) {
         this.mContext = context;
-        this.videoMap = videoMap;
+        this.mBaoManList = videoMap;
         this.mInflater = LayoutInflater.from(context);
+        TypedValue mTypedValue = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
     }
@@ -60,15 +55,14 @@ public class BaoManAdapter extends RecyclerView.Adapter<BaoManAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-        if (videoMap.size() == 1) {
+        if (mBaoManList.size() == 1) {
             holder.textText.setText("请重试");
         }
 
-
-        holder.textText.setText(videoMap.get(position).getText());
-        holder.hrefText.setText(videoMap.get(position).getHref());
+        holder.textText.setText(mBaoManList.get(position).getText());
+        holder.hrefText.setText(mBaoManList.get(position).getHref());
         Glide.with(mContext)
-                .load(videoMap.get(position).getImg())
+                .load(mBaoManList.get(position).getImg())
                 .into(holder.img);
 
         if (mOnItemClickListener != null) {
@@ -94,7 +88,7 @@ public class BaoManAdapter extends RecyclerView.Adapter<BaoManAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return videoMap.size();
+        return mBaoManList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
