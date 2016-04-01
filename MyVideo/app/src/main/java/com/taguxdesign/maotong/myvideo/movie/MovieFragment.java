@@ -1,5 +1,6 @@
 package com.taguxdesign.maotong.myvideo.movie;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ public class MovieFragment extends Fragment {
     private List<VideoModel> videoMap;
     private Context mContext;
     private RecyclerView movieRecyclerView;
+    View view;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -34,15 +37,78 @@ public class MovieFragment extends Fragment {
         }
     };
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        Log.e(TAG, "onAttach: " );
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e(TAG, "onCreate: ");
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_movie, container, false);
+        Log.e(TAG, "onCreateView: ");
+        view = inflater.inflate(R.layout.fragment_movie, container, false);
         movieRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
-        initData();
+        if (videoMap == null){
+            initData();
+        }
         return view;
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.e(TAG, "onActivityCreated: " );
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart: " );
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: " );
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause: ");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop: ");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.e(TAG, "onDestroyView: " );
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: " );
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.e(TAG, "onDetach: ");
     }
 
     private void sutUpRecyclerView() {
