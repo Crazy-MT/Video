@@ -58,6 +58,8 @@ public class MovieFragment extends Fragment {
         movieRecyclerView = (RecyclerView) view.findViewById(R.id.id_recycler_view);
         if (videoMap == null){
             initData();
+        } else {
+            sutUpRecyclerView();
         }
         return view;
     }
