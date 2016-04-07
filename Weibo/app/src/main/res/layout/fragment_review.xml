@@ -7,7 +7,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:text="使用Fragment做主面板"
+        android:text="@string/review"
         android:textSize="20sp"
         android:textStyle="bold" />
 

@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.maotong.weibo.R;
+import com.maotong.weibo.movie.MovieOneFragment;
+import com.maotong.weibo.movie.MovieTwoFragment;
+import com.maotong.weibo.personal.PersonalFragment;
+import com.maotong.weibo.review.ReviewFragment;
 
 /**
  * Created by MaoTong on 2016/4/6.
@@ -20,7 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mBottomMovieButton, mBottomReviewButton, mBottomPersonalButton;
 
-    private ContentFragment contentFragment ;
+    private MovieTwoFragment mMovieOneFragment;
+    private ReviewFragment mReviewFragment;
+    private PersonalFragment mPersonalFragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +40,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setDefaultFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        contentFragment = new ContentFragment();
-        transaction.replace(R.id.id_content , contentFragment);
+        mMovieOneFragment = new MovieTwoFragment();
+        mReviewFragment = new ReviewFragment();
+        mPersonalFragment = new PersonalFragment();
+        transaction.add(R.id.id_content, mMovieOneFragment);
+        transaction.add(R.id.id_content, mReviewFragment);
+        transaction.add(R.id.id_content, mPersonalFragment);
+        transaction.hide(mReviewFragment);
+        transaction.hide(mPersonalFragment);
         transaction.commit();
-
     }
 
     private void initEvents() {
@@ -53,31 +64,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-    private void setupViewPager(ViewPager viewPager) {
-        com.maotong.weibo.main.Adapter adapter = new com.maotong.weibo.main.Adapter(getSupportFragmentManager());
-        //adapter.addFragment(new MovieFragment() , R.string.);
-    }
-
     @Override
     public void onClick(View v) {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
         switch (v.getId()) {
             case R.id.id_movie_btn:
                 changeDrawableTop(true, false, false);
+                if (mMovieOneFragment == null) {
+                    mMovieOneFragment = new MovieTwoFragment();
+                }
+                transaction.hide(mReviewFragment);
+                transaction.hide(mPersonalFragment);
+                transaction.show(mMovieOneFragment);
                 break;
             case R.id.id_review_btn:
-                changeDrawableTop(false , true , false);
+                changeDrawableTop(false, true, false);
+                if (mReviewFragment == null) {
+                    mReviewFragment = new ReviewFragment();
+                }
+                transaction.hide(mMovieOneFragment);
+                transaction.hide(mPersonalFragment);
+                transaction.show(mReviewFragment);
                 break;
             case R.id.id_personal_btn:
-                changeDrawableTop(false , false ,true);
+                changeDrawableTop(false, false, true);
+                if (mPersonalFragment == null) {
+                    mPersonalFragment = new PersonalFragment();
+                }
+                transaction.hide(mReviewFragment);
+                transaction.hide(mMovieOneFragment);
+                transaction.show(mPersonalFragment);
                 break;
             default:
                 break;
         }
+
+        transaction.commit();
     }
 
     /**
      * 改变底部按钮的top图片
+     *
      * @param isMovieClicked
      * @param isReviewClicked
      * @param isPersonalClicked

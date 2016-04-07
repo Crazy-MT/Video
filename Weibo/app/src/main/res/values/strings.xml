@@ -116,4 +116,10 @@
     <string name="public_timeline">最新的公共微博</string>
     <string name="public_timeline_json">公共微博json</string>
     <string name="main">Movie</string>
+    <string name="hot_showing">热评</string>
+    <string name="trailer">预告</string>
+    <string name="movie_list">影单</string>
+    <string name="score">评分</string>
+    <string name="movie_name">电影名</string>
+    <string name="comment_count">评论数量</string>
 </resources>

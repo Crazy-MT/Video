@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mt="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/movie_tab_top"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.maotong.weibo.widget.ColorTrackView
+                android:id="@+id/id_movie_tab_01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                mt:progress="1"
+                mt:text="@string/hot_showing"
+                mt:text_change_color="@color/white"
+                mt:text_origin_color="@color/movie_tab_text_origin"
+                mt:text_size="18sp" />
+
+            <com.maotong.weibo.widget.ColorTrackView
+                android:id="@+id/id_movie_tab_02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                mt:progress="0"
+                mt:text="@string/trailer"
+                mt:text_change_color="@color/white"
+                mt:text_origin_color="@color/movie_tab_text_origin"
+                mt:text_size="18sp" />
+
+            <com.maotong.weibo.widget.ColorTrackView
+                android:id="@+id/id_movie_tab_03"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                mt:progress="0"
+                mt:text="@string/movie_list"
+                mt:text_change_color="@color/white"
+                mt:text_origin_color="@color/movie_tab_text_origin"
+                mt:text_size="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_movie_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>
