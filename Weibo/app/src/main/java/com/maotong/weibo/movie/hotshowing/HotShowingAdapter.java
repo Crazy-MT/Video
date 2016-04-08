@@ -48,7 +48,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     @Override
     public HotShowingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.item_hot_showing_recycler , parent , false);
-        return new HotShowingViewHolder(view);
+        return new  HotShowingViewHolder(view);
     }
 
     @Override
