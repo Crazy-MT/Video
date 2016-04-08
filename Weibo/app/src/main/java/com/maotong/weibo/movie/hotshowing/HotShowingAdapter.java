@@ -24,9 +24,10 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     private Context context;
     private LayoutInflater inflater;
 
-    private interface OnItemClickListener{
-        void onItemClick(View view , int position);
-        void onItemLongClick(View view , int position);
+    private interface OnItemClickListener {
+        void onItemClick(View view, int position);
+
+        void onItemLongClick(View view, int position);
     }
 
     private OnItemClickListener onItemClickListener;
@@ -47,8 +48,8 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
 
     @Override
     public HotShowingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_hot_showing_recycler , parent , false);
-        return new  HotShowingViewHolder(view);
+        View view = inflater.inflate(R.layout.item_hot_showing_recycler, parent, false);
+        return new HotShowingViewHolder(view);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.taguxdesign.maotong.myvideo.baoman;
 
+import android.util.Log;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -48,6 +50,7 @@ public class BaoManHref {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("tag" , e.toString());
             tvList.add(new BaoManModel(e.toString(), new String(), new String()));
         }
 
