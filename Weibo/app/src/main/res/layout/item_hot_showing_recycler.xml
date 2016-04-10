@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/id_item_hot_showing"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:background="@color/movie_tab_text_origin"
-    android:orientation="vertical">
+    android:layout_height="130dp"
+    android:background="@color/movie_tab_text_origin">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/id_item_hot_showing"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="match_parent" />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom">
-
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:paddingLeft="20dp">
         <LinearLayout
-            android:id="@+id/id_item_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -32,11 +37,10 @@
                 android:text="@string/movie_name"
                 android:textColor="@color/white" />
         </LinearLayout>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/id_item_top">
+            android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/id_item_comment"
@@ -60,7 +64,6 @@
         </RelativeLayout>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
-
-</LinearLayout>
+</RelativeLayout>

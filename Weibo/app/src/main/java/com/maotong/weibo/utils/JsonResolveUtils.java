@@ -1,15 +1,26 @@
 package com.maotong.weibo.utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.maotong.weibo.base.MyApplication;
+import com.maotong.weibo.base.WeiBoApplication;
+import com.maotong.weibo.movie.coming.ComingModel;
+import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.movie.pagelist.PageListModel;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class JsonResolveUtils {
@@ -24,6 +35,111 @@ public class JsonResolveUtils {
  
 	}
 
+	public List<PageListModel> getPageList() {
+		List<PageListModel> pageLists = new ArrayList<PageListModel>();
+		PageListModel pageList ;
+		String json ;
+		boolean ret = false;
+		String url = WeiBoApplication.getInstance().getBASEURL()
+				+ "/PagelistServlet";
+
+		SyncHttp syncHttp = new SyncHttp();
+
+		try {
+			json = syncHttp.httpGet(url, null);
+			JSONObject jsonObject = new JSONObject(json);
+			// 获取返回码
+			ret = jsonObject.getString("ret").equals("success");
+			if (ret) {
+				JSONObject dataObject = jsonObject.getJSONObject("data");
+				JSONArray objectArr = dataObject.getJSONArray("pagelist");
+
+				JSONObject rs = null;
+				for (int i = 0; i < objectArr.length(); i++) {
+					rs = (JSONObject) objectArr.opt(i);
+					pageList = new PageListModel(rs.getInt("id"),rs.getString("name"), rs.getString("description"),
+							rs.getString("cover_url"),
+							rs.getInt("movie_count") );
+
+					pageLists.add(pageList);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pageLists;
+	}
+
+	public List<HotShowingModel> getMovie(){
+		List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
+		HotShowingModel movie ;
+		String json ;
+		boolean ret = false;
+		String url = WeiBoApplication.getInstance().getBASEURL()
+				+ "/MovieServlet";
+
+		SyncHttp syncHttp = new SyncHttp();
+
+		try {
+			json = syncHttp.httpGet(url, null);
+			JSONObject jsonObject = new JSONObject(json);
+			// 获取返回码
+			ret = jsonObject.getString("ret").equals("success");
+			if (ret) {
+				JSONObject dataObject = jsonObject.getJSONObject("data");
+				JSONArray objectArr = dataObject.getJSONArray("movie");
+
+				JSONObject rs = null;
+				for (int i = 0; i < objectArr.length(); i++) {
+					rs = (JSONObject) objectArr.opt(i);
+					movie = new HotShowingModel(rs.getInt("id"),rs.getString("name"), rs.getString("genre"),
+							rs.getString("intro"), rs.getString("poster_url"),
+							rs.getString("large_poster_url"), (float) rs.getDouble("score"),
+							rs.getInt("score_count") );
+
+					movies.add(movie);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return movies;
+	}
+
+	public List<ComingModel> getComing(){
+		List<ComingModel> comingModels = new ArrayList<ComingModel>();
+		ComingModel coming ;
+		String json ;
+		boolean ret = false;
+		String url = WeiBoApplication.getInstance().getBASEURL()
+				+ "/ComingServlet";
+
+		SyncHttp syncHttp = new SyncHttp();
+
+		try {
+			json = syncHttp.httpGet(url, null);
+			JSONObject jsonObject = new JSONObject(json);
+			// 获取返回码
+			ret = jsonObject.getString("ret").equals("success");
+			if (ret) {
+				JSONObject dataObject = jsonObject.getJSONObject("data");
+				JSONArray objectArr = dataObject.getJSONArray("coming");
+
+				JSONObject rs = null;
+				for (int i = 0; i < objectArr.length(); i++) {
+					rs = (JSONObject) objectArr.opt(i);
+					coming = new ComingModel(rs.getInt("id"),rs.getString("name"), rs.getString("genre"),
+							rs.getString("intro"), rs.getString("poster_url"),
+							rs.getString("large_poster_url"),rs.getString("release_date"), (float) rs.getDouble("score"),
+							rs.getInt("score_count"),rs.getInt("wanttosee"),rs.getInt("is_wanttosee") );
+					comingModels.add(coming);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return comingModels;
+	}
 	/**
 	 * 用户注册
 	 * @param phone
@@ -31,9 +147,9 @@ public class JsonResolveUtils {
 	 * @return
 	 */
 	public Boolean setAddUser(String phone, String password) {
-		String url = MyApplication.getMyApplication().getBASEURL()
+		/*String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
 				+ "/freemeal/AddUser";
-
+*/
 		List<Parameter> params = new ArrayList<Parameter>();
 		params.add(new Parameter("username", phone));
 		params.add(new Parameter("password", password)); 
@@ -43,7 +159,7 @@ public class JsonResolveUtils {
 
 		// 获取返回码
 		try {
-			json = syncHttp.httpPost(url, params);
+			//json = syncHttp.httpPost(url, params);
 			JSONObject jsonObject = new JSONObject(json);
 			return jsonObject.getString("result").equals("success");
 		} catch (Exception e1) {
@@ -61,7 +177,7 @@ public class JsonResolveUtils {
 	 */
 	/*public Boolean getLogin(String account, String password) {
 		d_User dUser = new d_User();
-		String url = MyApplication.getMyApplication().getBASEURL()
+		String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
 				+ "/freemeal/Login";
 		List<Parameter> params = new ArrayList<Parameter>();
 		params.add(new Parameter("username", account));
@@ -92,8 +208,8 @@ public class JsonResolveUtils {
 							rs.getInt("loginstatus"), rs.getInt("joincounts"));
 				}
 
-				MyApplication.getMyApplication().setdUser(dUser);
-				MyApplication.getMyApplication().setUser(true);
+				WeiBoApplication.getWeiBoApplication().setdUser(dUser);
+				WeiBoApplication.getWeiBoApplication().setUser(true);
 			}
 			return jsonObject.getString("result").equals("success");
 		} catch (Exception e1) {
@@ -112,7 +228,7 @@ public class JsonResolveUtils {
 		d_Activity activity = new d_Activity();
 
 		boolean ret = false;
-		String url = MyApplication.getMyApplication().getBASEURL()
+		String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
 				+ "/freemeal/GetAllActivity";
 		SyncHttp syncHttp = new SyncHttp();
 		String json = null;
@@ -155,12 +271,12 @@ public class JsonResolveUtils {
 	 */
 	public int setActivity(int id) {
 		String curpeocounts = "0";
-		String url = MyApplication.getMyApplication().getBASEURL()
-				+ "/freemeal/GetCurpeocounts";
+		/*String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
+				+ "/freemeal/GetCurpeocounts";*/
 
 		List<Parameter> params = new ArrayList<Parameter>();
 		params.add(new Parameter("id", id + ""));
-		/*params.add(new Parameter("userid", MyApplication.getMyApplication()
+		/*params.add(new Parameter("userid", WeiBoApplication.getWeiBoApplication()
 				.getdUser().getId()
 				+ ""));*/
 		SyncHttp syncHttp = new SyncHttp();
@@ -168,7 +284,7 @@ public class JsonResolveUtils {
 		boolean ret = false;
 		// 获取返回码
 		try {
-			json = syncHttp.httpPost(url, params);
+			//json = syncHttp.httpPost(url, params);
 			JSONObject jsonObject = new JSONObject(json);
 			ret = jsonObject.getString("result").equals("success");
 
@@ -193,9 +309,9 @@ public class JsonResolveUtils {
 
 		String curpeocounts = "0";
 
-		String url = MyApplication.getMyApplication().getBASEURL()
+		/*String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
 				+ "/freemeal/GetCurpeocountsNow";
-
+*/
 		List<Parameter> params = new ArrayList<Parameter>();
 		params.add(new Parameter("id", id + ""));
 
@@ -204,7 +320,7 @@ public class JsonResolveUtils {
 		boolean ret = false;
 		// 获取返回码
 		try {
-			json = syncHttp.httpPost(url, params);
+			//json = syncHttp.httpPost(url, params);
 			JSONObject jsonObject = new JSONObject(json);
 			ret = jsonObject.getString("result").equals("success");
 
@@ -242,8 +358,8 @@ public class JsonResolveUtils {
 	}
 
 	public boolean setSex(int id, String string) {
-		String url = MyApplication.getMyApplication().getBASEURL()
-				+ "/freemeal/EditUserSex";
+		//String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
+		//		+ "/freemeal/EditUserSex";
 
 		List<Parameter> params = new ArrayList<Parameter>();
 		params.add(new Parameter("id", id + ""));
@@ -253,7 +369,7 @@ public class JsonResolveUtils {
 		boolean ret = false;
 		// 获取返回码
 		try {
-			json = syncHttp.httpPost(url, params);
+		//	json = syncHttp.httpPost(url, params);
 			JSONObject jsonObject = new JSONObject(json);
 			ret = jsonObject.getString("result").equals("success");
 
@@ -272,8 +388,8 @@ public class JsonResolveUtils {
 	}
 
 	public boolean setNickName(int id, String string) {
-		String url = MyApplication.getMyApplication().getBASEURL()
-				+ "/freemeal/EditUserNickname";
+		//String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
+		//		+ "/freemeal/EditUserNickname";
 
 		List<Parameter> params = new ArrayList<Parameter>();
 		params.add(new Parameter("id", id + ""));
@@ -283,7 +399,7 @@ public class JsonResolveUtils {
 		boolean ret = false;
 		// 获取返回码
 		try {
-			json = syncHttp.httpPost(url, params);
+		//	json = syncHttp.httpPost(url, params);
 			JSONObject jsonObject = new JSONObject(json);
 			ret = jsonObject.getString("result").equals("success");
 
@@ -300,4 +416,6 @@ public class JsonResolveUtils {
 			return false ; 
 		}
 	}
+
+
 }

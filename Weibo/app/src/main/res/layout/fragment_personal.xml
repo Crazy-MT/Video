@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/id_user_name_text"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"

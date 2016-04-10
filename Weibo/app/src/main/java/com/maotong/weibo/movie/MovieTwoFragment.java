@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.maotong.weibo.R;
+import com.maotong.weibo.movie.coming.ComingFragment;
 import com.maotong.weibo.movie.hotshowing.HotShowingFragment;
 import com.orhanobut.logger.Logger;
 
@@ -76,7 +77,7 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getFragmentManager());
         adapter.addFragment(new HotShowingFragment(), getResources().getString(R.string.hot_showing));
-        adapter.addFragment(new HotShowingFragment(), getResources().getString(R.string.trailer));
+        adapter.addFragment(new ComingFragment(), getResources().getString(R.string.trailer));
         adapter.addFragment(new HotShowingFragment(), getResources().getString(R.string.movie_list));
         viewPager.setAdapter(adapter);
     }

@@ -1,4 +1,4 @@
-package com.maotong.weibo.movie.hotshowing;
+package com.maotong.weibo.movie.coming;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,12 +18,10 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotShowingFragment extends Fragment
+public class ComingFragment extends Fragment
 {
-	public static final String TITLE = "title";
-	private String mTitle = "Defaut Value";
 	private RecyclerView mRecycler;
-	private List<HotShowingModel> mHotShowingList;
+	private List<ComingModel> mComingList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -36,15 +34,15 @@ public class HotShowingFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		View view = inflater.inflate(R.layout.fragment_hot_showing , container , false);
-		mRecycler = (RecyclerView) view.findViewById(R.id.id_hot_showing_recycler);
+		View view = inflater.inflate(R.layout.fragment_coming , container , false);
+		mRecycler = (RecyclerView) view.findViewById(R.id.id_coming_recycler);
 		initData();
 		return view;
 
 	}
 
 	@Subscribe
-	public void onEventMainThread(List<HotShowingModel> hotShowingModelList){
+	public void onEventMainThread(List<ComingModel> comingModelList){
 		getActivity().runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -54,19 +52,20 @@ public class HotShowingFragment extends Fragment
 	}
 
 	private void setUpRecyclerView() {
-		HotShowingAdapter adapter = new HotShowingAdapter(getContext(),mHotShowingList);
+		ComingAdapter adapter = new ComingAdapter(getContext(), mComingList);
 		mRecycler.setAdapter(adapter);
 		mRecycler.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.VERTICAL , false));
 
 	}
 
 	private void initData() {
-		mHotShowingList = new ArrayList<>();
+		mComingList = new ArrayList<>();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				mHotShowingList = new JsonResolveUtils().getMovie();
-				EventBus.getDefault().post(mHotShowingList);
+				mComingList = new JsonResolveUtils().getComing();
+				Log.e("tag", "run: mComingList"+ mComingList.size() );
+				EventBus.getDefault().post(mComingList);
 			}
 		}).start();
 	}

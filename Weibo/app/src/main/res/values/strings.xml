@@ -122,4 +122,6 @@
     <string name="score">评分</string>
     <string name="movie_name">电影名</string>
     <string name="comment_count">评论数量</string>
+    <string name="coming_like" >人想看</string>
+    <string name="coming_premiere">上映日期</string>
 </resources>

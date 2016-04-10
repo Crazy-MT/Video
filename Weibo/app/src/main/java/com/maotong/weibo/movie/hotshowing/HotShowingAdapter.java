@@ -1,6 +1,7 @@
 package com.maotong.weibo.movie.hotshowing;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
 
 import java.util.List;
@@ -54,8 +56,11 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
 
     @Override
     public void onBindViewHolder(HotShowingViewHolder holder, int position) {
-
-
+        HotShowingModel hotShowingModel = hotShowingModels.get(position);
+        holder.comment.setText(hotShowingModel.getScore_count()+"");
+        holder.score.setText(hotShowingModel.getScore() + "");
+        holder.name.setText(hotShowingModel.getName());
+        Glide.with(context).load(hotShowingModel.getPoster_url()).into(holder.movieBg);
     }
 
     @Override
@@ -65,15 +70,22 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
 
     class HotShowingViewHolder extends RecyclerView.ViewHolder {
 
-        private LinearLayout movieBg;
+        // 电影背景图
+        private ImageView movieBg;
+        //电影评分
         private TextView score;
+        //评论数量
         private TextView comment;
+
+        //电影名
         private TextView name;
+
+        //是否收藏
         private ImageView isLike;
 
         public HotShowingViewHolder(View itemView) {
             super(itemView);
-            movieBg = (LinearLayout) itemView.findViewById(R.id.id_item_hot_showing);
+            movieBg = (ImageView) itemView.findViewById(R.id.id_item_hot_showing);
             score = (TextView) itemView.findViewById(R.id.id_item_hot_showing_score);
             name = (TextView) itemView.findViewById(R.id.id_item_hot_showing_name);
             comment = (TextView) itemView.findViewById(R.id.id_item_hot_showing_comment);

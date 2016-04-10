@@ -3,15 +3,19 @@ package com.maotong.weibo.base;
 
 
 import android.app.Application;
+import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
-public class MyApplication extends  Application  {
+import org.greenrobot.eventbus.EventBus;
 
-	private static MyApplication myApplication = null;
+public class WeiBoApplication extends  Application  {
+	private static WeiBoApplication weiBoApplication;
+
+	public static WeiBoApplication getInstance() {
+		return weiBoApplication;
+	}
 	private String BASEURL;
 	private boolean isUser ;
 	private int userId   ;
@@ -23,13 +27,8 @@ public class MyApplication extends  Application  {
 	protected static final String AUTO_LOGIN = "auto_login";
 	public static final String UploadFaceImage = "http://192.168.31.158:8080/freemeal/UploadFaceImage";
 
-	public static MyApplication getMyApplication() {
-		return myApplication;
-	}
-	
-	private MyApplication(){
-		
-	}
+
+
 
 	 /*http://freelmeal.sinaapp.com/
 	  *http://freelmeal.sinaapp.com/uploads/
@@ -39,15 +38,16 @@ public class MyApplication extends  Application  {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		myApplication = this;
-		setBASEURL("http://192.168.31.158:8080");//http://192.168.31.158:8080/freemeal/GetAllActivity
+		weiBoApplication = this;
+		setBASEURL("http://192.168.1.109:8080/WeiBoMovie/servlet");
 		setUser(false);
 		setUserId(0);
+
 		//dUser = new d_User();
 		sp = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 		if(sp.getBoolean(AUTO_LOGIN, true)){
 			//Toast.makeText(getApplicationContext(), sp.getBoolean(REM_PW, false)+"",1).show();
-			login();
+			//login();
 		}
 		
 		
