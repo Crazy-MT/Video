@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.maotong.weibo.R;
 import com.maotong.weibo.movie.coming.ComingFragment;
 import com.maotong.weibo.movie.hotshowing.HotShowingFragment;
+import com.maotong.weibo.movie.pagelist.PageListFragment;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -78,7 +79,7 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
         Adapter adapter = new Adapter(getFragmentManager());
         adapter.addFragment(new HotShowingFragment(), getResources().getString(R.string.hot_showing));
         adapter.addFragment(new ComingFragment(), getResources().getString(R.string.trailer));
-        adapter.addFragment(new HotShowingFragment(), getResources().getString(R.string.movie_list));
+        adapter.addFragment(new PageListFragment(), getResources().getString(R.string.movie_list));
         viewPager.setAdapter(adapter);
     }
     static class Adapter extends FragmentPagerAdapter {

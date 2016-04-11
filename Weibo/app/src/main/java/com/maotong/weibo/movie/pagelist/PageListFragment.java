@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.maotong.weibo.R;
+import com.maotong.weibo.movie.hotshowing.HotShowingModel;
 import com.maotong.weibo.utils.JsonResolveUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -18,61 +19,63 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageListFragment extends Fragment
-{
-	private RecyclerView mRecycler;
-	private List<PageListModel> mPageList;
+public class PageListFragment extends Fragment {
+    private RecyclerView mRecycler;
+    private List<PageListModel> mPageList;
+    private List<List<HotShowingModel>> mPageListMovie;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		EventBus.getDefault().register(this);
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState)
-	{
-		View view = inflater.inflate(R.layout.fragment_page_list , container , false);
-		mRecycler = (RecyclerView) view.findViewById(R.id.id_page_list_recycler);
-		initData();
-		return view;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_page_list, container, false);
+        mRecycler = (RecyclerView) view.findViewById(R.id.id_page_list_recycler);
+        initData();
+        return view;
 
-	}
+    }
 
-	@Subscribe
-	public void onEventMainThread(List<PageListModel> pageList){
-		getActivity().runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				setUpRecyclerView();
-			}
-		});
-	}
+    @Subscribe
+    public void onEventMainThread(List<PageListModel> pageList) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setUpRecyclerView();
+            }
+        });
+    }
 
-	private void setUpRecyclerView() {
-		ComingAdapter adapter = new ComingAdapter(getContext(), mPageList);
-		mRecycler.setAdapter(adapter);
-		mRecycler.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.VERTICAL , false));
+    private void setUpRecyclerView() {
+        PageListAdapter adapter = new PageListAdapter(getContext(), mPageList , mPageListMovie);
+        mRecycler.setAdapter(adapter);
+        mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+    }
 
-	}
+    private void initData() {
+        mPageList = new ArrayList<>();
+        mPageListMovie = new ArrayList<>();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mPageList = new JsonResolveUtils().getPageList();
+                for (int i = 0; i < mPageList.size(); ++i) {
+                    List<HotShowingModel> movieList;
+                    movieList = new JsonResolveUtils().getPageListMovie(mPageList.get(i).getId());
+                    mPageListMovie.add(movieList);
+                }
+                EventBus.getDefault().post(mPageList);
+            }
+        }).start();
+    }
 
-	private void initData() {
-		mPageList = new ArrayList<>();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				mPageList = new JsonResolveUtils().getPageList();
-				Log.e("tag", "run: mPageList"+ mPageList.size() );
-				EventBus.getDefault().post(mPageList);
-			}
-		}).start();
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		EventBus.getDefault().unregister(this);
-	}
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }
