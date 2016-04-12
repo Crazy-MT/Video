@@ -19,28 +19,19 @@ public class WeiBoApplication extends  Application  {
 	private String BASEURL;
 	private boolean isUser ;
 	private int userId   ;
-	//private d_User dUser  ;
 	private SharedPreferences sp ; 
 	private static final String REM_PW = "rem_pw" ; 
 	private static final String ACCOUNT = "account";
 	private static final String PASSWORD = "password";
 	protected static final String AUTO_LOGIN = "auto_login";
-	public static final String UploadFaceImage = "http://192.168.31.158:8080/freemeal/UploadFaceImage";
-
-
-
-
-	 /*http://freelmeal.sinaapp.com/
-	  *http://freelmeal.sinaapp.com/uploads/
-      *http://192.168.31.158:8080/freemeal/uploads/
-	  */
 	
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		weiBoApplication = this;
-		//setBASEURL("http://192.168.0.153:8080/WeiBoMovie/servlet");
-		setBASEURL("http://192.168.1.109:8080/WeiBoMovie/servlet");
+		setBASEURL("http://192.168.0.153:8080/WeiBoMovie/servlet"); //tagux
+		//setBASEURL("http://192.168.1.109:8080/WeiBoMovie/servlet"); //家
+//		setBASEURL("http://192.168.10.212:8080/WeiBoMovie/servlet");  //racemind
 		setUser(false);
 		setUserId(0);
 

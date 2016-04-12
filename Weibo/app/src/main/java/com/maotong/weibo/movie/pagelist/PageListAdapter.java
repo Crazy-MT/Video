@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,18 +67,13 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.PageLi
     @Override
     public void onBindViewHolder(final PageListViewHolder holder, int position) {
         PageListModel pageListModel = pageListModels.get(position);
-        holder.name.setText(pageListModel.getName());
         List<HotShowingModel> movies = mPageListMovie.get(position);
-        Log.e("tag", "onBindViewHolder: mPageListMovie" + mPageListMovie.toString());
+        holder.name.setText(pageListModel.getName());
+        holder.count.setText(movies.size()+"部");
         PageListItemAdapter pageListItemAdapter = new PageListItemAdapter(context , movies);
         holder.recyclerView.setAdapter(pageListItemAdapter);
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , false));
     }
-
-    private void setUpRecyclerView(PageListViewHolder holder) {
-
-    }
-
 
     @Override
     public int getItemCount() {
@@ -90,13 +84,14 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.PageLi
 
         //影单名
         private TextView name;
-
         //
         private RecyclerView recyclerView;
+        private TextView count;
 
         public PageListViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.id_item_pagelist_name);
+            count = (TextView) itemView.findViewById(R.id.id_item_pagelist_count);
             recyclerView = (RecyclerView) itemView.findViewById(R.id.id_item_pagelist_recycler);
         }
     }

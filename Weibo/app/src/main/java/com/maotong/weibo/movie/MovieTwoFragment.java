@@ -49,8 +49,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
         Logger.init();
     }
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -103,10 +103,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getSupportFragmentManager());
+        Adapter adapter = new Adapter(getSupportFragmentManager());/*
         adapter.addFragment(new MovieFragment(), getResources().getString(R.string.movie));
         adapter.addFragment(new TVFragment(), getResources().getString(R.string.tv));
-        adapter.addFragment(new BaoManFragment(), getResources().getString(R.string.bao_man));
+        adapter.addFragment(new BaoManFragment(), getResources().getString(R.string.bao_man));*/
+
+
+        adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.movie));
+        adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.tv));
+        adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.bao_man));
         viewPager.setAdapter(adapter);
     }
 

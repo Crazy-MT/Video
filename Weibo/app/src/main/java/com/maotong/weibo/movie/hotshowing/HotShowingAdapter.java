@@ -3,12 +3,14 @@ package com.maotong.weibo.movie.hotshowing;
 import android.content.Context;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,7 +28,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     private Context context;
     private LayoutInflater inflater;
 
-    private interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(View view, int position);
 
         void onItemLongClick(View view, int position);
@@ -55,12 +57,27 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     }
 
     @Override
-    public void onBindViewHolder(HotShowingViewHolder holder, int position) {
+    public void onBindViewHolder(final HotShowingViewHolder holder, final int position) {
         HotShowingModel hotShowingModel = hotShowingModels.get(position);
-        holder.comment.setText(hotShowingModel.getScore_count()+"");
+        holder.comment.setText(hotShowingModel.getScore_count() + "人点评");
         holder.score.setText(hotShowingModel.getScore() + "");
         holder.name.setText(hotShowingModel.getName());
         Glide.with(context).load(hotShowingModel.getPoster_url()).into(holder.movieBg);
+        holder.isLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //读取sp ， 判断是否登录 ， 如果没登录，则跳转到登录界面。如果登录了，则改变图片、然后将收藏信息发送给后台，后台更新数据表
+            }
+        });
+        if (onItemClickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    onItemClickListener.onItemClick(holder.itemView,pos);
+                }
+            });
+        }
     }
 
     @Override

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
+    android:background="@color/white"
     android:orientation="horizontal"
-    android:background="@color/white">
+    android:paddingTop="2dp">
 
     <Button
         android:id="@+id/id_movie_btn"
@@ -13,7 +14,8 @@
         android:layout_weight="1"
         android:background="@null"
         android:drawableTop="@drawable/bottom_main_movie"
-        android:text="@string/movie" />
+        android:text="@string/movie"
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/id_review_btn"
@@ -23,7 +25,8 @@
         android:layout_weight="1"
         android:background="@null"
         android:drawableTop="@drawable/bottom_main_review"
-        android:text="@string/review" />
+        android:text="@string/review"
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/id_personal_btn"
@@ -33,6 +36,7 @@
         android:layout_weight="1"
         android:background="@null"
         android:drawableTop="@drawable/bottom_main_personal"
-        android:text="@string/personal" />
+        android:text="@string/personal"
+        android:textSize="10sp" />
 
 </LinearLayout>

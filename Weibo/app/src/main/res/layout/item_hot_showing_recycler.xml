@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id_item_hot_showing_click"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:background="@color/movie_tab_text_origin">
+    android:layout_height="160dp"
+    >
 
     <ImageView
         android:id="@+id/id_item_hot_showing"
         android:layout_width="match_parent"
-        android:scaleType="centerCrop"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="bottom"
-        android:paddingLeft="20dp">
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:background="@mipmap/movier_image_mask">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,38 +31,49 @@
                 android:layout_height="wrap_content"
                 android:text="@string/score"
                 android:textColor="@color/movie_tab_indicator"
-                android:textSize="20sp" />
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/id_item_hot_showing_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="@string/movie_name"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp"  />
         </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/id_item_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:src="@mipmap/home_comment" />
 
             <TextView
                 android:id="@+id/id_item_hot_showing_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:textSize="12sp"
                 android:layout_toRightOf="@id/id_item_comment"
-                android:text="@string/comment_count" />
+                android:text="@string/comment_count"
+                android:textColor="#a0a0a0" />
 
             <ImageView
                 android:id="@+id/id_item_hot_showing_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
                 android:src="@mipmap/home_interested_normal" />
         </RelativeLayout>
 

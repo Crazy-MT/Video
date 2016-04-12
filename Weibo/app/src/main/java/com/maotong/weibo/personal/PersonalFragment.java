@@ -1,13 +1,23 @@
 package com.maotong.weibo.personal;
 
+import android.annotation.TargetApi;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maotong.weibo.R;
+import com.maotong.weibo.utils.FastBlur;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,8 +36,6 @@ import okhttp3.Response;
  */
 public class PersonalFragment extends android.support.v4.app.Fragment {
 
-    private TextView mUserNameText;
-    private static final String MY_SERVLET = "http://192.168.1.109:8080/WeiBoMovie/servlet/UserServlet";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +48,7 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mUserNameText.setText(userName);
+
             }
         });
     }
@@ -49,27 +57,17 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
-        mUserNameText = (TextView) view.findViewById(R.id.id_user_name_text);
         initData();
+        final Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                R.mipmap.blur);
+        final ImageView imageView = (ImageView) view.findViewById(R.id.backdrop);
+        imageView.setImageResource(R.mipmap.blur);
+        imageView.setImageBitmap(new FastBlur().doBlur(bitmap , 8 , false));
         return view;
     }
 
     private void initData() {
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Request request = new Request.Builder().url(MY_SERVLET).build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, final IOException e) {
-                EventBus.getDefault().post(e.toString());
-            }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final String responseStr = response.body().string();
-                EventBus.getDefault().post(responseStr);
-            }
-        });
     }
 
     @Override

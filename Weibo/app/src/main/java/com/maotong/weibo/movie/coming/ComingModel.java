@@ -1,6 +1,8 @@
 package com.maotong.weibo.movie.coming;
 
-public class ComingModel {
+import java.io.Serializable;
+
+public class ComingModel implements Serializable{
 	
 	private int id;
 	private String name ;

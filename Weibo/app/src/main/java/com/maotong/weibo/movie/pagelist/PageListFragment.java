@@ -35,7 +35,11 @@ public class PageListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_page_list, container, false);
         mRecycler = (RecyclerView) view.findViewById(R.id.id_page_list_recycler);
-        initData();
+        if (mPageList == null || mPageListMovie == null) {
+            initData();
+        } else {
+            setUpRecyclerView();
+        }
         return view;
 
     }
@@ -51,9 +55,10 @@ public class PageListFragment extends Fragment {
     }
 
     private void setUpRecyclerView() {
-        PageListAdapter adapter = new PageListAdapter(getContext(), mPageList , mPageListMovie);
+        PageListAdapter adapter = new PageListAdapter(getContext(), mPageList, mPageListMovie);
         mRecycler.setAdapter(adapter);
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        //mRecycler.addItemDecoration(new DividerItemDecoration(getContext() , LinearLayoutManager.VERTICAL));
     }
 
     private void initData() {

@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/movie_tab_top"
                 mt:tabIndicatorColor="@color/movie_tab_indicator"
-                mt:tabSelectedTextColor="@color/movie_tab_text_origin"
-                mt:tabTextColor="@color/white" />
+                mt:tabSelectedTextColor="@color/white"
+                mt:tabTextColor="@color/movie_tab_text_origin" />
         </LinearLayout>
 
     </LinearLayout>

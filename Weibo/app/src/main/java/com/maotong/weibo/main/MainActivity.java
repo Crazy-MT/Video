@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBottomMovieButton = (Button) findViewById(R.id.id_movie_btn);
         mBottomReviewButton = (Button) findViewById(R.id.id_review_btn);
         mBottomPersonalButton = (Button) findViewById(R.id.id_personal_btn);
-
+        changeDrawableTop(true, false, false);
     }
 
     @Override

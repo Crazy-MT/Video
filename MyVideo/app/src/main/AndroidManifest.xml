@@ -11,9 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DesignDemo">
 
-        <activity android:name=".movie.MovieFragment">
 
-        </activity>
         <activity android:name=".VideoDetailActivity"></activity>
 
         <activity android:name=".cheesesquare.MainActivity">

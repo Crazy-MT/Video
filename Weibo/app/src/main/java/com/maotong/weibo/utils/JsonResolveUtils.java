@@ -138,12 +138,13 @@ public class JsonResolveUtils {
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
                             rs.getInt("score_count"));
-
+                    Log.e("tag", "getMovie: movie" + movie.toString());
                     movies.add(movie);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("tag", "getMovie: e" + e.toString());
         }
         return movies;
     }

@@ -2,7 +2,6 @@
 <resources>
 
 
-
     <!--三大模块-->
     <string name="movie">电影</string>
     <string name="review">影评</string>
@@ -116,12 +115,18 @@
     <string name="public_timeline">最新的公共微博</string>
     <string name="public_timeline_json">公共微博json</string>
     <string name="main">Movie</string>
-    <string name="hot_showing">热评</string>
+    <string name="hot_showing">热映</string>
     <string name="trailer">预告</string>
     <string name="movie_list">影单</string>
     <string name="score">评分</string>
     <string name="movie_name">电影名</string>
     <string name="comment_count">评论数量</string>
-    <string name="coming_like" >人想看</string>
+    <string name="coming_like">人想看</string>
     <string name="coming_premiere">上映日期</string>
+
+     <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
+    cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
+    bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
+    cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
+    the big cheese.</string>
 </resources>

@@ -7,11 +7,14 @@
     <ImageView
         android:id="@+id/id_page_list_item_movie_img"
         android:layout_width="100dp"
-        android:layout_height="160dp" />
+        android:layout_height="160dp"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/id_page_list_item_movie_text"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/blank"/>
 </LinearLayout>

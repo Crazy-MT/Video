@@ -9,4 +9,5 @@
     <color name="movie_tab_top">#1c1d1f</color>
     <color name="movie_tab_text_origin">#959595</color>
     <color name="movie_tab_indicator">#ff6700</color>
+    <color name="window_background">#FFF5F5F5</color>
 </resources>

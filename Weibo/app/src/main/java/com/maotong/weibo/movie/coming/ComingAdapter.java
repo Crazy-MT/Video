@@ -24,7 +24,7 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
     private Context context;
     private LayoutInflater inflater;
 
-    private interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(View view, int position);
 
         void onItemLongClick(View view, int position);
@@ -53,12 +53,21 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
     }
 
     @Override
-    public void onBindViewHolder(ComingViewHolder holder, int position) {
+    public void onBindViewHolder(final ComingViewHolder holder, int position) {
         ComingModel comingModel = comingModels.get(position);
-        holder.like.setText(comingModel.getWanttosee()+"");
-        holder.releaseDate.setText(comingModel.getRelease_date() + "");
+        holder.like.setText(comingModel.getWanttosee() + "人想看");
+        holder.releaseDate.setText(comingModel.getRelease_date() + "上映");
         holder.name.setText(comingModel.getName());
         Glide.with(context).load(comingModel.getPoster_url()).into(holder.movieBg);
+        if (onItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    onItemClickListener.onItemClick(holder.itemView, pos);
+                }
+            });
+        }
     }
 
     @Override

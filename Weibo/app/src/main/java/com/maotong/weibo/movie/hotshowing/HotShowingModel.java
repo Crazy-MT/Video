@@ -1,6 +1,8 @@
 package com.maotong.weibo.movie.hotshowing;
 
-public class HotShowingModel {
+import java.io.Serializable;
+
+public class HotShowingModel implements Serializable{
 	
 	private int id;
 	private String name ;
@@ -77,6 +79,18 @@ public class HotShowingModel {
 	public void setScore_count(int score_count) {
 		this.score_count = score_count;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "HotShowingModel{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", genre='" + genre + '\'' +
+				", intro='" + intro + '\'' +
+				", poster_url='" + poster_url + '\'' +
+				", large_poster_url='" + large_poster_url + '\'' +
+				", score=" + score +
+				", score_count=" + score_count +
+				'}';
+	}
 }
