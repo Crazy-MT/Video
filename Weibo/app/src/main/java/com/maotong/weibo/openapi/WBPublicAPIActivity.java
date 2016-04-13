@@ -2,6 +2,7 @@ package com.maotong.weibo.openapi;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,18 +45,20 @@ public class WBPublicAPIActivity extends Activity implements View.OnClickListene
 
         Oauth2AccessToken accessToken = AccessTokenKeeper.readAccessToken(WBPublicAPIActivity.this);
 
-        if (accessToken != null && accessToken.isSessionValid()){
-            new StatusesAPI(accessToken).publicTimeline(50,1 , false,mPublicTimeLine);
+        if (accessToken != null && accessToken.isSessionValid()) {
+            new StatusesAPI(accessToken).publicTimeline(50, 1, false, mPublicTimeLine);
         } else {
-            Toast.makeText(getApplicationContext() , R.string.weibosdk_demo_access_token_is_empty , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.weibosdk_demo_access_token_is_empty, Toast.LENGTH_LONG).show();
         }
 
     }
 
-    private class IPublicTimeLine implements RequestListener{
+    private class IPublicTimeLine implements RequestListener {
 
         @Override
         public void onComplete(String response) {
+
+            mPublicTextView.setMovementMethod(new ScrollingMovementMethod());
             mPublicTextView.setText(response);
         }
 
@@ -71,7 +74,7 @@ public class WBPublicAPIActivity extends Activity implements View.OnClickListene
 
         @Override
         public void onError(WeiboException e) {
-           // mPublicTextView.setText(e.toString());
+            mPublicTextView.setText(e.toString());
         }
     }
 }

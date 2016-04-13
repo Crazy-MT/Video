@@ -1,9 +1,17 @@
 package com.sina.weibo.sdk.openapi.legacy;
 
+import android.os.Handler;
+import android.os.Message;
+
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboParameters;
+import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.AsyncWeiboRunner;
 import com.sina.weibo.sdk.net.RequestListener;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 /**
  * 微博 API的基类，每个接口类都继承了此抽象类
  * @author xiaowei6@staff.sina.com.cn
@@ -24,6 +32,15 @@ public abstract class WeiboAPI {
 	public static final String HTTPMETHOD_GET = "GET";
 	protected Oauth2AccessToken mAccessToken;
 	private String accessToken;
+
+	/** 用于转发回调函数的消息 */
+	private static final int MSG_ON_COMPLETE            = 1;
+	private static final int MSG_ON_COMPLETE_FOR_BINARY = 2;
+	private static final int MSG_ON_IOEXCEPTION         = 3;
+	private static final int MSG_ON_ERROR               = 4;
+	/** 异步请求回调接口 */
+	private RequestListener mRequestListener;
+
 	/**
 	 * 构造函数，使用各个API接口提供的服务前必须先获取Oauth2AccessToken
 	 * @param accesssToken Oauth2AccessToken
@@ -137,7 +154,69 @@ public abstract class WeiboAPI {
 	
 	protected void request( final String url, final WeiboParameters params,
 			final String httpMethod,RequestListener listener) {
+
+		mRequestListener = listener;
+
 		params.add("access_token", accessToken);
-		AsyncWeiboRunner.request(url, params, httpMethod, listener);
+		AsyncWeiboRunner.request(url, params, httpMethod, mInternalListener);
 	}
+
+	/**
+	 * 该 Handler 用于将后台线程回调转发到 UI 线程。
+	 */
+	private Handler mHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			if (null == mRequestListener) {
+				return;
+			}
+
+			switch (msg.what) {
+				case MSG_ON_COMPLETE:
+					mRequestListener.onComplete((String)msg.obj);
+					break;
+
+				case MSG_ON_COMPLETE_FOR_BINARY:
+					mRequestListener.onComplete4binary((ByteArrayOutputStream)msg.obj);
+					break;
+
+				case MSG_ON_IOEXCEPTION:
+					mRequestListener.onIOException((IOException)msg.obj);
+					break;
+
+				case MSG_ON_ERROR:
+					mRequestListener.onError((WeiboException)msg.obj);
+					break;
+
+				default:
+					break;
+			}
+		}
+	};
+
+	/**
+	 * 请注意：默认情况下，{@link RequestListener} 对应的回调是运行在后台线程中的，
+	 *        因此，需要使用 Handler 来配合更新 UI。
+	 */
+	private RequestListener mInternalListener = new RequestListener() {
+		@Override
+		public void onComplete(String response) {
+			mHandler.obtainMessage(MSG_ON_COMPLETE, response).sendToTarget();
+		}
+
+		@Override
+		public void onComplete4binary(ByteArrayOutputStream responseOS) {
+			mHandler.obtainMessage(MSG_ON_COMPLETE_FOR_BINARY, responseOS).sendToTarget();
+		}
+
+		@Override
+		public void onIOException(IOException e) {
+			mHandler.obtainMessage(MSG_ON_IOEXCEPTION, e).sendToTarget();
+		}
+
+		@Override
+		public void onError(WeiboException e) {
+			mHandler.obtainMessage(MSG_ON_ERROR, e).sendToTarget();
+		}
+	};
 }

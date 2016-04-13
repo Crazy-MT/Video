@@ -5,53 +5,81 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/id_personal_user"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
         <ImageView
-            android:id="@+id/backdrop"
+            android:id="@+id/id_personal_user_icon_blur"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"  />
+            android:scaleType="centerCrop" />
 
-        <ImageView
-            android:id="@+id/id_personal_user_icon"
+        <LinearLayout
+            android:id="@+id/id_personal_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@mipmap/weibomovie_my_icon_head_default" />
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/id_personal_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="请登录"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/id_personal_user_icon"
-            />
+            <ImageView
+                android:id="@+id/id_personal_user_icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@mipmap/weibomovie_my_icon_head_default" />
+
+            <TextView
+                android:id="@+id/id_personal_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="请登录"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </LinearLayout>
+
 
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
                 <!--我想看的电影-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:orientation="horizontal"
-                    ></LinearLayout>
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我想看的电影"
+                        android:textColor="@color/blank"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="部电影" />
+
+
+                </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -63,13 +91,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
                 <!--我评论的电影-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:orientation="horizontal"
-                    ></LinearLayout>
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我评论的电影"
+                        android:textColor="@color/blank"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="部电影" />
+
+
+                </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -81,8 +128,6 @@
 
 
     </ScrollView>
-
-
 
 
 </LinearLayout>

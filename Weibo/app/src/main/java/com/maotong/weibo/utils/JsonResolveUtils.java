@@ -16,6 +16,7 @@ import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.movie.coming.ComingModel;
 import com.maotong.weibo.movie.hotshowing.HotShowingModel;
 import com.maotong.weibo.movie.pagelist.PageListModel;
+import com.maotong.weibo.personal.UserModel;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -33,9 +34,7 @@ public class JsonResolveUtils {
     }
 
     public JsonResolveUtils() {
-
     }
-
 
     public List<HotShowingModel> getPageListMovie(int pageListId) {
         List<HotShowingModel> movies = new ArrayList<>();
@@ -66,7 +65,7 @@ public class JsonResolveUtils {
                     movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count"));
+                            rs.getInt("score_count"),0);
 
                     movies.add(movie);
                 }
@@ -137,14 +136,13 @@ public class JsonResolveUtils {
                     movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count"));
-                    Log.e("tag", "getMovie: movie" + movie.toString());
+                            rs.getInt("score_count"),0);
                     movies.add(movie);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("tag", "getMovie: e" + e.toString());
+            //Log.e("tag", "getMovie: e" + e.toString());
         }
         return movies;
     }
@@ -185,39 +183,8 @@ public class JsonResolveUtils {
     }
 
     /**
-     * 用户注册
-     *
-     * @param phone
-     * @param password
-     * @return
-     */
-    public Boolean setAddUser(String phone, String password) {
-        /*String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
-				+ "/freemeal/AddUser";
-*/
-        List<Parameter> params = new ArrayList<Parameter>();
-        params.add(new Parameter("username", phone));
-        params.add(new Parameter("password", password));
-
-        SyncHttp syncHttp = new SyncHttp();
-        String json = null;
-
-        // 获取返回码
-        try {
-            //json = syncHttp.httpPost(url, params);
-            JSONObject jsonObject = new JSONObject(json);
-            return jsonObject.getString("result").equals("success");
-        } catch (Exception e1) {
-            e1.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
      * 用户登陆
      *
-     * @param account
-     * @param password
      * @return
      */
 	/*public Boolean getLogin(String account, String password) {
@@ -262,123 +229,6 @@ public class JsonResolveUtils {
 			return false;
 		}
 	}
-*/
-    /***
-     * 得到全部的activity活动
-     *
-     * @return
-     */
-	/*public List<d_Activity> getActive() {
-		List<d_Activity> activitys = new ArrayList<d_Activity>();
-		d_Activity activity = new d_Activity();
-
-		boolean ret = false;
-		String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
-				+ "/freemeal/GetAllActivity";
-		SyncHttp syncHttp = new SyncHttp();
-		String json = null;
-		try {
-			json = syncHttp.httpGet(url, null); 
-			JSONObject jsonObject = new JSONObject(json);
-			// 获取返回码
-			ret = jsonObject.getString("result").equals("success");
-			if (ret) {
-				JSONObject dataObject = jsonObject.getJSONObject("data");
-				JSONArray objectArr = dataObject.getJSONArray("Activity");
-
-				JSONObject rs = null;
-				for (int i = 0; i < objectArr.length(); i++) {
-					rs = (JSONObject) objectArr.opt(i);
-					*//*activity = new d_Activity(rs.getInt("id"),
-							rs.getString("title"), rs.getString("imgpath"),
-							rs.getInt("peocounts"), rs.getInt("curpeocounts"),
-							rs.getInt("status"), rs.getString("pubtime"),
-							rs.getString("starttime"), rs.getString("endtime"),
-							rs.getString("businessinfo"),
-							rs.getString("consumerinfo"),
-							rs.getString("consumernotice"), rs.getInt("cid"),
-							rs.getString("systemtime"));
-
-					activitys.add(activity);*//*
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return activitys;
-	}*/
-
-    /**
-     * 点击参与 ， 参与人数加1
-     *
-     * @param id
-     * @return
-     */
-    public int setActivity(int id) {
-        String curpeocounts = "0";
-		/*String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
-				+ "/freemeal/GetCurpeocounts";*/
-
-        List<Parameter> params = new ArrayList<Parameter>();
-        params.add(new Parameter("id", id + ""));
-		/*params.add(new Parameter("userid", WeiBoApplication.getWeiBoApplication()
-				.getdUser().getId()
-				+ ""));*/
-        SyncHttp syncHttp = new SyncHttp();
-        String json = null;
-        boolean ret = false;
-        // 获取返回码
-        try {
-            //json = syncHttp.httpPost(url, params);
-            JSONObject jsonObject = new JSONObject(json);
-            ret = jsonObject.getString("result").equals("success");
-
-            if (ret) {
-                JSONObject dataObject = jsonObject.getJSONObject("data");
-                curpeocounts = dataObject.getString("Curpeocounts");
-            }
-            return Integer.parseInt(curpeocounts);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-            return Integer.parseInt(curpeocounts);
-        }
-    }
-
-    /**
-     * 动态刷新 ， 得到参与人数
-     *
-     * @param id
-     * @return
-     */
-    public int getActivityPeople(int id) {
-
-        String curpeocounts = "0";
-
-		/*String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
-				+ "/freemeal/GetCurpeocountsNow";
-*/
-        List<Parameter> params = new ArrayList<Parameter>();
-        params.add(new Parameter("id", id + ""));
-
-        SyncHttp syncHttp = new SyncHttp();
-        String json = null;
-        boolean ret = false;
-        // 获取返回码
-        try {
-            //json = syncHttp.httpPost(url, params);
-            JSONObject jsonObject = new JSONObject(json);
-            ret = jsonObject.getString("result").equals("success");
-
-            if (ret) {
-                JSONObject dataObject = jsonObject.getJSONObject("data");
-                curpeocounts = dataObject.getString("CurpeocountsNow");
-            }
-            return Integer.parseInt(curpeocounts);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-            return 0;
-        }
-    }
 
     /***
      * @return
@@ -397,69 +247,56 @@ public class JsonResolveUtils {
         return;
     }
 
-    public void setPassWord(int id, String string) {
 
-    }
+    public boolean setUser(UserModel userModel) {
+        String url = WeiBoApplication.getInstance().getBASEURL()
+                + "/UserServlet";
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("weibo_id" , userModel.getWeibo_id()+""));
+        parameters.add(new Parameter("user_name" , userModel.getUserName()));
+        parameters.add(new Parameter("icon" , userModel.getUserIcon()));
 
-    public boolean setSex(int id, String string) {
-        //String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
-        //		+ "/freemeal/EditUserSex";
-
-        List<Parameter> params = new ArrayList<Parameter>();
-        params.add(new Parameter("id", id + ""));
-        params.add(new Parameter("sex", string));
+        Log.e("tag" , "name" +parameters.toString());
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
-        boolean ret = false;
-        // 获取返回码
+        boolean ret ;
         try {
-            //	json = syncHttp.httpPost(url, params);
+            json = syncHttp.httpPost(url , parameters);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
-
-            if (ret) {
-                Log.e("Json", ret + "");
+            Log.e("tag" , "name" + jsonObject.getString("data"));
+            if (ret){
                 return true;
             } else {
-
-                Log.e("Json", ret + "");
                 return false;
             }
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
 
-    public boolean setNickName(int id, String string) {
-        //String url = WeiBoApplication.getWeiBoApplication().getBASEURL()
-        //		+ "/freemeal/EditUserNickname";
-
-        List<Parameter> params = new ArrayList<Parameter>();
-        params.add(new Parameter("id", id + ""));
-        params.add(new Parameter("nickname", string));
+    public boolean setLikeMovie(String uid, int movieId) {
+        String url = WeiBoApplication.getInstance().getBASEURL()
+                + "/LikeMovieServlet";
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("weibo_id" , uid));
+        parameters.add(new Parameter("movie_id" , movieId+""));
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
-        boolean ret = false;
-        // 获取返回码
+        boolean ret ;
         try {
-            //	json = syncHttp.httpPost(url, params);
+            json = syncHttp.httpPost(url , parameters);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
-
-            if (ret) {
-                Log.e("Json", ret + "");
+            if (ret){
                 return true;
             } else {
-
-                Log.e("Json", ret + "");
                 return false;
             }
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
-
-
 }

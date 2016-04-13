@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -145,7 +146,7 @@ public class WBAuthActivity extends Activity {
             if (mAccessToken.isSessionValid()) {
                 // 显示 Token
                 updateTokenView(false);
-
+                Log.e("tag", "onComplete: " + mAccessToken.toString());
                 // 保存 Token 到 SharedPreferences
                 AccessTokenKeeper.writeAccessToken(WBAuthActivity.this, mAccessToken);
                 Toast.makeText(WBAuthActivity.this,
