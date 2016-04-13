@@ -126,6 +126,7 @@ public class JsonResolveUtils {
             JSONObject jsonObject = new JSONObject(json);
             // 获取返回码
             ret = jsonObject.getString("ret").equals("success");
+
             if (ret) {
                 JSONObject dataObject = jsonObject.getJSONObject("data");
                 JSONArray objectArr = dataObject.getJSONArray("movie");
@@ -137,12 +138,12 @@ public class JsonResolveUtils {
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
                             rs.getInt("score_count"),0);
+
                     movies.add(movie);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            //Log.e("tag", "getMovie: e" + e.toString());
         }
         return movies;
     }
@@ -285,8 +286,10 @@ public class JsonResolveUtils {
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
         boolean ret ;
+        Log.e("tag", "setLikeMovie: " );
         try {
             json = syncHttp.httpPost(url , parameters);
+            Log.e("tag", "setLikeMovie: json"  + json);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
             if (ret){
@@ -296,6 +299,7 @@ public class JsonResolveUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("tag", "setLikeMovie: json"  + json);
             return false;
         }
     }

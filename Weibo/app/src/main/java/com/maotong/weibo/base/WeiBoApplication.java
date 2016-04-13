@@ -20,7 +20,7 @@ public class WeiBoApplication extends  Application  {
 	private boolean isUser ;
 	private int userId   ;
 	private SharedPreferences sp ; 
-	private static final String REM_PW = "rem_pw" ; 
+	private static final String REM_PW = "rem_pw" ;
 	private static final String ACCOUNT = "account";
 	private static final String PASSWORD = "password";
 	protected static final String AUTO_LOGIN = "auto_login";
@@ -29,8 +29,8 @@ public class WeiBoApplication extends  Application  {
 	public void onCreate() {
 		super.onCreate();
 		weiBoApplication = this;
-		setBASEURL("http://192.168.0.153:8080/WeiBoMovie/servlet"); //tagux
-		//setBASEURL("http://192.168.1.109:8080/WeiBoMovie/servlet"); //家
+		//setBASEURL("http://192.168.0.153:8080/WeiBoMovie/servlet"); //tagux
+		setBASEURL("http://192.168.1.113:8080/WeiBoMovie/servlet"); //家
 //		setBASEURL("http://192.168.10.212:8080/WeiBoMovie/servlet");  //racemind
 		setUser(false);
 		setUserId(0);

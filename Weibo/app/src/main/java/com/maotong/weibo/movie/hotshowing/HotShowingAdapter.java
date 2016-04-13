@@ -84,12 +84,14 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
 
         Log.e("tag", "onBindViewHolder: position" + position);
 
-        if (holder.isLike.getTag().equals(hotShowingModels.get(position).getName())) {
+//        if (holder.isLike.getTag().equals(hotShowingModels.get(position).getName())) {
             if (hotShowingModel.getIsLike() == 1) {
                 Log.e("tag", "onBindViewHolder: pi" + position);
                 holder.isLike.setImageResource(R.mipmap.home_interested_selected);
+            } else {
+                holder.isLike.setImageResource(R.mipmap.home_interested_normal);
             }
-        }
+//        }
 
         holder.isLike.setOnClickListener(new View.OnClickListener() {
             @Override
