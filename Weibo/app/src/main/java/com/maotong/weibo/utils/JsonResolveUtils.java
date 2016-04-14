@@ -1,28 +1,18 @@
 package com.maotong.weibo.utils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.graphics.Movie;
 import android.util.Log;
 
 import com.maotong.weibo.base.WeiBoApplication;
-import com.maotong.weibo.movie.coming.ComingModel;
 import com.maotong.weibo.movie.hotshowing.HotShowingModel;
 import com.maotong.weibo.movie.pagelist.PageListModel;
 import com.maotong.weibo.personal.UserModel;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 
 public class JsonResolveUtils {
@@ -148,9 +138,9 @@ public class JsonResolveUtils {
         return movies;
     }
 
-    public List<ComingModel> getComing() {
-        List<ComingModel> comingModels = new ArrayList<ComingModel>();
-        ComingModel coming;
+    public List<HotShowingModel> getComing() {
+        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
+        HotShowingModel movie;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASEURL()
@@ -163,6 +153,7 @@ public class JsonResolveUtils {
             JSONObject jsonObject = new JSONObject(json);
             // 获取返回码
             ret = jsonObject.getString("ret").equals("success");
+
             if (ret) {
                 JSONObject dataObject = jsonObject.getJSONObject("data");
                 JSONArray objectArr = dataObject.getJSONArray("coming");
@@ -170,17 +161,17 @@ public class JsonResolveUtils {
                 JSONObject rs = null;
                 for (int i = 0; i < objectArr.length(); i++) {
                     rs = (JSONObject) objectArr.opt(i);
-                    coming = new ComingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), rs.getString("release_date"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count"), rs.getInt("wanttosee"), rs.getInt("is_wanttosee"));
-                    comingModels.add(coming);
+                            rs.getInt("score_count"));
+                    movies.add(movie);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return comingModels;
+        return movies;
     }
 
     /**
@@ -231,23 +222,7 @@ public class JsonResolveUtils {
 		}
 	}
 
-    /***
-     * @return
-     */
-    public void getNotification() {
-        String url = "http://192.168.31.158:8080/freemeal/Test";
-
-        SyncHttp syncHttp = new SyncHttp();
-        String json = null;
-
-        try {
-            json = syncHttp.httpGet(url, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return;
-    }
-
+*/
 
     public boolean setUser(UserModel userModel) {
         String url = WeiBoApplication.getInstance().getBASEURL()
@@ -256,8 +231,6 @@ public class JsonResolveUtils {
         parameters.add(new Parameter("weibo_id" , userModel.getWeibo_id()+""));
         parameters.add(new Parameter("user_name" , userModel.getUserName()));
         parameters.add(new Parameter("icon" , userModel.getUserIcon()));
-
-        Log.e("tag" , "name" +parameters.toString());
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
         boolean ret ;
@@ -265,7 +238,6 @@ public class JsonResolveUtils {
             json = syncHttp.httpPost(url , parameters);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
-            Log.e("tag" , "name" + jsonObject.getString("data"));
             if (ret){
                 return true;
             } else {
@@ -286,10 +258,8 @@ public class JsonResolveUtils {
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
         boolean ret ;
-        Log.e("tag", "setLikeMovie: " );
         try {
             json = syncHttp.httpPost(url , parameters);
-            Log.e("tag", "setLikeMovie: json"  + json);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
             if (ret){
@@ -299,8 +269,68 @@ public class JsonResolveUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("tag", "setLikeMovie: json"  + json);
             return false;
         }
+    }
+
+    public boolean logout(UserModel userModel) {
+        String url = WeiBoApplication.getInstance().getBASEURL()
+                + "/LogoutServlet";
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("weibo_id" , userModel.getWeibo_id()+""));
+        SyncHttp syncHttp = new SyncHttp();
+        String json = null;
+        boolean ret ;
+        try {
+            json = syncHttp.httpPost(url , parameters);
+            Log.e("tag", "logout: json" + json);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("result").equals("success");
+            if (ret){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<HotShowingModel> getMovie(String uid) {
+        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
+        HotShowingModel movie;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASEURL()
+                + "/MovieServlet";
+
+        SyncHttp syncHttp = new SyncHttp();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("weibo_id" , uid+""));
+        try {
+            json = syncHttp.httpPost(url, parameters);
+            JSONObject jsonObject = new JSONObject(json);
+            // 获取返回码
+            ret = jsonObject.getString("ret").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONArray objectArr = dataObject.getJSONArray("movie");
+
+                JSONObject rs = null;
+                for (int i = 0; i < objectArr.length(); i++) {
+                    rs = (JSONObject) objectArr.opt(i);
+                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                            rs.getString("intro"), rs.getString("poster_url"),
+                            rs.getString("large_poster_url"), (float) rs.getDouble("score"),
+                            rs.getInt("score_count"),rs.getInt("is_Like"));
+
+                    movies.add(movie);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movies;
     }
 }

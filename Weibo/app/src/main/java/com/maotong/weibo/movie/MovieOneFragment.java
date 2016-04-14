@@ -160,6 +160,7 @@ public class MovieOneFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void onDestroyView() {
+
         super.onDestroyView();
         mTitles = null;
         mTabs = null;

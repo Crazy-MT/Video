@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.maotong.weibo.R;
 import com.maotong.weibo.main.MovieDetailActivity;
 import com.maotong.weibo.movie.hotshowing.HotShowingAdapter;
+import com.maotong.weibo.movie.hotshowing.HotShowingModel;
 import com.maotong.weibo.utils.JsonResolveUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,7 +28,7 @@ public class ComingFragment extends Fragment
 {
 	private RecyclerView mRecycler;
 	private SwipeRefreshLayout mSwipe;
-	private List<ComingModel> mComingList;
+	private List<HotShowingModel> mComingList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -65,7 +66,7 @@ public class ComingFragment extends Fragment
 	}
 
 	@Subscribe
-	public void onEventMainThread(List<ComingModel> comingModelList){
+	public void onEventMainThread(List<HotShowingModel> comingModelList){
 		getActivity().runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -104,7 +105,6 @@ public class ComingFragment extends Fragment
 			@Override
 			public void run() {
 				mComingList = new JsonResolveUtils().getComing();
-				Log.e("tag", "run: mComingList"+ mComingList.size() );
 				EventBus.getDefault().post(mComingList);
 			}
 		}).start();

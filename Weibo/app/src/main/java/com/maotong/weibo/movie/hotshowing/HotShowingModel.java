@@ -13,9 +13,29 @@ public class HotShowingModel implements Serializable{
 	private float score;
 	private int score_count;
 	private int isLike;
-	
-	
-	
+	private String release_date;
+
+	public HotShowingModel(int id, String name, String intro, String genre, String poster_url, String large_poster_url,
+			String release_date ,float score, int score_count) {
+		this.id = id;
+		this.name = name;
+		this.intro = intro;
+		this.genre = genre;
+		this.poster_url = poster_url;
+		this.large_poster_url = large_poster_url;
+		this.score = score;
+		this.score_count = score_count;
+		this.release_date = release_date;
+	}
+
+	public String getRelease_date() {
+		return release_date;
+	}
+
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
+	}
+
 	public HotShowingModel(int id, String name, String genre, String intro,
 						   String poster_url, String large_poster_url, float score,
 						   int score_count , int isLike) {

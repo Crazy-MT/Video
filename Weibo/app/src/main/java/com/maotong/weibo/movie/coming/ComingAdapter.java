@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
+import com.maotong.weibo.movie.hotshowing.HotShowingModel;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingViewHolder> {
 
-    private List<ComingModel> comingModels;
+    private List<HotShowingModel> comingModels;
     private Context context;
     private LayoutInflater inflater;
 
@@ -40,7 +41,7 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
         this.onItemClickListener = onItemClickListener;
     }
 
-    public ComingAdapter(Context context, List<ComingModel> comingModels) {
+    public ComingAdapter(Context context, List<HotShowingModel> comingModels) {
         this.comingModels = comingModels;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
@@ -54,8 +55,8 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
 
     @Override
     public void onBindViewHolder(final ComingViewHolder holder, int position) {
-        ComingModel comingModel = comingModels.get(position);
-        holder.like.setText(comingModel.getWanttosee() + "人想看");
+        HotShowingModel comingModel = comingModels.get(position);
+        holder.like.setText("" + "人想看");
         holder.releaseDate.setText(comingModel.getRelease_date() + "上映");
         holder.name.setText(comingModel.getName());
         Glide.with(context).load(comingModel.getPoster_url()).into(holder.movieBg);

@@ -36,6 +36,7 @@ import com.sina.weibo.sdk.exception.WeiboException;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String PERSONALFRAGMENT = "personal_fragment";
+    private static final String MOVIEONEFRAGMENT = "movie_fragment";
     private Button mBottomMovieButton, mBottomReviewButton, mBottomPersonalButton;
     private Context mContext;
     private MovieTwoFragment mMovieOneFragment;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMovieOneFragment = new MovieTwoFragment();
         mReviewFragment = new ReviewFragment();
         mPersonalFragment = new PersonalFragment();
-        transaction.add(R.id.id_content, mMovieOneFragment);
+        transaction.add(R.id.id_content, mMovieOneFragment , MOVIEONEFRAGMENT);
         transaction.add(R.id.id_content, mReviewFragment);
         transaction.add(R.id.id_content, mPersonalFragment, PERSONALFRAGMENT);
         transaction.hide(mReviewFragment);
@@ -196,12 +197,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void onComplete(Bundle values) {
             Intent intent = new Intent();
             Fragment personalFragment = getSupportFragmentManager().findFragmentByTag(PERSONALFRAGMENT);
+            Fragment movieFragment = getSupportFragmentManager().findFragmentByTag(MOVIEONEFRAGMENT);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
             // 从 Bundle 中解析 Token
             mAccessToken = Oauth2AccessToken.parseAccessToken(values);
             if (mAccessToken.isSessionValid()) {
 
                 // 保存 Token 到 SharedPreferences
                 AccessTokenKeeper.writeAccessToken(mContext, mAccessToken);
+//                transaction.detach(movieFragment);
+//                transaction.attach(movieFragment);
+//                transaction.commit();
+
+
                 Toast.makeText(mContext, R.string.weibosdk_demo_toast_auth_success, Toast.LENGTH_SHORT).show();
 
                 intent.putExtra("complete", mAccessToken.toString());

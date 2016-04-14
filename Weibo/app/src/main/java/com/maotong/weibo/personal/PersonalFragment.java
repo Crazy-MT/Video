@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
+import com.sina.weibo.sdk.openapi.LogoutAPI;
 import com.sina.weibo.sdk.openapi.legacy.StatusesAPI;
 import com.sina.weibo.sdk.openapi.legacy.UsersAPI;
 
@@ -77,7 +79,10 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
     private ImageView mIconBlur, mIcon;
     private UserModel userModel;
     private boolean isLogin;
+    private Button mLogout;
 
+    /** 登出操作对应的listener */
+    private LogOutRequestListener mLogoutListener = new LogOutRequestListener();
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,19 +106,84 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
         initView(view);
         initData();
+        initEvent();
         return view;
+    }
+
+    private void initEvent() {
+        mLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new LogoutAPI(mAccessToken).logout(mLogoutListener);
+            }
+        });
+    }
+    /**
+     * 登出按钮的监听器，接收登出处理结果。（API 请求结果的监听器）
+     */
+    private class LogOutRequestListener implements RequestListener {
+        @Override
+        public void onComplete(String response) {
+            if (!TextUtils.isEmpty(response)) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    String value = obj.getString("result");
+
+                    if ("true".equalsIgnoreCase(value)) {
+                        AccessTokenKeeper.clear(mContext);
+                        Toast.makeText( mContext ,mContext.getString(R.string.weibosdk_demo_logout_success) , Toast.LENGTH_LONG).show();
+                        isLogin = false;
+                        //清空界面信息
+                        mIcon.setImageResource(R.mipmap.weibomovie_my_icon_head_default);
+                        mIconBlur.setImageResource(R.mipmap.weibomovie_my_icon_head_default);
+                        mUserName.setText("请登录");
+                        //注销信息发送后台
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                boolean isLogout = new JsonResolveUtils(mContext).logout(userModel);
+                                if (isLogout){
+                                    Log.e("tag", "run: 注销成功" );
+                                }
+                            }
+                        }).start();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        @Override
+        public void onComplete4binary(ByteArrayOutputStream responseOS) {
+            // Do nothing
+        }
+
+        @Override
+        public void onIOException(IOException e) {
+            Toast.makeText( mContext ,mContext.getString(R.string.weibosdk_demo_logout_failed) , Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onError(WeiboException e) {
+            Toast.makeText( mContext ,mContext.getString(R.string.weibosdk_demo_logout_failed) , Toast.LENGTH_LONG).show();
+        }
     }
 
     private void initView(View view) {
         mUserName = (TextView) view.findViewById(R.id.id_personal_user_name);
         mIconBlur = (ImageView) view.findViewById(R.id.id_personal_user_icon_blur);
         mIcon = (ImageView) view.findViewById(R.id.id_personal_user_icon);
+        mLogout = (Button) view.findViewById(R.id.id_personal_logout);
 
         // 从 SharedPreferences 中读取上次已保存好 AccessToken 等信息，
         // 第一次启动本应用，AccessToken 不可用
         mAccessToken = AccessTokenKeeper.readAccessToken(getContext());
         if (mAccessToken != null && mAccessToken.isSessionValid()) {
             isLogin = true;
+        } else {
+            mLogout.setVisibility(View.GONE);
         }
 
         view.findViewById(R.id.id_personal_user).setOnClickListener(new View.OnClickListener() {
@@ -129,8 +199,10 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
 
         if (isLogin) {
             new UsersAPI(mAccessToken).show(Long.valueOf(mAccessToken.getUid()), mIUserApi);
+            mLogout.setVisibility(View.VISIBLE);
         } else {
             Toast.makeText(mContext, R.string.weibosdk_demo_access_token_is_empty, Toast.LENGTH_LONG).show();
+            mLogout.setVisibility(View.GONE);
         }
     }
 
@@ -145,6 +217,7 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
         if (mAccessToken != null && mAccessToken.isSessionValid()) {
             isLogin = true;
             new UsersAPI(mAccessToken).show(Long.valueOf(mAccessToken.getUid()), mIUserApi);
+            mLogout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -194,6 +267,9 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
                 @Override
                 public void run() {
                     isLogin = new JsonResolveUtils(mContext).setUser(userModel);
+                    if (!isLogin) {
+                        Toast.makeText(mContext, "后台记录失败", Toast.LENGTH_LONG).show();
+                    }
                 }
             }).start();
 

@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_two, container, false);
+        Log.e("tag", "onCreateView: MovieOneFragment" );
         initViews(view);
         initData();
         initEvents();
@@ -80,7 +82,7 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
         adapter.addFragment(new PageListFragment(), getResources().getString(R.string.movie_list));
         viewPager.setAdapter(adapter);
     }
-    static class Adapter extends FragmentPagerAdapter {
+     class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 
@@ -126,6 +128,7 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        Log.e("tag", "onResume: MovieTwo" );
     }
 
     @Override
@@ -141,6 +144,7 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Log.e("tag", "onDestroyView: MovieOneFragment" );
     }
 
     @Override

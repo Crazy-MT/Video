@@ -14,8 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.maotong.weibo.R;
+import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.main.MovieDetailActivity;
 import com.maotong.weibo.utils.JsonResolveUtils;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -27,6 +29,7 @@ public class HotShowingFragment extends Fragment {
     private RecyclerView mRecycler;
     private SwipeRefreshLayout mSwipe;
     private List<HotShowingModel> mHotShowingList;
+    private Oauth2AccessToken mAccessToken;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class HotShowingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.e("tag", "onCreateView: HotShowing" );
         View view = inflater.inflate(R.layout.fragment_hot_showing, container, false);
         mRecycler = (RecyclerView) view.findViewById(R.id.id_hot_showing_recycler);
         mSwipe = (SwipeRefreshLayout) view.findViewById(R.id.id_hot_showing_swipe);
@@ -59,6 +63,13 @@ public class HotShowingFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        initData();
+    }
+
     @Subscribe
     public void onEventMainThread(List<HotShowingModel> hotShowingModelList) {
         getActivity().runOnUiThread(new Runnable() {
@@ -78,9 +89,9 @@ public class HotShowingFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 //跳转到电影页面
-                Intent intent = new Intent(getActivity() , MovieDetailActivity.class);
+                Intent intent = new Intent(getActivity(), MovieDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(MovieDetailActivity.MOVIE , mHotShowingList.get(position));
+                bundle.putSerializable(MovieDetailActivity.MOVIE, mHotShowingList.get(position));
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -92,12 +103,22 @@ public class HotShowingFragment extends Fragment {
         });
     }
 
-    private void initData() {
-        mHotShowingList = new ArrayList<>();
+    public void initData() {
+        if (mHotShowingList == null) {
+            mHotShowingList = new ArrayList<>();
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mHotShowingList = new JsonResolveUtils().getMovie();
+
+                //根据登录状态获得不同的movie数据
+                mAccessToken = AccessTokenKeeper.readAccessToken(getContext());
+                if (mAccessToken != null && mAccessToken.isSessionValid()) {
+                    mHotShowingList = new JsonResolveUtils().getMovie(mAccessToken.getUid());
+                } else {
+                    mHotShowingList = new JsonResolveUtils().getMovie();
+                }
+
                 EventBus.getDefault().post(mHotShowingList);
             }
         }).start();

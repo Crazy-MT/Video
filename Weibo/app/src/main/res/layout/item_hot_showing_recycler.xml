@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/id_item_hot_showing_click"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
-    >
+    android:layout_height="160dp">
 
     <ImageView
         android:id="@+id/id_item_hot_showing"
@@ -15,10 +14,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@mipmap/movier_image_mask"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:background="@mipmap/movier_image_mask">
+        android:paddingLeft="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,14 +40,14 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/movie_name"
                 android:textColor="@color/white"
-                android:textSize="16sp"  />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp">
 
             <ImageView
                 android:id="@+id/id_item_comment"
@@ -63,18 +62,25 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:textSize="12sp"
                 android:layout_toRightOf="@id/id_item_comment"
                 android:text="@string/comment_count"
-                android:textColor="#a0a0a0" />
+                android:textColor="#a0a0a0"
+                android:textSize="12sp" />
 
-            <ImageView
-                android:id="@+id/id_item_hot_showing_like"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/id_item_hot_showing_like_click"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
-                android:src="@mipmap/home_interested_normal" />
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/id_item_hot_showing_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/home_interested_normal" />
+            </LinearLayout>
         </RelativeLayout>
 
 
