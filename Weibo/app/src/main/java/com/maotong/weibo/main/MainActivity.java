@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.api.Constants;
-import com.maotong.weibo.movie.MovieOneFragment;
 import com.maotong.weibo.movie.MovieTwoFragment;
 import com.maotong.weibo.personal.PersonalFragment;
 import com.maotong.weibo.review.ReviewFragment;

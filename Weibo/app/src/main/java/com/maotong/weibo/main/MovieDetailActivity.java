@@ -36,7 +36,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(movieName);
-        Log.e("tag" , movie.toString());
         loadBackdrop(movie.getLarge_poster_url());
         detail = (TextView) findViewById(R.id.id_detail);
         detail.setText(movie.getIntro());

@@ -43,8 +43,6 @@ public abstract class BaseActivity extends FragmentActivity implements
 		super.onDestroy();
 	}
 
-
-
 	/** 初始化视图 **/
 	protected abstract void initViews();
 
@@ -70,9 +68,6 @@ public abstract class BaseActivity extends FragmentActivity implements
 		mAsyncTasks.clear();
 	}
 
- 
-
- 
 	/** 短暂显示Toast提示(来自res) **/
 	protected void showShortToast(int resId) {
 		Toast.makeText(this, getString(resId), Toast.LENGTH_SHORT).show();

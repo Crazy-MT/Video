@@ -40,7 +40,6 @@ public class HotShowingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e("tag", "onCreateView: HotShowing" );
         View view = inflater.inflate(R.layout.fragment_hot_showing, container, false);
         mRecycler = (RecyclerView) view.findViewById(R.id.id_hot_showing_recycler);
         mSwipe = (SwipeRefreshLayout) view.findViewById(R.id.id_hot_showing_swipe);
@@ -66,6 +65,8 @@ public class HotShowingFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        //登录之后会执行此方法 。 但是注销之后此方法不执行
 
         initData();
     }

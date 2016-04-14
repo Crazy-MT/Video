@@ -1,30 +1,20 @@
 package com.maotong.weibo.personal;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,19 +24,13 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
-import com.maotong.weibo.api.Constants;
-import com.maotong.weibo.api.WBAuthActivity;
 import com.maotong.weibo.main.MainActivity;
 import com.maotong.weibo.utils.FastBlur;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.auth.WeiboAuth;
-import com.sina.weibo.sdk.auth.WeiboAuthListener;
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.openapi.LogoutAPI;
-import com.sina.weibo.sdk.openapi.legacy.StatusesAPI;
 import com.sina.weibo.sdk.openapi.legacy.UsersAPI;
 
 import org.greenrobot.eventbus.EventBus;
@@ -56,12 +40,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * Created by MaoTong on 2016/4/6.
@@ -288,14 +266,12 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
         @Override
         public void onError(WeiboException e) {
             mUserName.setText(e.toString());
-            Log.e("tag", "onComplete: user" + e.toString());
         }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.e("tag", "onDestroyView: ");
     }
 
     @Override

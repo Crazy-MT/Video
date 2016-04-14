@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.maotong.weibo.R;
 import com.maotong.weibo.widget.ColorTrackView;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,6 @@ public class MovieOneFragment extends android.support.v4.app.Fragment implements
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.init();
     }
 
     private String[] mTitles;
@@ -99,7 +97,6 @@ public class MovieOneFragment extends android.support.v4.app.Fragment implements
                 if (positionOffset > 0) {
                     ColorTrackView left = mTabs.get(position);
                     ColorTrackView right = mTabs.get(position + 1);
-                    Log.e("TAG", positionOffset+"");
                     left.setDirection(1);
                     right.setDirection(0);
                     left.setProgress(1 - positionOffset);

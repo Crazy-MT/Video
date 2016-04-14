@@ -54,7 +54,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_two, container, false);
-        Log.e("tag", "onCreateView: MovieOneFragment" );
         initViews(view);
         initData();
         initEvents();
@@ -128,7 +127,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("tag", "onResume: MovieTwo" );
     }
 
     @Override
@@ -144,7 +142,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.e("tag", "onDestroyView: MovieOneFragment" );
     }
 
     @Override

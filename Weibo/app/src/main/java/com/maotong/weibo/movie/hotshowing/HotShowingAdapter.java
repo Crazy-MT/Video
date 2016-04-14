@@ -63,7 +63,6 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
         this.hotShowingModels = hotShowingModels;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-
     }
 
     @Override
@@ -80,15 +79,11 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
         holder.score.setText(hotShowingModel.getScore() + "");
         holder.name.setText(hotShowingModel.getName());
         Glide.with(context).load(hotShowingModel.getPoster_url()).into(holder.movieBg);
-
-
-//        if (holder.isLike.getTag().equals(hotShowingModels.get(position).getName())) {
-            if (hotShowingModel.getIsLike() == 1) {
-                holder.isLike.setImageResource(R.mipmap.home_interested_selected);
-            } else {
-                holder.isLike.setImageResource(R.mipmap.home_interested_normal);
-            }
-//        }
+        if (hotShowingModel.getIsLike() == 1) {
+            holder.isLike.setImageResource(R.mipmap.home_interested_selected);
+        } else {
+            holder.isLike.setImageResource(R.mipmap.home_interested_normal);
+        }
 
         holder.likeClick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +103,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                         }
                     }).start();
                 } else {
-                    Toast.makeText(context , "请先登录" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请先登录", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -129,17 +124,14 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     }
 
     class HotShowingViewHolder extends RecyclerView.ViewHolder {
-
         // 电影背景图
         private ImageView movieBg;
         //电影评分
         private TextView score;
         //评论数量
         private TextView comment;
-
         //电影名
         private TextView name;
-
         //是否收藏
         private ImageView isLike;
         private LinearLayout likeClick;
