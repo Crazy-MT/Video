@@ -2,6 +2,7 @@ package com.maotong.weibo.movie.hotshowing;
 
 import android.content.Context;
 import android.media.Image;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -33,13 +35,22 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     private List<HotShowingModel> hotShowingModels;
     private Context context;
     private LayoutInflater inflater;
+    private static String HANDLER_LIKE = "like";
+    private static String HANDLER_LIKE_YES = "yes";
+    private static String HANDLER_LIKE_NO = "no";
     private Oauth2AccessToken mAccessToken;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            hotShowingModels.get(msg.what).setIsLike(1);
-            notifyItemChanged(msg.what);
+            Bundle bundle = msg.getData();
+            int position = msg.what;
+            if (HANDLER_LIKE_YES.equals(bundle.get(HANDLER_LIKE))){
+                hotShowingModels.get(position).setIsLike(1);
+            } else {
+                hotShowingModels.get(position).setIsLike(0);
+            }
+            notifyItemChanged(position);
         }
     };
 
@@ -91,17 +102,38 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                 //读取sp ， 判断是否登录 ， 如果没登录，则跳转到登录界面。如果登录了，则改变图片、然后将收藏信息发送给后台，后台更新数据表
                 mAccessToken = AccessTokenKeeper.readAccessToken(context);
                 if (mAccessToken != null && mAccessToken.isSessionValid()) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            boolean isSuccess = new JsonResolveUtils(context).setLikeMovie(mAccessToken.getUid(), hotShowingModel.getId());
-                            if (isSuccess) {
-                                Message message = new Message();
-                                message.what = position;
-                                mHandler.sendMessage(message);
+                    if (hotShowingModel.getIsLike() == 0){
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                boolean isSuccess = new JsonResolveUtils(context).setLikeMovie(mAccessToken.getUid(), hotShowingModel.getId() , true);
+                                if (isSuccess) {
+                                    Message message = new Message();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString( HANDLER_LIKE, HANDLER_LIKE_YES);
+                                    message.setData(bundle);
+                                    message.what = position;
+                                    mHandler.sendMessage(message);
+                                }
                             }
-                        }
-                    }).start();
+                        }).start();
+                    } else { //点击之后取消收藏还未完成。发送请求 、 后台还没写。
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                boolean isSuccess = new JsonResolveUtils(context).setLikeMovie(mAccessToken.getUid(), hotShowingModel.getId() , false);
+                                if (isSuccess) {
+                                    Message message = new Message();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString( HANDLER_LIKE, HANDLER_LIKE_NO);
+                                    message.setData(bundle);
+                                    message.what = position;
+                                    mHandler.sendMessage(message);
+                                }
+                            }
+                        }).start();
+                    }
+
                 } else {
                     Toast.makeText(context, "请先登录", Toast.LENGTH_LONG).show();
                 }

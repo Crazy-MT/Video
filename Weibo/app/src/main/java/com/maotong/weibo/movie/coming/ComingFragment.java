@@ -13,10 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.maotong.weibo.R;
+import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.main.MovieDetailActivity;
 import com.maotong.weibo.movie.hotshowing.HotShowingAdapter;
 import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -29,6 +32,7 @@ public class ComingFragment extends Fragment
 	private RecyclerView mRecycler;
 	private SwipeRefreshLayout mSwipe;
 	private List<HotShowingModel> mComingList;
+	private Oauth2AccessToken mAccessToken;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -47,7 +51,7 @@ public class ComingFragment extends Fragment
 		if (mComingList == null){
 			initData();
 		} else {
-			setUpRecyclerView();
+			setUpRecyclerView(mComingList);
 		}
 
 		mSwipe.setProgressViewOffset(false, 0, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
@@ -64,18 +68,30 @@ public class ComingFragment extends Fragment
 		return view;
 
 	}
-
+	/**
+	 * 登录或者注销之后，会发送LoinStatusEvent事件
+	 * @param loginStatusEvent
+	 */
 	@Subscribe
-	public void onEventMainThread(List<HotShowingModel> comingModelList){
+	public void onEventMainThread(LoginStatusEvent loginStatusEvent){
 		getActivity().runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				setUpRecyclerView();
+				initData();
+			}
+		});
+	}
+	@Subscribe
+	public void onEventMainThread(final ComingMovieEvent comingMovieEvent){
+		getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				setUpRecyclerView(comingMovieEvent.getMovieList());
 			}
 		});
 	}
 
-	private void setUpRecyclerView() {
+	private void setUpRecyclerView(List<HotShowingModel> mComingList) {
 		mSwipe.setRefreshing(false);
 		ComingAdapter adapter = new ComingAdapter(getContext(), mComingList);
 		mRecycler.setAdapter(adapter);
@@ -104,8 +120,16 @@ public class ComingFragment extends Fragment
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				mComingList = new JsonResolveUtils().getComing();
-				EventBus.getDefault().post(mComingList);
+
+				//根据登录状态获得不同的movie数据
+				mAccessToken = AccessTokenKeeper.readAccessToken(getContext());
+				if (mAccessToken != null && mAccessToken.isSessionValid()) {
+					mComingList = new JsonResolveUtils().getComing(mAccessToken.getUid());
+				} else {
+					mComingList = new JsonResolveUtils().getComing();
+				}
+
+				EventBus.getDefault().post(new ComingMovieEvent(mComingList));
 			}
 		}).start();
 	}

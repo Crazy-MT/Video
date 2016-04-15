@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.text.BoringLayout;
 import android.util.Log;
 
 import com.maotong.weibo.base.WeiBoApplication;
@@ -110,13 +111,10 @@ public class JsonResolveUtils {
                 + "/MovieServlet";
 
         SyncHttp syncHttp = new SyncHttp();
-
         try {
             json = syncHttp.httpGet(url, null);
             JSONObject jsonObject = new JSONObject(json);
-            // 获取返回码
             ret = jsonObject.getString("ret").equals("success");
-
             if (ret) {
                 JSONObject dataObject = jsonObject.getJSONObject("data");
                 JSONArray objectArr = dataObject.getJSONArray("movie");
@@ -151,7 +149,6 @@ public class JsonResolveUtils {
         try {
             json = syncHttp.httpGet(url, null);
             JSONObject jsonObject = new JSONObject(json);
-            // 获取返回码
             ret = jsonObject.getString("ret").equals("success");
 
             if (ret) {
@@ -164,7 +161,8 @@ public class JsonResolveUtils {
                     movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), rs.getString("release_date"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count"));
+                            rs.getInt("score_count") );
+                    movie.setIsLike(0);
                     movies.add(movie);
                 }
             }
@@ -200,12 +198,14 @@ public class JsonResolveUtils {
         }
     }
 
-    public boolean setLikeMovie(String uid, int movieId) {
+    public boolean setLikeMovie(String uid, int movieId , boolean isLike) {
         String url = WeiBoApplication.getInstance().getBASE_URL()
                 + "/LikeMovieServlet";
+
         List<Parameter> parameters = new ArrayList<>();
         parameters.add(new Parameter("weibo_id" , uid));
         parameters.add(new Parameter("movie_id" , movieId+""));
+        parameters.add(new Parameter("is_like" , isLike+""));
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
         boolean ret ;
@@ -234,9 +234,9 @@ public class JsonResolveUtils {
         boolean ret ;
         try {
             json = syncHttp.httpPost(url , parameters);
-            Log.e("tag", "logout: json" + json);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
+
             if (ret){
                 return true;
             } else {
@@ -262,7 +262,6 @@ public class JsonResolveUtils {
         try {
             json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
-            // 获取返回码
             ret = jsonObject.getString("ret").equals("success");
             if (ret) {
                 JSONObject dataObject = jsonObject.getJSONObject("data");
@@ -275,6 +274,81 @@ public class JsonResolveUtils {
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
                             rs.getInt("score_count"),rs.getInt("is_Like"));
+
+                    movies.add(movie);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
+    public List<HotShowingModel> getMovieLike(String uid) {
+        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
+        HotShowingModel movie;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASE_URL()
+                + "/GetMovieLikeServlet";
+
+        SyncHttp syncHttp = new SyncHttp();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("weibo_id" , uid+""));
+        try {
+            json = syncHttp.httpPost(url, parameters);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("result").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONArray objectArr = dataObject.getJSONArray("movie");
+
+                JSONObject rs = null;
+                for (int i = 0; i < objectArr.length(); i++) {
+                    rs = (JSONObject) objectArr.opt(i);
+                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                            rs.getString("intro"), rs.getString("poster_url"),
+                            rs.getString("large_poster_url"), (float) rs.getDouble("score"),
+                            rs.getInt("score_count"),rs.getInt("is_Like"));
+
+                    movies.add(movie);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movies;
+
+    }
+
+    public List<HotShowingModel> getComing(String uid) {
+        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
+        HotShowingModel movie;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASE_URL()
+                + "/ComingServlet";
+
+        SyncHttp syncHttp = new SyncHttp();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("weibo_id" , uid+""));
+        try {
+            json = syncHttp.httpPost(url, parameters);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("ret").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONArray objectArr = dataObject.getJSONArray("movie");
+
+                JSONObject rs = null;
+                for (int i = 0; i < objectArr.length(); i++) {
+                    rs = (JSONObject) objectArr.opt(i);
+
+
+                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                            rs.getString("intro"), rs.getString("poster_url"),
+                            rs.getString("large_poster_url"), rs.getString("release_date"), (float) rs.getDouble("score"),
+                            rs.getInt("score_count") , rs.getInt("is_Like") );
 
                     movies.add(movie);
                 }

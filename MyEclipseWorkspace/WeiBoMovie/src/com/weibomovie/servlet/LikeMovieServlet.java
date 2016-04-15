@@ -21,7 +21,7 @@ public class LikeMovieServlet extends HttpServlet {
 	}
 
 	public void destroy() {
-		super.destroy(); 
+		super.destroy();
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,7 +29,7 @@ public class LikeMovieServlet extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
+
 		out.flush();
 		out.close();
 	}
@@ -37,23 +37,33 @@ public class LikeMovieServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=utf-8"); 
+		response.setContentType("text/html;charset=utf-8");
+
+		boolean isLike = request.getParameter("is_like").equals("true") ? true
+				: false;
+		System.out.println(isLike);
+
 		Like like = new Like();
 		like.setMovie_id(Integer.valueOf(request.getParameter("movie_id")));
 		like.setWeibo_id(Long.valueOf(request.getParameter("weibo_id")));
 		LikeDao likeDao = new LikeDao();
-		
+
 		PrintWriter out = response.getWriter();
 		JSONObject dataJson = new JSONObject();
 		JSONObject resultJson = new JSONObject();
 		try {
-			likeDao.addLike(like);
+			if (isLike) {
+				likeDao.addLike(like);
+			} else {
+				likeDao.deleteLike(like);
+			}
+
 			resultJson.put("result", "success");
 			resultJson.put("data", dataJson);
 		} catch (Exception e) {
 			resultJson.put("result", "error");
 			e.printStackTrace();
-		} 
+		}
 		out.println(resultJson.toString());
 		out.flush();
 		out.close();

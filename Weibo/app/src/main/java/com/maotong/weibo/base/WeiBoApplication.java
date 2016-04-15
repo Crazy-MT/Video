@@ -88,7 +88,7 @@ public class WeiBoApplication extends Application {
     }
 
     public void setBASE_URL(String BASE_URL) {
-        BASE_URL = BASE_URL;
+        this.BASE_URL = BASE_URL;
     }
 
     public int getUserId() {

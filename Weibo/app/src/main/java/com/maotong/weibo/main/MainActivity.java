@@ -20,6 +20,7 @@ import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.api.Constants;
 import com.maotong.weibo.movie.MovieTwoFragment;
+import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.personal.PersonalFragment;
 import com.maotong.weibo.review.ReviewFragment;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -27,6 +28,8 @@ import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by MaoTong on 2016/4/6.
@@ -221,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (!TextUtils.isEmpty(code)) {
                     message = message + "\nObtained the code: " + code;
                 }
+                EventBus.getDefault().post(new LoginStatusEvent(false , "" , LoginStatusEvent.LOGIN_ERROR));
                 Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
             }
         }

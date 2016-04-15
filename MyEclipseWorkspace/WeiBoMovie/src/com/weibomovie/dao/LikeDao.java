@@ -21,4 +21,12 @@ public class LikeDao {
 		ptmt.execute();
 	}
 
+	public void deleteLike(Like like) throws SQLException { 
+		Connection conn = DBUtil.getConnection();
+		String sql = "" + "delete from likemovie where movie_id=? ";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setInt(1, like.getMovie_id());
+		ptmt.execute();
+	}
+
 }

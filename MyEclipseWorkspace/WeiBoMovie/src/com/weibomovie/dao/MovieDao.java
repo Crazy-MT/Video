@@ -72,13 +72,14 @@ public class MovieDao {
 			movie.setScore_count(rs.getInt("score_count"));
 			movie.setPage_list_id(rs.getInt("pagelistid"));
 			movie.setRelease_date(rs.getString("release_date"));
+			movie.setIs_coming(rs.getInt("is_coming")); 
 			result.add(movie);
 		}
 		return result;
 	}
 
 	/**
-	 * 获取所有即将上映电影
+	 * 根据用户信息，获取所有即将上映电影
 	 * 
 	 * @param weibo_id
 	 * @return
@@ -243,5 +244,90 @@ public class MovieDao {
 			}
 		}
 
+	}
+
+	public List<Movie> queryAllLike(Long weibo_id) throws SQLException {
+		List<Movie> result = new ArrayList<Movie>();
+		Connection conn = DBUtil.getConnection();
+		StringBuilder sb = new StringBuilder();
+		sb.append("select movie_id from likemovie  where weibo_id=? ");
+		PreparedStatement ptmt = conn.prepareStatement(sb.toString());
+		ptmt.setLong(1, weibo_id);
+		ResultSet rs = ptmt.executeQuery();
+
+		List<Integer> movieIdList = new ArrayList<Integer>();
+		while (rs.next()) {
+			movieIdList.add(rs.getInt("movie_id"));
+		}
+
+		for(int movieId : movieIdList){ 
+			String sql = "select *from movie where id = ? "; 
+			PreparedStatement ptmtMovie = conn.prepareStatement(sql);
+			ptmtMovie.setInt(1, movieId); 
+			ResultSet rsMovie = ptmtMovie.executeQuery();
+			Movie movie = null;
+			while (rsMovie.next()) {
+				movie = new Movie();
+				movie.setId(rsMovie.getInt("id"));
+				movie.setName(rsMovie.getString("movie_name"));
+				movie.setGenre(rsMovie.getString("genre"));
+				movie.setIntro(rsMovie.getString("intro"));
+				movie.setLarge_poster_url(rsMovie.getString("large_poster_url"));
+				movie.setPoster_url(rsMovie.getString("poster_url"));
+				movie.setScore(rsMovie.getFloat("score"));
+				movie.setScore_count(rsMovie.getInt("score_count"));
+				movie.setPage_list_id(rsMovie.getInt("pagelistid"));
+				movie.setRelease_date(rsMovie.getString("release_date"));
+				movie.setIs_Like(0);
+				result.add(movie);
+			}
+		}  
+		return result;
+	}
+
+	public List<Movie> queryIsLikeComing(Long weibo_id) throws SQLException { 
+		List<Movie> result = new ArrayList<Movie>();
+		Connection conn = DBUtil.getConnection();
+		StringBuilder sb = new StringBuilder();
+		sb.append("select movie_id from likemovie  where weibo_id=? ");
+		PreparedStatement ptmt = conn.prepareStatement(sb.toString());
+		ptmt.setLong(1, weibo_id);
+		ResultSet rs = ptmt.executeQuery();
+
+		List<Integer> movieIdList = new ArrayList<Integer>();
+		while (rs.next()) {
+			movieIdList.add(rs.getInt("movie_id"));
+		}
+
+		String sql = "select *from movie where is_coming=1 ";
+		PreparedStatement ptmtMovie = conn.prepareStatement(sql);
+		ResultSet rsMovie = ptmtMovie.executeQuery();
+		Movie movie = null;
+		while (rsMovie.next()) {
+			movie = new Movie();
+			movie.setId(rsMovie.getInt("id"));
+			movie.setName(rsMovie.getString("movie_name"));
+			movie.setGenre(rsMovie.getString("genre"));
+			movie.setIntro(rsMovie.getString("intro"));
+			movie.setLarge_poster_url(rsMovie.getString("large_poster_url"));
+			movie.setPoster_url(rsMovie.getString("poster_url"));
+			movie.setScore(rsMovie.getFloat("score"));
+			movie.setScore_count(rsMovie.getInt("score_count"));
+			movie.setPage_list_id(rsMovie.getInt("pagelistid"));
+			movie.setRelease_date(rsMovie.getString("release_date"));
+			movie.setIs_Like(0);
+			result.add(movie);
+		}
+
+		for (int movie_id : movieIdList) {
+			for (int i = 0; i < result.size(); i++) {
+				if (movie_id == result.get(i).getId()) {
+					result.get(i).setIs_Like(1);
+					break;
+				}
+			}
+		}
+ 
+		return result;
 	}
 }

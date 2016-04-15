@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.main.MovieDetailActivity;
+import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -66,9 +67,20 @@ public class HotShowingFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        //登录之后会执行此方法 。 但是注销之后此方法不执行
+    }
 
-        initData();
+    /**
+     * 登录或者注销之后，会发送LoinStatusEvent事件
+     * @param loginStatusEvent
+     */
+    @Subscribe
+    public void onEventMainThread(LoginStatusEvent loginStatusEvent){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                initData();
+            }
+        });
     }
 
     @Subscribe

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp" >
+    android:layout_height="160dp">
 
     <ImageView
         android:id="@+id/id_item_coming"
         android:layout_width="match_parent"
-        android:scaleType="centerCrop"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:background="@mipmap/movier_image_mask"
         android:gravity="bottom"
-        android:paddingLeft="20dp"
-        android:background="@mipmap/movier_image_mask">
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,62 +28,68 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/movie_name"
-                android:textSize="16sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
         </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/id_item_comment"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="center_vertical">
+                android:src="@mipmap/home_interest" />
 
-                <ImageView
-                    android:id="@+id/id_item_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/home_interest" />
+            <TextView
+                android:id="@+id/id_item_coming_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/id_item_comment"
+                android:text="@string/coming_like"
+                android:textColor="#a0a0a0"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/id_item_coming_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toRightOf="@id/id_item_comment"
-                    android:text="@string/coming_like"
-                    android:textColor="#a0a0a0"
-                    android:textSize="12sp"/>
+            <ImageView
+                android:id="@+id/id_item_coming_premiere"
+                android:layout_width="wrap_content"
 
-                <ImageView
-                    android:id="@+id/id_item_coming_premiere"
-                    android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/home_premiere" />
 
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/home_premiere" />
-                <TextView
-                    android:id="@+id/id_item_coming_premiere_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/coming_premiere"
-                    android:textColor="#a0a0a0"
-                    android:textSize="12sp"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/id_item_coming_premiere_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/coming_premiere"
+                android:textColor="#a0a0a0"
+                android:textSize="12sp" />
+        </LinearLayout>
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/id_item_coming_like_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+    <LinearLayout
+        android:id="@+id/id_item_coming_like_click"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:src="@mipmap/home_interested_normal" />
+        android:layout_alignParentRight="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/id_item_coming_like_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home_interested_normal" />
+    </LinearLayout>
 
 </RelativeLayout>

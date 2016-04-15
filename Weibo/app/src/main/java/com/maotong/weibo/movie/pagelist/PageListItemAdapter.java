@@ -20,9 +20,9 @@ import java.util.List;
  */
 public class PageListItemAdapter extends RecyclerView.Adapter<PageListItemAdapter.PageListItemViewHolder> {
 
-    private List<HotShowingModel> hotShowingModels;
-    private Context context;
-    private LayoutInflater inflater;
+    private List<HotShowingModel> mHotShowingModels;
+    private Context mContext;
+    private LayoutInflater mInflater;
 
     private interface OnItemClickListener {
         void onItemClick(View view, int position);
@@ -40,28 +40,28 @@ public class PageListItemAdapter extends RecyclerView.Adapter<PageListItemAdapte
         this.onItemClickListener = onItemClickListener;
     }
 
-    public PageListItemAdapter(Context context, List<HotShowingModel> hotShowingModels) {
-        this.hotShowingModels = hotShowingModels;
-        this.context = context;
-        this.inflater = LayoutInflater.from(context);
+    public PageListItemAdapter(Context context, List<HotShowingModel> mHotShowingModels) {
+        this.mHotShowingModels = mHotShowingModels;
+        this.mContext = context;
+        this.mInflater = LayoutInflater.from(context);
     }
 
     @Override
     public PageListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_pagelist_item_recycler, parent, false);
+        View view = mInflater.inflate(R.layout.item_horizontal_movie_recycler, parent, false);
         return new PageListItemViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(PageListItemViewHolder holder, int position) {
-        HotShowingModel hotShowingModel = hotShowingModels.get(position);
+        HotShowingModel hotShowingModel = mHotShowingModels.get(position);
         holder.name.setText(hotShowingModel.getName());
-        Glide.with(context).load(hotShowingModel.getPoster_url()).into(holder.movieImg);
+        Glide.with(mContext).load(hotShowingModel.getPoster_url()).into(holder.movieImg);
     }
 
     @Override
     public int getItemCount() {
-        return hotShowingModels.size();
+        return mHotShowingModels.size();
     }
 
     class PageListItemViewHolder extends RecyclerView.ViewHolder {
@@ -73,8 +73,8 @@ public class PageListItemAdapter extends RecyclerView.Adapter<PageListItemAdapte
 
         public PageListItemViewHolder(View itemView) {
             super(itemView);
-            movieImg = (ImageView) itemView.findViewById(R.id.id_page_list_item_movie_img);
-            name = (TextView) itemView.findViewById(R.id.id_page_list_item_movie_text);
+            movieImg = (ImageView) itemView.findViewById(R.id.id_horizontal_movie_img);
+            name = (TextView) itemView.findViewById(R.id.id_horizontal_movie_text);
         }
     }
 }
