@@ -1,0 +1,5 @@
+package com.weibomovie.weiboapi;
+
+public class MovieDetailData {
+
+}

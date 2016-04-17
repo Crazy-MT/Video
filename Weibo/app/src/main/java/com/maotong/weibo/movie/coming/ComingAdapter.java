@@ -18,8 +18,11 @@ import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -48,6 +51,7 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
                 comingModels.get(position).setIsLike(0);
             }
             notifyItemChanged(position);
+            EventBus.getDefault().post(new LoginStatusEvent(true));
         }
     };
     public interface OnItemClickListener {

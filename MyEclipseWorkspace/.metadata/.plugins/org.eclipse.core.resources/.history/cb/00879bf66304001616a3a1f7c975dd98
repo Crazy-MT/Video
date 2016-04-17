@@ -1,0 +1,22 @@
+package com.weibomovie.dao;
+ 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+ 
+import com.weibomovie.db.DBUtil;
+import com.weibomovie.model.Actor;
+
+public class ActorDao {
+	
+	public void addActor(Actor actor) throws SQLException{
+		
+		Connection conn  = DBUtil.getConnection();
+		String sql = "insert into actor (name , movie_id) values(?,?)";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setString(1, actor.getName());
+		ptmt.setInt(2, actor.getMovie_id());
+		ptmt.execute();
+	}
+	
+}

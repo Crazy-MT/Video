@@ -1,0 +1,5 @@
+package com.weibomovie.dao;
+
+public class ActorDao {
+
+}

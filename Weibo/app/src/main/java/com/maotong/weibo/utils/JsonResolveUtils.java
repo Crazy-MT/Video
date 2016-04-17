@@ -359,6 +359,44 @@ public class JsonResolveUtils {
         return movies;
     }
 
+    public HotShowingModel getMovieDetail(int id) {
+        HotShowingModel movie = null;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASE_URL()
+                + "/MovieDetailServlet";
+
+        SyncHttp syncHttp = new SyncHttp();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("movie_id" , id+""));
+        try {
+            json = syncHttp.httpPost(url, parameters);
+            Log.e("tag" , json);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("ret").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONObject movieObject = dataObject.getJSONObject("movie");
+
+                movie = new HotShowingModel(movieObject.getInt("id"), movieObject.getString("name"), movieObject.getString("genre"),
+                        movieObject.getString("intro"), movieObject.getString("poster_url"),
+                        movieObject.getString("large_poster_url"), movieObject.getString("release_date"), (float) movieObject.getDouble("score"),
+                        movieObject.getInt("score_count") , movieObject.getInt("is_Like") );
+                movie.setVideo_url(movieObject.getString("video_url"));
+
+                movie.setActors(dataObject.getString("actors"));
+                movie.setDirector(dataObject.getString("director"));
+
+            }
+        } catch (Exception e) {
+            Log.e("tag" , e.toString());
+            e.printStackTrace();
+        }
+
+        Log.e("tag" , movie.toString());
+        return movie;
+    }
+
     /**
      * 用户登陆
      *

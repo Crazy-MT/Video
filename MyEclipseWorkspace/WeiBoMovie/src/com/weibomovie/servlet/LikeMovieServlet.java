@@ -41,7 +41,6 @@ public class LikeMovieServlet extends HttpServlet {
 
 		boolean isLike = request.getParameter("is_like").equals("true") ? true
 				: false;
-		System.out.println(isLike);
 
 		Like like = new Like();
 		like.setMovie_id(Integer.valueOf(request.getParameter("movie_id")));
@@ -64,6 +63,7 @@ public class LikeMovieServlet extends HttpServlet {
 			resultJson.put("result", "error");
 			e.printStackTrace();
 		}
+		System.out.println(resultJson.toString());
 		out.println(resultJson.toString());
 		out.flush();
 		out.close();

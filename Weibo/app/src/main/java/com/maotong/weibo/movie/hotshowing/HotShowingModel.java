@@ -14,9 +14,36 @@ public class HotShowingModel implements Serializable{
 	private int score_count;
 	private int isLike;
 	private String release_date;
+	private String video_url;
+	private String director;
+	private String actors;
+
+	public String getVideo_url() {
+		return video_url;
+	}
+
+	public void setVideo_url(String video_url) {
+		this.video_url = video_url;
+	}
+
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	public String getActors() {
+		return actors;
+	}
+
+	public void setActors(String actors) {
+		this.actors = actors;
+	}
 
 	public HotShowingModel(int id, String name, String intro, String genre, String poster_url, String large_poster_url,
-			String release_date ,float score, int score_count) {
+						   String release_date , float score, int score_count) {
 		this.id = id;
 		this.name = name;
 		this.intro = intro;
@@ -76,6 +103,10 @@ public class HotShowingModel implements Serializable{
 				", score=" + score +
 				", score_count=" + score_count +
 				", isLike=" + isLike +
+				", release_date='" + release_date + '\'' +
+				", video_url='" + video_url + '\'' +
+				", director='" + director + '\'' +
+				", actors='" + actors + '\'' +
 				'}';
 	}
 

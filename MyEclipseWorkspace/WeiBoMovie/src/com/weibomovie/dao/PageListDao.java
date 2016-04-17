@@ -47,8 +47,7 @@ public class PageListDao {
 			ResultSet rs=ptmtFirst.executeQuery();
 			rs.last();
 			int rawCount = rs.getRow();
-			if(rawCount == 0){
-				System.out.println("");
+			if(rawCount == 0){ 
 				String sql="" +
 						"insert into pagelist" +
 						"(id,name,description,cover_url,movie_count)" +

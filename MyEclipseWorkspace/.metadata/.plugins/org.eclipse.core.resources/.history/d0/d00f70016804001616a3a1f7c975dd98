@@ -1,0 +1,28 @@
+package com.weibomovie.dao;
+ 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+ 
+import com.weibomovie.db.DBUtil;
+import com.weibomovie.model.Actor;
+import com.weibomovie.model.Director;
+
+public class DirectorDao {
+	
+	public void addDirector(Director director) throws SQLException{
+		
+		Connection conn  = DBUtil.getConnection();
+		String sql = "insert into director (name , movie_id) values(?,?)";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setString(1, director.getName());
+		ptmt.setInt(2, director.getMovie_id());
+		ptmt.execute();
+	}
+
+	public String getDirectorByMovie(int i) {
+		
+		return null;
+	}
+	
+}

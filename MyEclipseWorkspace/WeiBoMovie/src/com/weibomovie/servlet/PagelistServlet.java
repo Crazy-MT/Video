@@ -60,6 +60,7 @@ public class PagelistServlet extends HttpServlet {
 			jsonObject.put("ret", "error");
 			jsonObject.put("data", "");
 		}
+		System.out.println(jsonObject);
 		out.println(jsonObject);
 		out.flush();
 		out.close();

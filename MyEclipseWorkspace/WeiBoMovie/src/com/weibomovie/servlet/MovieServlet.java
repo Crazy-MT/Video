@@ -31,7 +31,7 @@ public class MovieServlet extends HttpServlet {
 			throws ServletException, IOException {
 		MovieData movieData = new MovieData();
 		try {
-			//movieData.httpPost();
+			movieData.httpPost();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -51,6 +51,7 @@ public class MovieServlet extends HttpServlet {
 			jsonObject.put("ret", "error");
 			jsonObject.put("data", "");
 		} 
+		System.out.println(jsonObject);
 		out.println(jsonObject);
 		out.flush();
 		out.close();
@@ -83,6 +84,7 @@ public class MovieServlet extends HttpServlet {
 			jsonObject.put("ret", "error");
 			jsonObject.put("data", "");
 		} 
+		System.out.println(jsonObject);
 		out.println(jsonObject);
 		out.flush();
 		out.close();

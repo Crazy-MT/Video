@@ -90,6 +90,7 @@ public class GetMovieLikeServlet extends HttpServlet {
 			jsonObject.put("result", "error");
 			jsonObject.put("data", "");
 		} 
+		System.out.println(jsonObject);
 		out.println(jsonObject);
 		out.flush();
 		out.close();

@@ -21,8 +21,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
+import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -39,6 +42,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     private static String HANDLER_LIKE_YES = "yes";
     private static String HANDLER_LIKE_NO = "no";
     private Oauth2AccessToken mAccessToken;
+
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -51,6 +55,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                 hotShowingModels.get(position).setIsLike(0);
             }
             notifyItemChanged(position);
+            EventBus.getDefault().post(new LoginStatusEvent(true));
         }
     };
 
@@ -117,7 +122,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                                 }
                             }
                         }).start();
-                    } else { //点击之后取消收藏还未完成。发送请求 、 后台还没写。
+                    } else {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {

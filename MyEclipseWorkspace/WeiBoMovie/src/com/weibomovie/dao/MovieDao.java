@@ -72,7 +72,7 @@ public class MovieDao {
 			movie.setScore_count(rs.getInt("score_count"));
 			movie.setPage_list_id(rs.getInt("pagelistid"));
 			movie.setRelease_date(rs.getString("release_date"));
-			movie.setIs_coming(rs.getInt("is_coming")); 
+			movie.setIs_coming(rs.getInt("is_coming"));
 			result.add(movie);
 		}
 		return result;
@@ -127,7 +127,7 @@ public class MovieDao {
 				}
 			}
 		}
- 
+
 		return result;
 	}
 
@@ -142,7 +142,6 @@ public class MovieDao {
 			rs.last();
 			int rawCount = rs.getRow();
 			if (rawCount == 0) {
-				System.out.println("");
 				String sql = ""
 						+ "insert into movie"
 						+ "(id,movie_name,genre,intro,poster_url,large_poster_url,score,score_count,is_showing)"
@@ -173,7 +172,6 @@ public class MovieDao {
 			rs.last();
 			int rawCount = rs.getRow();
 			if (rawCount == 0) {
-				System.out.println("");
 				String sql = "" + "insert into movie"
 						+ "(id,movie_name,poster_url,score,pagelistid)"
 						+ "values(" + "?,?,?,?,?) ";
@@ -260,10 +258,10 @@ public class MovieDao {
 			movieIdList.add(rs.getInt("movie_id"));
 		}
 
-		for(int movieId : movieIdList){ 
-			String sql = "select *from movie where id = ? "; 
+		for (int movieId : movieIdList) {
+			String sql = "select *from movie where id = ? ";
 			PreparedStatement ptmtMovie = conn.prepareStatement(sql);
-			ptmtMovie.setInt(1, movieId); 
+			ptmtMovie.setInt(1, movieId);
 			ResultSet rsMovie = ptmtMovie.executeQuery();
 			Movie movie = null;
 			while (rsMovie.next()) {
@@ -281,11 +279,11 @@ public class MovieDao {
 				movie.setIs_Like(0);
 				result.add(movie);
 			}
-		}  
+		}
 		return result;
 	}
 
-	public List<Movie> queryIsLikeComing(Long weibo_id) throws SQLException { 
+	public List<Movie> queryIsLikeComing(Long weibo_id) throws SQLException {
 		List<Movie> result = new ArrayList<Movie>();
 		Connection conn = DBUtil.getConnection();
 		StringBuilder sb = new StringBuilder();
@@ -327,7 +325,40 @@ public class MovieDao {
 				}
 			}
 		}
- 
+
 		return result;
+	}
+
+	public void updateMovie(Movie movie) throws SQLException {
+		Connection conn = DBUtil.getConnection();
+		String sql = "" + " update movie " + " set video_url=? " + " "
+				+ " where id=? ";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setString(1, movie.getVideo_url());
+		ptmt.setInt(2, movie.getId());
+		ptmt.execute();
+	}
+
+	public Movie getMovieDetail(int movie_id) throws SQLException {
+		Movie movie = new Movie();
+		Connection conn = DBUtil.getConnection();
+		String sql = "select *from movie where id=?";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setInt(1, movie_id);
+		ResultSet rs = ptmt.executeQuery();
+		while (rs.next()) {
+			movie.setId(rs.getInt("id"));
+			movie.setName(rs.getString("movie_name"));
+			movie.setGenre(rs.getString("genre"));
+			movie.setIntro(rs.getString("intro"));
+			movie.setLarge_poster_url(rs.getString("large_poster_url"));
+			movie.setPoster_url(rs.getString("poster_url"));
+			movie.setScore(rs.getFloat("score"));
+			movie.setScore_count(rs.getInt("score_count"));
+			movie.setPage_list_id(rs.getInt("pagelistid"));
+			movie.setRelease_date(rs.getString("release_date"));
+			movie.setVideo_url(rs.getString("video_url"));			
+		} 
+		return movie; 
 	}
 }

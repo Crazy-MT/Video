@@ -16,9 +16,16 @@ public class Movie {
 	private int is_coming;
 	private String release_date;
 	private int is_Like;
-	
-	
-	
+	private String video_url;
+	 
+	public String getVideo_url() {
+		return video_url;
+	}
+
+	public void setVideo_url(String video_url) {
+		this.video_url = video_url;
+	}
+
 	public int getIs_Like() {
 		return is_Like;
 	}
@@ -181,10 +188,7 @@ public class Movie {
 				+ ", large_poster_url=" + large_poster_url + ", score=" + score
 				+ ", score_count=" + score_count + ", page_list_id="
 				+ page_list_id + ", is_showing=" + is_showing + ", is_coming="
-				+ is_coming + ", release_date=" + release_date + "]";
-	}
-
-	
-	
-	
+				+ is_coming + ", release_date=" + release_date + ", is_Like="
+				+ is_Like + ", video_url=" + video_url + "]";
+	} 
 }

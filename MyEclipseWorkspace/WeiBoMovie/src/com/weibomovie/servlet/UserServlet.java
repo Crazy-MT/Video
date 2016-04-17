@@ -59,6 +59,7 @@ public class UserServlet extends HttpServlet {
 			resultJson.put("result", "error");
 			e.printStackTrace();
 		} 
+		System.out.println(resultJson);
 		out.println(resultJson.toString());
 		out.flush();
 		out.close(); 
