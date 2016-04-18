@@ -100,7 +100,8 @@ public class HotShowingFragment extends Fragment {
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         adapter.setOnItemClickListener(new HotShowingAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position , int isLike) {
+                mHotShowingList.get(position).setIsLike(isLike);
                 //跳转到电影页面
                 Intent intent = new Intent(getActivity(), MovieDetailActivity.class);
                 Bundle bundle = new Bundle();

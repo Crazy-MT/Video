@@ -24,8 +24,8 @@ public class WeiBoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         weiBoApplication = this;
-        //setBASE_URL("http://192.168.0.153:8080/WeiBoMovie/servlet"); //tagux
-        setBASE_URL("http://192.168.1.113:8080/WeiBoMovie/servlet"); //家
+        setBASE_URL("http://192.168.0.153:8080/WeiBoMovie/servlet"); //tagux
+        //setBASE_URL("http://192.168.1.113:8080/WeiBoMovie/servlet"); //家
 //		setBASE_URL("http://192.168.10.212:8080/WeiBoMovie/servlet");  //racemind
 
         /*setUser(false);

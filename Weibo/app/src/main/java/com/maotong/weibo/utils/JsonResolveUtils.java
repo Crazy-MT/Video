@@ -371,7 +371,6 @@ public class JsonResolveUtils {
         parameters.add(new Parameter("movie_id" , id+""));
         try {
             json = syncHttp.httpPost(url, parameters);
-            Log.e("tag" , json);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("ret").equals("success");
             if (ret) {
@@ -389,11 +388,9 @@ public class JsonResolveUtils {
 
             }
         } catch (Exception e) {
-            Log.e("tag" , e.toString());
             e.printStackTrace();
         }
 
-        Log.e("tag" , movie.toString());
         return movie;
     }
 

@@ -1,14 +1,13 @@
-#Thu Apr 14 22:20:53 CST 2016
+eclipse.preferences.version=1
+tomcat7Server.WeiBoMovie.IEARProjectName=
+tomcat7Server.WeiBoMovie.altContextRoot=
+tomcat7Server.WeiBoMovie.contextRoot=/WeiBoMovie
+tomcat7Server.WeiBoMovie.deployIsOverProject=false
+tomcat7Server.WeiBoMovie.deploymentPath=D\:\\A-MT\\JAVA\\apache-tomcat-7.0.68-windows-x64\\apache-tomcat-7.0.68\\webapps\\WeiBoMovie
 tomcat7Server.WeiBoMovie.isDeployed=true
+tomcat7Server.WeiBoMovie.isExploded=true
+tomcat7Server.WeiBoMovie.isUptoDate=true
+tomcat7Server.WeiBoMovie.noFileCopy=false
 tomcat7Server.WeiBoMovie.shouldBackup=true
 tomcat7Server.WeiBoMovie.shouldOverwrite=false
-tomcat7Server.WeiBoMovie.altContextRoot=
-tomcat7Server.WeiBoMovie.noFileCopy=false
 tomcat7Server.WeiBoMovie.type=WebDeployment
-tomcat7Server.WeiBoMovie.IEARProjectName=
-tomcat7Server.WeiBoMovie.deployIsOverProject=false
-tomcat7Server.WeiBoMovie.isUptoDate=true
-tomcat7Server.WeiBoMovie.isExploded=true
-eclipse.preferences.version=1
-tomcat7Server.WeiBoMovie.deploymentPath=D\:\\apache-tomcat-7.0.68\\webapps\\WeiBoMovie
-tomcat7Server.WeiBoMovie.contextRoot=/WeiBoMovie

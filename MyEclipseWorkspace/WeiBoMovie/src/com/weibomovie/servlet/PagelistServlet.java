@@ -14,6 +14,7 @@ import net.sf.json.JSONObject;
 
 import com.weibomovie.dao.MovieDao;
 import com.weibomovie.dao.PageListDao;
+import com.weibomovie.db.Constant;
 import com.weibomovie.model.Movie;
 import com.weibomovie.model.Pagelist;
 import com.weibomovie.weiboapi.PageListData;
@@ -32,19 +33,21 @@ public class PagelistServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=utf-8");
-		
-		PageListData pageListData = new PageListData();
-		
-		try {
-			//下载pagelist数据 、 并存放到数据库
-			//pageListData.httpPost();
-			//下载pagelist对应的电影,，更新pagelist并存放电影至数据库
-			//pageListData.getPageListMovie();
-		} catch (Exception e) { 
-			e.printStackTrace();
-		}		
-		
-		//将pagelist展示出来		
+
+		if (Constant.isOpenDownloadData()) {
+			PageListData pageListData = new PageListData();
+
+			try {
+				// 下载pagelist数据 、 并存放到数据库
+				pageListData.httpPost();
+				// 下载pagelist对应的电影,，更新pagelist并存放电影至数据库
+				pageListData.getPageListMovie();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		// 将pagelist展示出来
 		PrintWriter out = response.getWriter();
 		List<Pagelist> pageList = new ArrayList<Pagelist>();
 		PageListDao pageListDao = new PageListDao();
@@ -52,7 +55,7 @@ public class PagelistServlet extends HttpServlet {
 		JSONObject dataObject = new JSONObject();
 		try {
 			pageList = pageListDao.query();
-			dataObject.put("pagelist",pageList);
+			dataObject.put("pagelist", pageList);
 			jsonObject.put("ret", "success");
 			jsonObject.put("data", dataObject);
 		} catch (Exception e) {

@@ -14,6 +14,7 @@ import net.sf.json.JSONObject;
  
 
 import com.weibomovie.dao.MovieDao;
+import com.weibomovie.db.Constant;
 import com.weibomovie.model.Movie;
 import com.weibomovie.weiboapi.MovieData;
 
@@ -29,12 +30,16 @@ public class MovieServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MovieData movieData = new MovieData();
-		try {
-			movieData.httpPost();
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		
+		if(Constant.isOpenDownloadData()){
+			MovieData movieData = new MovieData();
+			try {
+				movieData.httpPost();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
+		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		List<Movie> movieList = new ArrayList<Movie>();
@@ -60,12 +65,15 @@ public class MovieServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		MovieData movieData = new MovieData();
-		try {
-			//movieData.httpPost();
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		if(Constant.isOpenDownloadData()){
+			MovieData movieData = new MovieData();
+			try {
+				movieData.httpPost();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
+		
 		
 		response.setContentType("text/html;charset=utf-8");
 		Long weibo_id = Long.valueOf(request.getParameter("weibo_id"));

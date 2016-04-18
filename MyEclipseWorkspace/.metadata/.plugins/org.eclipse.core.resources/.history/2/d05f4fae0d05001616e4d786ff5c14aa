@@ -1,0 +1,7 @@
+package com.weibomovie.db;
+
+public class Constant {
+	private static boolean isOpenDownloadData ;
+	
+	
+}

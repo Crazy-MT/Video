@@ -60,7 +60,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     };
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position , int isLike);
 
         void onItemLongClick(View view, int position);
     }
@@ -149,7 +149,8 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                 @Override
                 public void onClick(View v) {
                     int pos = holder.getLayoutPosition();
-                    onItemClickListener.onItemClick(holder.itemView, pos);
+                    int isLike = hotShowingModel.getIsLike();
+                    onItemClickListener.onItemClick(holder.itemView, pos , isLike);
                 }
             });
         }

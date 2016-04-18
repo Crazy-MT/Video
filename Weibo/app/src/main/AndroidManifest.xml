@@ -19,7 +19,6 @@
         <activity
             android:name=".main.MainActivity"
             android:label="@string/main"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,9 +28,7 @@
         </activity>
         <activity
             android:name=".api.WBDemoMainActivity"
-            android:label="@string/app_name">
-
-        </activity>
+            android:label="@string/app_name" />
 
         <!-- 授权认证 -->
         <activity android:name=".api.WBAuthActivity" />
@@ -67,6 +64,13 @@
         <activity android:name=".openapi.WBPublicAPIActivity" />
         <activity
             android:name=".main.MovieDetailActivity"
+            android:parentActivityName=".main.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".main.MainActivity" />
+        </activity>
+        <activity android:name=".main.VideoActivity" />
+        <activity android:name=".main.SearchActivity"
             android:parentActivityName=".main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

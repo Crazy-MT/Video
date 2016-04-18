@@ -2,6 +2,7 @@ package com.maotong.weibo.movie;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -13,8 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.maotong.weibo.R;
+import com.maotong.weibo.main.SearchActivity;
 import com.maotong.weibo.movie.coming.ComingFragment;
 import com.maotong.weibo.movie.hotshowing.HotShowingFragment;
 import com.maotong.weibo.movie.pagelist.PageListFragment;
@@ -54,7 +58,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_two, container, false);
-        Log.e("tag", "onCreateView: MovieOneFragment" );
         initViews(view);
         initData();
         initEvents();
@@ -73,6 +76,14 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.id_movie_tabs_two);
         tabLayout.setupWithViewPager(mViewPager);
+
+        LinearLayout search = (LinearLayout) view.findViewById(R.id.id_movie_search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity() , SearchActivity.class));
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager) {

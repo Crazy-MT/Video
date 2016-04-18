@@ -1,6 +1,5 @@
-INDEX VERSION 1.122+F:\Android\AndroidStudioProject\Video\MyEclipseWorkspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-910867028.index
-953769145.index
+INDEX VERSION 1.122+D:\A-MT\TagGitHub\Video\MyEclipseWorkspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 2872111084.index
-592661517.index
-1492255447.index
+2324112941.index
+2391204966.index
+1659945452.index

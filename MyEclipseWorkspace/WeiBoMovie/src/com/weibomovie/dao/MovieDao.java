@@ -342,6 +342,7 @@ public class MovieDao {
 	public Movie getMovieDetail(int movie_id) throws SQLException {
 		Movie movie = new Movie();
 		Connection conn = DBUtil.getConnection();
+		
 		String sql = "select *from movie where id=?";
 		PreparedStatement ptmt = conn.prepareStatement(sql);
 		ptmt.setInt(1, movie_id);

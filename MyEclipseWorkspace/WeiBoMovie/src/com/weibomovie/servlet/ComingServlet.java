@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
  
 import com.weibomovie.dao.MovieDao; 
+import com.weibomovie.db.Constant;
 import com.weibomovie.model.Movie;
 import com.weibomovie.weiboapi.ComingData; 
 
@@ -29,12 +30,16 @@ public class ComingServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ComingData comingData = new ComingData();
-		try {
-			comingData.httpPost();
-		} catch (Exception e1) { 
-			e1.printStackTrace();
+		if(Constant.isOpenDownloadData()){
+			ComingData comingData = new ComingData();
+			try {
+				comingData.httpPost();
+			} catch (Exception e1) { 
+				e1.printStackTrace();
+			}
 		}
+		
+		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		List<Movie> movieList = new ArrayList<Movie>();
