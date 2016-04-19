@@ -8,44 +8,38 @@ import java.util.List;
 
 import com.weibomovie.db.DBUtil;
 import com.weibomovie.model.Actor;
+import com.weibomovie.model.ActorMovie;
+import com.weibomovie.model.Director;
 
 public class ActorDao {
 
-	public void addActor(List<Actor> actorList) throws SQLException {
+	public void addActor(List<Actor> actors) throws SQLException {
 
-		Connection conn = DBUtil.getConnection();
-		int movie_id = actorList.get(0).getMovie_id();
-		String sql = "select *from actor where movie_id=? ";
-		PreparedStatement ptmtSelect = conn.prepareStatement(sql);
-		ptmtSelect.setInt(1, movie_id);
-		ResultSet rs = ptmtSelect.executeQuery();
-
-		rs.last();
-		int rawCount = rs.getRow();
-		if (rawCount == 0) {
-			for (Actor actor : actorList) {
-				sql = "insert into actor (name , movie_id) values(?,?)";
-				PreparedStatement ptmt = conn.prepareStatement(sql);
-				ptmt.setString(1, actor.getName());
-				ptmt.setInt(2, actor.getMovie_id());
-				ptmt.execute();
-			}
-		}
+		Connection conn = DBUtil.getConnection(); 
+		
+ 
+		
+		for(int i = 0; i < actors.size(); ++i){
+			Actor actor = actors.get(i); 
+			String sql = "insert into actor (name , url) values(?, ?) ";
+			PreparedStatement ptmt = conn.prepareStatement(sql);
+			ptmt.setString(1 , actor.getName());
+			ptmt.setString(2, actor.getUrl());
+			ptmt.execute();
+		} 
 	}
 
-	public String getActorByMovie(int movie_id) throws SQLException {
-		String actors = "";
+	public Actor getActor(String actorStr) throws SQLException { 
 		Connection conn = DBUtil.getConnection();
-		String sql = "select *from actor where movie_id=? ";
+		Actor actor = null;
+
+		String sql = "select *from actor where name=? ";
 		PreparedStatement ptmt = conn.prepareStatement(sql);
-		ptmt.setInt(1, movie_id);
+		ptmt.setString(1, actorStr);
 		ResultSet rs = ptmt.executeQuery();
-
 		while (rs.next()) {
-			actors += rs.getString("name");
-			actors += "/";
+			actor = new Actor(rs.getInt("id") , rs.getString("name") , rs.getString("url"));
 		}
-		return actors;
-	}
-
+		return actor;
+	} 
 }

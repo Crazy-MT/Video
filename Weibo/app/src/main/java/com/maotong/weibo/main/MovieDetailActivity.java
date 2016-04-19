@@ -9,16 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.EventLog;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
 import com.maotong.weibo.utils.JsonResolveUtils;
+import com.maotong.weibo.utils.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -28,7 +26,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     public static final String MOVIE = "电影";
     private TextView detail;
     private Context mContext;
-    private HotShowingModel mMovie;
+    private MovieModel mMovie;
     private CoordinatorLayout mMainContentLayout;
     private RecyclerView mPeopleRecycle;
 
@@ -48,20 +46,21 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     private void initData() {
         Bundle bundle = getIntent().getExtras();
-        mMovie = new HotShowingModel();
-        mMovie = (HotShowingModel) bundle.get(MOVIE);
+        mMovie = new MovieModel();
+        mMovie = (MovieModel) bundle.get(MOVIE);
         final int isLike = mMovie.getIsLike();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 mMovie =  new JsonResolveUtils(mContext).getMovieDetail(mMovie.getId());
+                Log.e(mMovie.toString());
                 mMovie.setIsLike(isLike);
                 EventBus.getDefault().post(new MovieDetailEvent(mMovie));
             }
         }).start();
     }
 
-    private void initView(final HotShowingModel movie) {
+    private void initView(final MovieModel movie) {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -74,7 +73,14 @@ public class MovieDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         collapsingToolbar.setTitle(movie.getName());
-        Glide.with(this).load(movie.getLarge_poster_url()).centerCrop().into(imageView);
+
+        if ("".equals(movie.getLarge_poster_url())){
+            Glide.with(this).load(movie.getPoster_url()).centerCrop().into(imageView);
+        } else {
+            Glide.with(this).load(movie.getLarge_poster_url()).centerCrop().into(imageView);
+        }
+
+
         detail.setText(movie.getIntro());
         scoreText.setText(movie.getScore()+"");
         scoreCountText.setText(movie.getScore_count()+"");

@@ -7,11 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.text.BoringLayout;
-import android.util.Log;
 
 import com.maotong.weibo.base.WeiBoApplication;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.movie.pagelist.PageListModel;
 import com.maotong.weibo.personal.UserModel;
 
@@ -27,9 +25,9 @@ public class JsonResolveUtils {
     public JsonResolveUtils() {
     }
 
-    public List<HotShowingModel> getPageListMovie(int pageListId) {
-        List<HotShowingModel> movies = new ArrayList<>();
-        HotShowingModel movie;
+    public List<MovieModel> getPageListMovie(int pageListId) {
+        List<MovieModel> movies = new ArrayList<>();
+        MovieModel movie;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
@@ -53,7 +51,7 @@ public class JsonResolveUtils {
                 JSONObject rs = null;
                 for (int i = 0; i < objectArr.length(); i++) {
                     rs = (JSONObject) objectArr.opt(i);
-                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                    movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
                             rs.getInt("score_count"),0);
@@ -102,9 +100,9 @@ public class JsonResolveUtils {
         return pageLists;
     }
 
-    public List<HotShowingModel> getMovie() {
-        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
-        HotShowingModel movie;
+    public List<MovieModel> getMovie() {
+        List<MovieModel> movies = new ArrayList<MovieModel>();
+        MovieModel movie;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
@@ -122,7 +120,7 @@ public class JsonResolveUtils {
                 JSONObject rs = null;
                 for (int i = 0; i < objectArr.length(); i++) {
                     rs = (JSONObject) objectArr.opt(i);
-                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                    movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
                             rs.getInt("score_count"),0);
@@ -136,9 +134,9 @@ public class JsonResolveUtils {
         return movies;
     }
 
-    public List<HotShowingModel> getComing() {
-        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
-        HotShowingModel movie;
+    public List<MovieModel> getComing() {
+        List<MovieModel> movies = new ArrayList<MovieModel>();
+        MovieModel movie;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
@@ -158,7 +156,7 @@ public class JsonResolveUtils {
                 JSONObject rs = null;
                 for (int i = 0; i < objectArr.length(); i++) {
                     rs = (JSONObject) objectArr.opt(i);
-                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                    movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), rs.getString("release_date"), (float) rs.getDouble("score"),
                             rs.getInt("score_count") );
@@ -248,9 +246,9 @@ public class JsonResolveUtils {
         }
     }
 
-    public List<HotShowingModel> getMovie(String uid) {
-        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
-        HotShowingModel movie;
+    public List<MovieModel> getMovie(String uid) {
+        List<MovieModel> movies = new ArrayList<MovieModel>();
+        MovieModel movie;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
@@ -270,7 +268,7 @@ public class JsonResolveUtils {
                 JSONObject rs = null;
                 for (int i = 0; i < objectArr.length(); i++) {
                     rs = (JSONObject) objectArr.opt(i);
-                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                    movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
                             rs.getInt("score_count"),rs.getInt("is_Like"));
@@ -284,9 +282,9 @@ public class JsonResolveUtils {
         return movies;
     }
 
-    public List<HotShowingModel> getMovieLike(String uid) {
-        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
-        HotShowingModel movie;
+    public List<MovieModel> getMovieLike(String uid) {
+        List<MovieModel> movies = new ArrayList<MovieModel>();
+        MovieModel movie;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
@@ -306,7 +304,7 @@ public class JsonResolveUtils {
                 JSONObject rs = null;
                 for (int i = 0; i < objectArr.length(); i++) {
                     rs = (JSONObject) objectArr.opt(i);
-                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                    movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
                             rs.getInt("score_count"),rs.getInt("is_Like"));
@@ -321,9 +319,9 @@ public class JsonResolveUtils {
 
     }
 
-    public List<HotShowingModel> getComing(String uid) {
-        List<HotShowingModel> movies = new ArrayList<HotShowingModel>();
-        HotShowingModel movie;
+    public List<MovieModel> getComing(String uid) {
+        List<MovieModel> movies = new ArrayList<MovieModel>();
+        MovieModel movie;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
@@ -345,7 +343,7 @@ public class JsonResolveUtils {
                     rs = (JSONObject) objectArr.opt(i);
 
 
-                    movie = new HotShowingModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
+                    movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), rs.getString("release_date"), (float) rs.getDouble("score"),
                             rs.getInt("score_count") , rs.getInt("is_Like") );
@@ -359,8 +357,8 @@ public class JsonResolveUtils {
         return movies;
     }
 
-    public HotShowingModel getMovieDetail(int id) {
-        HotShowingModel movie = null;
+    public MovieModel getMovieDetail(int id) {
+        MovieModel movie = null;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
@@ -377,7 +375,7 @@ public class JsonResolveUtils {
                 JSONObject dataObject = jsonObject.getJSONObject("data");
                 JSONObject movieObject = dataObject.getJSONObject("movie");
 
-                movie = new HotShowingModel(movieObject.getInt("id"), movieObject.getString("name"), movieObject.getString("genre"),
+                movie = new MovieModel(movieObject.getInt("id"), movieObject.getString("name"), movieObject.getString("genre"),
                         movieObject.getString("intro"), movieObject.getString("poster_url"),
                         movieObject.getString("large_poster_url"), movieObject.getString("release_date"), (float) movieObject.getDouble("score"),
                         movieObject.getInt("score_count") , movieObject.getInt("is_Like") );
@@ -394,8 +392,8 @@ public class JsonResolveUtils {
         return movie;
     }
 
-    public HotShowingModel getSearchMovie(String query) {
-        HotShowingModel movie = null;
+    public MovieModel getSearchMovie(String query) {
+        MovieModel movie = null;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
@@ -412,7 +410,7 @@ public class JsonResolveUtils {
                 JSONObject dataObject = jsonObject.getJSONObject("data");
                 JSONObject movieObject = dataObject.getJSONObject("movie");
 
-                movie = new HotShowingModel(movieObject.getInt("id"), movieObject.getString("name"), movieObject.getString("genre"),
+                movie = new MovieModel(movieObject.getInt("id"), movieObject.getString("name"), movieObject.getString("genre"),
                         movieObject.getString("intro"), movieObject.getString("poster_url"),
                         movieObject.getString("large_poster_url"), movieObject.getString("release_date"), (float) movieObject.getDouble("score"),
                         movieObject.getInt("score_count") , movieObject.getInt("is_Like") );

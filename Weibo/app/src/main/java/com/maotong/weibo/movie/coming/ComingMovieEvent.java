@@ -1,6 +1,6 @@
 package com.maotong.weibo.movie.coming;
 
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 
 import java.util.List;
 
@@ -9,17 +9,17 @@ import java.util.List;
  * QQ:974291433
  */
 public class ComingMovieEvent {
-    private List<HotShowingModel> movieList;
+    private List<MovieModel> movieList;
 
-    public List<HotShowingModel> getMovieList() {
+    public List<MovieModel> getMovieList() {
         return movieList;
     }
 
-    public void setMovieList(List<HotShowingModel> movieList) {
+    public void setMovieList(List<MovieModel> movieList) {
         this.movieList = movieList;
     }
 
-    public ComingMovieEvent(List<HotShowingModel> movieList) {
+    public ComingMovieEvent(List<MovieModel> movieList) {
         this.movieList = movieList;
     }
 }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ import java.util.List;
 public class PersonalLikeAdapter extends RecyclerView.Adapter<PersonalLikeAdapter.LikeViewHolder> {
 
     private Context mContext;
-    private List<HotShowingModel> movieList;
+    private List<MovieModel> movieList;
     public IOnItemClickListener mItemClickListener;
 
 
-    public PersonalLikeAdapter(Context mContext, List<HotShowingModel> movieList) {
+    public PersonalLikeAdapter(Context mContext, List<MovieModel> movieList) {
         this.mContext = mContext;
         this.movieList = movieList;
     }
@@ -38,9 +38,9 @@ public class PersonalLikeAdapter extends RecyclerView.Adapter<PersonalLikeAdapte
 
     @Override
     public void onBindViewHolder(LikeViewHolder holder, int position) {
-        HotShowingModel hotShowingModel = movieList.get(position);
-        holder.name.setText(hotShowingModel.getName());
-        Glide.with(mContext).load(hotShowingModel.getPoster_url()).into(holder.movieImg);
+        MovieModel movieModel = movieList.get(position);
+        holder.name.setText(movieModel.getName());
+        Glide.with(mContext).load(movieModel.getPoster_url()).into(holder.movieImg);
     }
 
 

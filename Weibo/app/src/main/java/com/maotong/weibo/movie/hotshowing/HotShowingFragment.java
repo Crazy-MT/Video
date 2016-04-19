@@ -6,15 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
+import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.main.MovieDetailActivity;
 import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
@@ -29,7 +28,7 @@ import java.util.List;
 public class HotShowingFragment extends Fragment {
     private RecyclerView mRecycler;
     private SwipeRefreshLayout mSwipe;
-    private List<HotShowingModel> mHotShowingList;
+    private List<MovieModel> mHotShowingList;
     private Oauth2AccessToken mAccessToken;
 
     @Override
@@ -84,7 +83,7 @@ public class HotShowingFragment extends Fragment {
     }
 
     @Subscribe
-    public void onEventMainThread(List<HotShowingModel> hotShowingModelList) {
+    public void onEventMainThread(List<MovieModel> movieModelList) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {

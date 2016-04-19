@@ -332,11 +332,15 @@ public class MovieDao {
 
 	public void updateMovie(Movie movie) throws SQLException {
 		Connection conn = DBUtil.getConnection();
-		String sql = "" + " update movie " + " set video_url=? " + " "
+		String sql = "" + " update movie " + " set video_url=? , genre = ? , intro = ? ,score = ? , score_count = ? " + " "
 				+ " where id=? ";
 		PreparedStatement ptmt = conn.prepareStatement(sql);
 		ptmt.setString(1, movie.getVideo_url());
-		ptmt.setInt(2, movie.getId());
+		ptmt.setString(2 , movie.getGenre());
+		ptmt.setString(3, movie.getIntro());
+		ptmt.setFloat(4, movie.getScore());
+		ptmt.setInt(5, movie.getScore_count());
+		ptmt.setInt(6, movie.getId());
 		ptmt.execute();
 	}
 

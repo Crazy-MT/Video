@@ -13,10 +13,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.weibomovie.dao.ActorDao;
+import com.weibomovie.dao.ActorMovieDao;
 import com.weibomovie.dao.DirectorDao;
+import com.weibomovie.dao.DirectorMovieDao;
 import com.weibomovie.dao.MovieDao;
 import com.weibomovie.model.Actor;
+import com.weibomovie.model.ActorMovie;
 import com.weibomovie.model.Director;
+import com.weibomovie.model.DirectorMovie;
 import com.weibomovie.model.Movie;
 
 public class MovieDetailData {
@@ -31,7 +35,6 @@ public class MovieDetailData {
 		StringBuilder stringBuilder = new StringBuilder();
 		PrintWriter out = null;
 		URL oracle;
-		Movie movie = new Movie();
 		try {
 			oracle = new URL(url);
 			URLConnection conn = oracle.openConnection(); 
@@ -58,38 +61,12 @@ public class MovieDetailData {
 					.toString());
 			JSONObject jsonobjectData = (JSONObject) jsonobject.get("data");
 			JSONObject jsonObjectBaseInfo = (JSONObject) jsonobjectData.get("base_info");
-			String director = jsonObjectBaseInfo.getString("directors");
-			//插入数据库 ， 存放导演名 和 电影名
-			DirectorDao directorDao = new DirectorDao();
-			directorDao.addDirector(new Director(director , movie_id));
 			
-			String actors = jsonObjectBaseInfo.getString("actors");
-			//分离演员名 并且插入数据库
-			String actorsArr[] = actors.split("/");
-			List<Actor> actorList = new ArrayList<Actor>();
-			for(String actor: actorsArr){
-				System.out.println(actor);
-				actorList.add(new Actor(actor , movie_id));
-			}
-
-			ActorDao actorDao = new ActorDao();
-			actorDao.addActor(actorList);
+			getDirectorNameAndSave(jsonObjectBaseInfo , movie_id);  
+			getActorMovieNameAndSave(jsonObjectBaseInfo , movie_id);
+			getMovieAndSave(jsonObjectBaseInfo , movie_id); 
+			getActorAndSave(jsonobjectData );
 			
-			boolean release = jsonObjectBaseInfo.getBoolean("release");
-			if(!release){
-				movie.setIs_coming(1);
-			}
-			System.out.println(release); 
-			JSONArray objectArr =( (JSONObject) jsonObjectBaseInfo.get("videos")).getJSONArray("list");
-			JSONObject rs = null;
-			for (int i = 0; i < objectArr.size(); i++) {
-				rs = (JSONObject) objectArr.opt(i);
-				movie.setVideo_url(rs.getString("video_url"));
-			}
-			//保存movie
-			System.out.println(movie.toString());
-			movie.setId(movie_id);
-			saveData(movie);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -100,8 +77,83 @@ public class MovieDetailData {
 		return stringBuffer.toString(); 
 	}
 
-	private void saveData(Movie movie) throws SQLException {
+	private void getActorAndSave(JSONObject jsonobjectData) throws SQLException { 
+		Actor actor = null;
+		Director director = null;
+		List<Actor> actors = new ArrayList<Actor>();
+		List<Director> directors = new ArrayList<Director>();
+		JSONObject creatorInfo = jsonobjectData.getJSONObject("creator_info");
+		JSONObject actorsJson = creatorInfo.getJSONObject("actors");
+		JSONArray list = actorsJson.getJSONArray("list");
+		for(int i = 0 ; i < list.size(); ++i){
+			JSONObject rs = list.getJSONObject(i);
+			if("导演".equals(rs.getString("job"))){
+				//存放导演数据到数据库
+				director = new Director();
+				director.setName(rs.getString("name"));
+				director.setUrl(rs.getString("profile_image_url"));
+				directors.add(director);
+			} else if("演员".equals(rs.getString("job"))){
+				actor = new Actor();
+				//存放演员到数据库
+				actor.setName(rs.getString("name"));
+				actor.setUrl(rs.getString("profile_image_url")); 
+				actors.add(actor);
+			}
+		} 
+		
+		ActorDao actorDao = new ActorDao();
+		actorDao.addActor(actors);
+		 
+		DirectorDao directorDao = new DirectorDao();
+		directorDao.addDirector(directors);
+	}
+
+	private void getMovieAndSave(JSONObject jsonObjectBaseInfo, int movie_id) throws SQLException { 
+		Movie movie = new Movie();
+		boolean release = jsonObjectBaseInfo.getBoolean("release");
+		if(!release){
+			movie.setIs_coming(1);
+		}  
+		if((JSONObject) jsonObjectBaseInfo.get("videos") != null){
+			JSONArray objectArr =( (JSONObject) jsonObjectBaseInfo.get("videos")).getJSONArray("list");
+			JSONObject rs = null;
+			for (int i = 0; i < objectArr.size(); i++) {
+				rs = (JSONObject) objectArr.opt(i);
+				movie.setVideo_url(rs.getString("video_url"));
+			}
+		} 
+		movie.setGenre(jsonObjectBaseInfo.getString("genre"));
+		movie.setIntro(jsonObjectBaseInfo.getString("desc"));
+		movie.setScore(Float.valueOf(jsonObjectBaseInfo.getString("score")));
+		movie.setScore_count(jsonObjectBaseInfo.getInt("score_count")); 
+		movie.setId(movie_id);
 		MovieDao movieDao = new MovieDao();
 		movieDao.updateMovie(movie);
 	}
+
+	private void getDirectorNameAndSave(JSONObject jsonObjectBaseInfo,
+			int movie_id) throws SQLException { 
+		String director = "";
+		if(jsonObjectBaseInfo.getString("directors") == null){
+			director = jsonObjectBaseInfo.getString("directors");
+		}
+		
+		//插入数据库 ， 存放导演名 和 电影名
+		DirectorMovieDao directorDao = new DirectorMovieDao();
+		directorDao.addDirector(new DirectorMovie(director , movie_id));
+	}
+
+	private void getActorMovieNameAndSave(JSONObject jsonObjectBaseInfo , int movie_id) throws SQLException { 
+		String actors = jsonObjectBaseInfo.getString("actors");
+		//分离演员名 并且插入数据库
+		String actorsArr[] = actors.split("/");
+		List<ActorMovie> actorMovieList = new ArrayList<ActorMovie>();
+		for(String actor: actorsArr){
+			actorMovieList.add(new ActorMovie(actor , movie_id));
+		} 
+		ActorMovieDao actorMovieDao = new ActorMovieDao();
+		actorMovieDao.addActor(actorMovieList);
+	}
+ 
 }

@@ -1,6 +1,6 @@
 package com.maotong.weibo.personal;
 
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 
 import java.util.List;
 
@@ -10,17 +10,17 @@ import java.util.List;
  */
 public class PersonalLikeMovieEvent {
 
-    private List<HotShowingModel> movieList;
+    private List<MovieModel> movieList;
 
-    public PersonalLikeMovieEvent(List<HotShowingModel> movieList) {
+    public PersonalLikeMovieEvent(List<MovieModel> movieList) {
         this.movieList = movieList;
     }
 
-    public List<HotShowingModel> getMovieList() {
+    public List<MovieModel> getMovieList() {
         return movieList;
     }
 
-    public void setMovieList(List<HotShowingModel> movieList) {
+    public void setMovieList(List<MovieModel> movieList) {
         this.movieList = movieList;
     }
 }

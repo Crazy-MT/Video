@@ -9,13 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.weibomovie.dao.ActorDao;
+import com.weibomovie.dao.ActorMovieDao;
 import com.weibomovie.dao.DirectorDao;
+import com.weibomovie.dao.DirectorMovieDao;
 import com.weibomovie.dao.MovieDao;
 import com.weibomovie.db.Constant;
+import com.weibomovie.model.Actor;
 import com.weibomovie.model.Director;
+import com.weibomovie.model.DirectorMovie;
 import com.weibomovie.model.Movie;
 import com.weibomovie.weiboapi.MovieDetailData;
 
@@ -88,29 +93,33 @@ public class MovieDetailServlet extends HttpServlet {
 		}
 		JSONObject jsonObject = new JSONObject();
 		JSONObject dataObject = new JSONObject();
+		JSONArray  creatorArray = new JSONArray();
 
 		MovieDao movieDao = new MovieDao();
 		Movie movie = new Movie();
 
-		ActorDao actorDao = new ActorDao();
+		ActorMovieDao actorMovieDao = new ActorMovieDao();
 		String actors = null;
 
-		DirectorDao directorDao = new DirectorDao();
+		DirectorMovieDao directorMovieDao = new DirectorMovieDao();
 		String director = "";
 		try {
 			movie = movieDao.getMovieDetail(movie_id);
-			actors = actorDao.getActorByMovie(movie_id);
-			director = directorDao.getDirectorByMovie(movie_id);
+			actors = actorMovieDao.getActorByMovie(movie_id);
+			director = directorMovieDao.getDirectorByMovie(movie_id);
+			getCreatorArray(creatorArray , movie_id);
 			dataObject.put("movie", movie);
 			dataObject.put("actors", actors);
 			dataObject.put("director", director);
+			dataObject.put("creator",creatorArray );
 			jsonObject.put("ret", "success");
-			jsonObject.put("data", dataObject);
+			jsonObject.put("data", dataObject); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			dataObject.put("movie", "");
 			dataObject.put("actors", "");
 			dataObject.put("director", "");
+			dataObject.put("creator", "");
 			jsonObject.put("ret", "error");
 			jsonObject.put("data", dataObject);
 		}
@@ -122,6 +131,29 @@ public class MovieDetailServlet extends HttpServlet {
 
 		out.flush();
 		out.close();
+	}
+
+	private void getCreatorArray(JSONArray creatorArray , int movie_id) throws SQLException {
+		DirectorMovieDao directorMovieDao = new DirectorMovieDao();
+		String directorStr = directorMovieDao.getDirectorByMovie(movie_id);
+		DirectorDao directorDao = new DirectorDao();
+		Director director = new Director();
+		director = directorDao.getDirector(directorStr.trim());
+		creatorArray.add(0 , director);
+		
+		ActorMovieDao actorMovieDao = new ActorMovieDao();
+		ActorDao actorDao = new ActorDao();
+		String actorStr = actorMovieDao.getActorByMovie(movie_id);
+		String[] actorArr = actorStr.split("/");
+		Actor actor = null;
+		for(int i = 0 ; i < actorArr.length; ++i){
+			actor = actorDao.getActor(actorArr[i].trim());
+			System.out.println(actorArr[i]);
+			creatorArray.add(i+1 , actor);
+		}
+		
+
+		System.out.println(creatorArray.toString());
 	}
 
 	/**

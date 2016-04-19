@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
-import com.weibomovie.dao.ActorDao;
-import com.weibomovie.dao.DirectorDao;
+import com.weibomovie.dao.ActorMovieDao;
+import com.weibomovie.dao.DirectorMovieDao;
 import com.weibomovie.dao.MovieDao;
 import com.weibomovie.db.Constant;
 import com.weibomovie.model.Movie;
@@ -96,10 +96,10 @@ public class MovieSearchServlet extends HttpServlet {
 		MovieDao movieDao = new MovieDao();
 		Movie movie = new Movie();
 
-		ActorDao actorDao = new ActorDao();
+		ActorMovieDao actorDao = new ActorMovieDao();
 		String actors = null;
 
-		DirectorDao directorDao = new DirectorDao();
+		DirectorMovieDao directorDao = new DirectorMovieDao();
 		String director = "";
 		try {
 			movie = movieDao.getMovieSearch(name);

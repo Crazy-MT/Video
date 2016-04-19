@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -32,7 +31,7 @@ import java.util.List;
  */
 public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingViewHolder> {
 
-    private List<HotShowingModel> comingModels;
+    private List<MovieModel> comingModels;
     private Context context;
     private LayoutInflater inflater;
     private Oauth2AccessToken mAccessToken;
@@ -55,7 +54,7 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
         }
     };
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position , int isLike);
 
         void onItemLongClick(View view, int position);
     }
@@ -70,7 +69,7 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
         this.onItemClickListener = onItemClickListener;
     }
 
-    public ComingAdapter(Context context, List<HotShowingModel> comingModels) {
+    public ComingAdapter(Context context, List<MovieModel> comingModels) {
         this.comingModels = comingModels;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
@@ -84,7 +83,7 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
 
     @Override
     public void onBindViewHolder(final ComingViewHolder holder, final int position) {
-        final HotShowingModel comingModel = comingModels.get(position);
+        final MovieModel comingModel = comingModels.get(position);
         holder.like.setText("" + "人想看");
         holder.releaseDate.setText(comingModel.getRelease_date() + "上映");
         holder.name.setText(comingModel.getName());
@@ -145,7 +144,8 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
                 @Override
                 public void onClick(View v) {
                     int pos = holder.getLayoutPosition();
-                    onItemClickListener.onItemClick(holder.itemView, pos);
+                    int isLike = comingModel.getIsLike();
+                    onItemClickListener.onItemClick(holder.itemView, pos , isLike);
                 }
             });
         }

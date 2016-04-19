@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -28,7 +27,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.main.MainActivity;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.utils.FastBlur;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -73,7 +72,7 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
     private Button mLogout;
     private RecyclerView mLikeRecycler;
     private RecyclerView mCommentRecycler;
-    private List<HotShowingModel> mMovieList;
+    private List<MovieModel> mMovieList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

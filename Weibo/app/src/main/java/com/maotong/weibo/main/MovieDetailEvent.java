@@ -1,23 +1,21 @@
 package com.maotong.weibo.main;
 
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
-
 /**
  * Created by MaoTong on 2016/4/18.
  * QQ:974291433
  */
 public class MovieDetailEvent {
-    private HotShowingModel movie ;
+    private MovieModel movie ;
 
-    public MovieDetailEvent(HotShowingModel movie) {
+    public MovieDetailEvent(MovieModel movie) {
         this.movie = movie;
     }
 
-    public HotShowingModel getMovie() {
+    public MovieModel getMovie() {
         return movie;
     }
 
-    public void setMovie(HotShowingModel movie) {
+    public void setMovie(MovieModel movie) {
         this.movie = movie;
     }
 

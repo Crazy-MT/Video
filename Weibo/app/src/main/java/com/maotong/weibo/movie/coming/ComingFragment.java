@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,7 @@ import android.view.ViewGroup;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.main.MovieDetailActivity;
-import com.maotong.weibo.movie.hotshowing.HotShowingAdapter;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -31,7 +29,7 @@ public class ComingFragment extends Fragment
 {
 	private RecyclerView mRecycler;
 	private SwipeRefreshLayout mSwipe;
-	private List<HotShowingModel> mComingList;
+	private List<MovieModel> mComingList;
 	private Oauth2AccessToken mAccessToken;
 
 	@Override
@@ -91,21 +89,22 @@ public class ComingFragment extends Fragment
 		});
 	}
 
-	private void setUpRecyclerView(List<HotShowingModel> mComingList) {
+	private void setUpRecyclerView(final List<MovieModel> mComingList) {
 		mSwipe.setRefreshing(false);
 		ComingAdapter adapter = new ComingAdapter(getContext(), mComingList);
 		mRecycler.setAdapter(adapter);
 		mRecycler.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.VERTICAL , false));
 		adapter.setOnItemClickListener(new ComingAdapter.OnItemClickListener() {
 			@Override
-			public void onItemClick(View view, int position) {
+			public void onItemClick(View view, int position , int isLike) {
+				mComingList.get(position).setIsLike(isLike);
 				//跳转到电影页面
-				/*Intent intent = new Intent(getActivity() , MovieDetailActivity.class);
+				//跳转到电影页面
+				Intent intent = new Intent(getActivity(), MovieDetailActivity.class);
 				Bundle bundle = new Bundle();
-				bundle.putSerializable(MovieDetailActivity.MOVIE , mComingList.get(position));
-				bundle.putString(MovieDetailActivity.TAG , "ComingModel");
+				bundle.putSerializable(MovieDetailActivity.MOVIE, mComingList.get(position));
 				intent.putExtras(bundle);
-				startActivity(intent);*/
+				startActivity(intent);
 			}
 
 			@Override

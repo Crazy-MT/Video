@@ -1,27 +1,19 @@
 package com.maotong.weibo.movie.pagelist;
 
 import android.content.Context;
-import android.graphics.Movie;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
-import com.maotong.weibo.utils.JsonResolveUtils;
+import com.maotong.weibo.main.MovieDetailActivity;
+import com.maotong.weibo.main.MovieModel;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +25,7 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.PageLi
     private List<PageListModel> pageListModels;
     private Context context;
     private LayoutInflater inflater;
-    List<List<HotShowingModel>> mPageListMovie;
+    List<List<MovieModel>> mPageListMovie;
 
 
     private interface OnItemClickListener {
@@ -52,7 +44,7 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.PageLi
         this.onItemClickListener = onItemClickListener;
     }
 
-    public PageListAdapter(Context context, List<PageListModel> pageListModels, List<List<HotShowingModel>> mPageListMovie) {
+    public PageListAdapter(Context context, List<PageListModel> pageListModels, List<List<MovieModel>> mPageListMovie) {
         this.pageListModels = pageListModels;
         this.mPageListMovie = mPageListMovie;
         this.context = context;
@@ -68,12 +60,28 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.PageLi
     @Override
     public void onBindViewHolder(final PageListViewHolder holder, int position) {
         PageListModel pageListModel = pageListModels.get(position);
-        List<HotShowingModel> movies = mPageListMovie.get(position);
+        final List<MovieModel> movies = mPageListMovie.get(position);
         holder.name.setText(pageListModel.getName());
         holder.count.setText(movies.size()+"部");
         PageListItemAdapter pageListItemAdapter = new PageListItemAdapter(context , movies);
         holder.recyclerView.setAdapter(pageListItemAdapter);
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , false));
+        pageListItemAdapter.setOnItemClickListener(new PageListItemAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //跳转到电影页面
+                Intent intent = new Intent(context, MovieDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(MovieDetailActivity.MOVIE, movies.get(position));
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
     }
 
     @Override

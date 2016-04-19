@@ -5,14 +5,16 @@
 <fullyQualifiedTypeName name="com.weibomovie.db.DBUtil"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="com.mysql.jdbc.PreparedStatement"/>
-<fullyQualifiedTypeName name="com.weibomovie.model.Actor"/>
-<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="com.weibomovie.model.Movie"/>
 <fullyQualifiedTypeName name="com.weibomovie.dao.MovieDao"/>
-<fullyQualifiedTypeName name="com.weibomovie.dao.ActorDao"/>
+<fullyQualifiedTypeName name="net.sf.json.JSONObject"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="net.sf.json.JSONArray"/>
+<fullyQualifiedTypeName name="com.weibomovie.dao.DirectorDao"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="com.weibomovie.model.Director"/>
-<fullyQualifiedTypeName name="com.weibomovie.dao.DirectorDao"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.weibomovie.db.Constant"/>
+<fullyQualifiedTypeName name="com.weibomovie.dao.ActorDao"/>
+<fullyQualifiedTypeName name="com.weibomovie.model.Actor"/>
 </qualifiedTypeNameHistroy>

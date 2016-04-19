@@ -4,13 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.maotong.weibo.R;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.utils.JsonResolveUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -22,7 +21,7 @@ import java.util.List;
 public class PageListFragment extends Fragment {
     private RecyclerView mRecycler;
     private List<PageListModel> mPageList;
-    private List<List<HotShowingModel>> mPageListMovie;
+    private List<List<MovieModel>> mPageListMovie;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +68,7 @@ public class PageListFragment extends Fragment {
             public void run() {
                 mPageList = new JsonResolveUtils().getPageList();
                 for (int i = 0; i < mPageList.size(); ++i) {
-                    List<HotShowingModel> movieList;
+                    List<MovieModel> movieList;
                     movieList = new JsonResolveUtils().getPageListMovie(mPageList.get(i).getId());
                     mPageListMovie.add(movieList);
                 }

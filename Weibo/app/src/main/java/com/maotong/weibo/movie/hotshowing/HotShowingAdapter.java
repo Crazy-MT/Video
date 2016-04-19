@@ -1,26 +1,22 @@
 package com.maotong.weibo.movie.hotshowing;
 
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
+import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -35,7 +31,7 @@ import java.util.List;
  */
 public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.HotShowingViewHolder> {
 
-    private List<HotShowingModel> hotShowingModels;
+    private List<MovieModel> movieModels;
     private Context context;
     private LayoutInflater inflater;
     private static String HANDLER_LIKE = "like";
@@ -50,9 +46,9 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
             Bundle bundle = msg.getData();
             int position = msg.what;
             if (HANDLER_LIKE_YES.equals(bundle.get(HANDLER_LIKE))){
-                hotShowingModels.get(position).setIsLike(1);
+                movieModels.get(position).setIsLike(1);
             } else {
-                hotShowingModels.get(position).setIsLike(0);
+                movieModels.get(position).setIsLike(0);
             }
             notifyItemChanged(position);
             EventBus.getDefault().post(new LoginStatusEvent(true));
@@ -75,8 +71,8 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
         this.onItemClickListener = onItemClickListener;
     }
 
-    public HotShowingAdapter(Context context, List<HotShowingModel> hotShowingModels) {
-        this.hotShowingModels = hotShowingModels;
+    public HotShowingAdapter(Context context, List<MovieModel> movieModels) {
+        this.movieModels = movieModels;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
     }
@@ -90,12 +86,12 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
 
     @Override
     public void onBindViewHolder(final HotShowingViewHolder holder, final int position) {
-        final HotShowingModel hotShowingModel = hotShowingModels.get(position);
-        holder.comment.setText(hotShowingModel.getScore_count() + "人点评");
-        holder.score.setText(hotShowingModel.getScore() + "");
-        holder.name.setText(hotShowingModel.getName());
-        Glide.with(context).load(hotShowingModel.getPoster_url()).into(holder.movieBg);
-        if (hotShowingModel.getIsLike() == 1) {
+        final MovieModel movieModel = movieModels.get(position);
+        holder.comment.setText(movieModel.getScore_count() + "人点评");
+        holder.score.setText(movieModel.getScore() + "");
+        holder.name.setText(movieModel.getName());
+        Glide.with(context).load(movieModel.getPoster_url()).into(holder.movieBg);
+        if (movieModel.getIsLike() == 1) {
             holder.isLike.setImageResource(R.mipmap.home_interested_selected);
         } else {
             holder.isLike.setImageResource(R.mipmap.home_interested_normal);
@@ -107,11 +103,11 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                 //读取sp ， 判断是否登录 ， 如果没登录，则跳转到登录界面。如果登录了，则改变图片、然后将收藏信息发送给后台，后台更新数据表
                 mAccessToken = AccessTokenKeeper.readAccessToken(context);
                 if (mAccessToken != null && mAccessToken.isSessionValid()) {
-                    if (hotShowingModel.getIsLike() == 0){
+                    if (movieModel.getIsLike() == 0){
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                boolean isSuccess = new JsonResolveUtils(context).setLikeMovie(mAccessToken.getUid(), hotShowingModel.getId() , true);
+                                boolean isSuccess = new JsonResolveUtils(context).setLikeMovie(mAccessToken.getUid(), movieModel.getId() , true);
                                 if (isSuccess) {
                                     Message message = new Message();
                                     Bundle bundle = new Bundle();
@@ -126,7 +122,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                boolean isSuccess = new JsonResolveUtils(context).setLikeMovie(mAccessToken.getUid(), hotShowingModel.getId() , false);
+                                boolean isSuccess = new JsonResolveUtils(context).setLikeMovie(mAccessToken.getUid(), movieModel.getId() , false);
                                 if (isSuccess) {
                                     Message message = new Message();
                                     Bundle bundle = new Bundle();
@@ -149,7 +145,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                 @Override
                 public void onClick(View v) {
                     int pos = holder.getLayoutPosition();
-                    int isLike = hotShowingModel.getIsLike();
+                    int isLike = movieModel.getIsLike();
                     onItemClickListener.onItemClick(holder.itemView, pos , isLike);
                 }
             });
@@ -158,7 +154,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
 
     @Override
     public int getItemCount() {
-        return hotShowingModels.size();
+        return movieModels.size();
     }
 
     class HotShowingViewHolder extends RecyclerView.ViewHolder {

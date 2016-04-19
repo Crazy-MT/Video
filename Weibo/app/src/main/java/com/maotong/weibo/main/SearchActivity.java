@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.maotong.weibo.widget.FlowLayout;
 
@@ -28,7 +27,7 @@ import org.greenrobot.eventbus.Subscribe;
 public class SearchActivity extends AppCompatActivity {
     private Context mContext ;
     private FlowLayout mFlow ;
-    private HotShowingModel movie;
+    private MovieModel movie;
     private RelativeLayout mMovieLayout;
     private ImageView movieBg;
     private TextView mScore;
@@ -68,7 +67,7 @@ public class SearchActivity extends AppCompatActivity {
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        collapsingToolbar.setTitle("搜索"); 
+        collapsingToolbar.setTitle("搜索");
     }
 
     @Subscribe
@@ -81,7 +80,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpMovie(final HotShowingModel movie){
+    private void setUpMovie(final MovieModel movie){
         mMovieLayout.setVisibility(View.VISIBLE);
         Glide.with(mContext).load(movie.getLarge_poster_url()).into(movieBg);
         mScore.setText(movie.getScore()+"分");

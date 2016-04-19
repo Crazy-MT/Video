@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
-import com.maotong.weibo.movie.hotshowing.HotShowingModel;
+import com.maotong.weibo.main.MovieModel;
 
 import java.util.List;
 
@@ -20,11 +20,11 @@ import java.util.List;
  */
 public class PageListItemAdapter extends RecyclerView.Adapter<PageListItemAdapter.PageListItemViewHolder> {
 
-    private List<HotShowingModel> mHotShowingModels;
+    private List<MovieModel> mMovieModels;
     private Context mContext;
     private LayoutInflater mInflater;
 
-    private interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(View view, int position);
 
         void onItemLongClick(View view, int position);
@@ -40,8 +40,8 @@ public class PageListItemAdapter extends RecyclerView.Adapter<PageListItemAdapte
         this.onItemClickListener = onItemClickListener;
     }
 
-    public PageListItemAdapter(Context context, List<HotShowingModel> mHotShowingModels) {
-        this.mHotShowingModels = mHotShowingModels;
+    public PageListItemAdapter(Context context, List<MovieModel> mMovieModels) {
+        this.mMovieModels = mMovieModels;
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
     }
@@ -53,15 +53,22 @@ public class PageListItemAdapter extends RecyclerView.Adapter<PageListItemAdapte
     }
 
     @Override
-    public void onBindViewHolder(PageListItemViewHolder holder, int position) {
-        HotShowingModel hotShowingModel = mHotShowingModels.get(position);
-        holder.name.setText(hotShowingModel.getName());
-        Glide.with(mContext).load(hotShowingModel.getPoster_url()).into(holder.movieImg);
+    public void onBindViewHolder(PageListItemViewHolder holder, final int position) {
+        MovieModel movieModel = mMovieModels.get(position);
+        holder.name.setText(movieModel.getName());
+        Glide.with(mContext).load(movieModel.getPoster_url()).into(holder.movieImg);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(v, position);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mHotShowingModels.size();
+        return mMovieModels.size();
     }
 
     class PageListItemViewHolder extends RecyclerView.ViewHolder {
