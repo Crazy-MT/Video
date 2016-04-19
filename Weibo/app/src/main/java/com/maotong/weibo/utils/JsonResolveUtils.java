@@ -394,6 +394,40 @@ public class JsonResolveUtils {
         return movie;
     }
 
+    public HotShowingModel getSearchMovie(String query) {
+        HotShowingModel movie = null;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASE_URL()
+                + "/MovieSearchServlet";
+
+        SyncHttp syncHttp = new SyncHttp();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("name" , query+""));
+        try {
+            json = syncHttp.httpPost(url, parameters);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("ret").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONObject movieObject = dataObject.getJSONObject("movie");
+
+                movie = new HotShowingModel(movieObject.getInt("id"), movieObject.getString("name"), movieObject.getString("genre"),
+                        movieObject.getString("intro"), movieObject.getString("poster_url"),
+                        movieObject.getString("large_poster_url"), movieObject.getString("release_date"), (float) movieObject.getDouble("score"),
+                        movieObject.getInt("score_count") , movieObject.getInt("is_Like") );
+                movie.setVideo_url(movieObject.getString("video_url"));
+
+                movie.setActors(dataObject.getString("actors"));
+                movie.setDirector(dataObject.getString("director"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movie;
+    }
+
     /**
      * 用户登陆
      *

@@ -1,6 +1,5 @@
-#Thu Apr 14 23:40:51 CST 2016
-eclipse.preferences.version=1
-tipsAndTricks=false
-platformState=1458976789410
-quickStart=false
 PROBLEMS_FILTERS_MIGRATE=true
+eclipse.preferences.version=1
+platformState=1460100613808
+quickStart=true
+tipsAndTricks=true

@@ -33,31 +33,147 @@
     </android.support.design.widget.AppBarLayout>
 
     <com.maotong.weibo.widget.FlowLayout
+        android:id="@+id/id_search_flow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appbar">
+        android:layout_below="@id/appbar"
+        android:background="#FFFFFF">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="150sp"
-            android:text="test"
-            android:background="@drawable/flag_01"/>
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_04"
+            android:text="Welcome"
+            android:textColor="#323232" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test" />
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_04"
+            android:text="IT工程师"
+            android:textColor="#323232" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test" />
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_04"
+            android:text="学习ing"
+            android:textColor="#323232" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test" />
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_04"
+            android:text="恋爱ing"
+            android:textColor="#323232" />
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_04"
+            android:text="挣钱ing"
+            android:textColor="#323232" />
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_04"
+            android:text="努力ing"
+            android:textColor="#323232" />
+
+        <TextView
+            style="@style/text_flag_01"
+            android:background="@drawable/flag_04"
+            android:text="I thick i can"
+            android:textColor="#323232" />
     </com.maotong.weibo.widget.FlowLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/id_search_movie"
+        android:layout_width="match_parent"
+        android:layout_below="@id/appbar"
+        android:layout_height="160dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/id_search_movie_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/movier_image_mask"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:paddingLeft="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/id_search_movie_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/score"
+                    android:textColor="@color/movie_tab_indicator"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/id_search_movie_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/movie_name"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:id="@+id/id_search_movie_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/home_comment" />
+
+                <TextView
+                    android:id="@+id/id_search_movie_comment_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/id_search_movie_comment"
+                    android:text="@string/comment_count"
+                    android:textColor="#a0a0a0"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/id_search_movie_like_click"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/id_search_movie_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/home_interested_normal" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

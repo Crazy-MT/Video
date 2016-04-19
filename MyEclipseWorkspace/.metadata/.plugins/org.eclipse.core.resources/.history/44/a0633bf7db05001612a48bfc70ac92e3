@@ -386,7 +386,7 @@ public class MovieDao {
 			movie.setVideo_url(rs.getString("video_url"));			
 		} 
 		if(Constant.isOpenSyso()){
-			System.out.println(name);
+			System.out.println(movie.toString());
 		}
 		return movie; 
 	}

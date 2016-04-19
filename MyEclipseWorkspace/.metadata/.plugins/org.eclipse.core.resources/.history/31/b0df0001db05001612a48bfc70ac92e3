@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.weibomovie.db.Constant;
 import com.weibomovie.db.DBUtil;
 import com.weibomovie.model.Goddess;
 import com.weibomovie.model.Movie;
@@ -361,33 +360,6 @@ public class MovieDao {
 			movie.setRelease_date(rs.getString("release_date"));
 			movie.setVideo_url(rs.getString("video_url"));			
 		} 
-		return movie; 
-	}
-	
-	public Movie getMovieSearch(String name) throws SQLException {
-		Movie movie = new Movie();
-		Connection conn = DBUtil.getConnection();
-		
-		String sql = "select *from movie where movie_name=?";
-		PreparedStatement ptmt = conn.prepareStatement(sql);
-		ptmt.setString(1, name);
-		ResultSet rs = ptmt.executeQuery();
-		while (rs.next()) {
-			movie.setId(rs.getInt("id"));
-			movie.setName(rs.getString("movie_name"));
-			movie.setGenre(rs.getString("genre"));
-			movie.setIntro(rs.getString("intro"));
-			movie.setLarge_poster_url(rs.getString("large_poster_url"));
-			movie.setPoster_url(rs.getString("poster_url"));
-			movie.setScore(rs.getFloat("score"));
-			movie.setScore_count(rs.getInt("score_count"));
-			movie.setPage_list_id(rs.getInt("pagelistid"));
-			movie.setRelease_date(rs.getString("release_date"));
-			movie.setVideo_url(rs.getString("video_url"));			
-		} 
-		if(Constant.isOpenSyso()){
-			System.out.println(name);
-		}
 		return movie; 
 	}
 }

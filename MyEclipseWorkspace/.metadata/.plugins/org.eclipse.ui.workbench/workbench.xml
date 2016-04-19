@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="39" version="2.0">
+<workbench progressCount="25" version="2.0">
 <workbenchAdvisor/>
 <window height="728" maximized="true" width="1024" x="156" y="0">
 <fastViewData fastViewLocation="1024"/>
@@ -8,7 +8,7 @@
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="159" y="22"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="124" y="22"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="com.genuitec.eclipse.j2eedt.core.ejb" itemType="typeToolBarContribution" x="55" y="22"/>
 <coolItem id="com.genuitec.eclipse.uml.actions" itemType="typeToolBarContribution" x="61" y="22"/>
@@ -27,6 +27,7 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="198" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="com.genuitec.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.jboss.tools.common.model.ui.editor.EditorPartWrapper" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.browser.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -68,6 +69,7 @@
 <part id="26"/>
 <part id="27"/>
 <part id="28"/>
+<part id="29"/>
 </presentation>
 </folder>
 </info>
@@ -80,25 +82,25 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/db/DBUtil.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="148" selectionTopPixel="198"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GetMovieLikeServlet.java" partName="GetMovieLikeServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/GetMovieLikeServlet.java" title="GetMovieLikeServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/GetMovieLikeServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GetMovieLikeServlet.java" partName="GetMovieLikeServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/GetMovieLikeServlet.java" title="GetMovieLikeServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/GetMovieLikeServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/GetMovieLikeServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2952" selectionTopPixel="309"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2952" selectionTopPixel="1225"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieServlet.java" partName="MovieServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/MovieServlet.java" title="MovieServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/MovieServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieServlet.java" partName="MovieServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/MovieServlet.java" title="MovieServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/MovieServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/MovieServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="51" selectionOffset="1827" selectionTopPixel="986"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1871" selectionTopPixel="647"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PageListMovieServlet.java" partName="PageListMovieServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/PageListMovieServlet.java" title="PageListMovieServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/PageListMovieServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PageListMovieServlet.java" partName="PageListMovieServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/PageListMovieServlet.java" title="PageListMovieServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/PageListMovieServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/PageListMovieServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="35" selectionOffset="1637" selectionTopPixel="749"/>
+<editorState selectionHorizontalPixel="0" selectionLength="35" selectionOffset="1637" selectionTopPixel="477"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PagelistServlet.java" partName="PagelistServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/PagelistServlet.java" title="PagelistServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/PagelistServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PagelistServlet.java" partName="PagelistServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/PagelistServlet.java" title="PagelistServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/PagelistServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/PagelistServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1636" selectionTopPixel="859"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1142" selectionTopPixel="609"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ComingServlet.java" partName="ComingServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/ComingServlet.java" title="ComingServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/ComingServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ComingServlet.java" partName="ComingServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/ComingServlet.java" title="ComingServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/ComingServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/ComingServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2322" selectionTopPixel="1096"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="822" selectionTopPixel="13"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ComingData.java" partName="ComingData.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/weiboapi/ComingData.java" title="ComingData.java" tooltip="WeiBoMovie/src/com/weibomovie/weiboapi/ComingData.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/weiboapi/ComingData.java"/>
@@ -108,9 +110,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/weiboapi/CommentData.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CommentServlet.java" partName="CommentServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/CommentServlet.java" title="CommentServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/CommentServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CommentServlet.java" partName="CommentServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/CommentServlet.java" title="CommentServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/CommentServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/CommentServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="353"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="125"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieData.java" partName="MovieData.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/weiboapi/MovieData.java" title="MovieData.java" tooltip="WeiBoMovie/src/com/weibomovie/weiboapi/MovieData.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/weiboapi/MovieData.java"/>
@@ -123,13 +125,13 @@
 <editor id="org.jboss.tools.common.model.ui.editor.EditorPartWrapper" name="web.xml" partName="web.xml" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/WebRoot/WEB-INF/web.xml" title="web.xml" tooltip="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/WebRoot/WEB-INF/web.xml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.jboss.tools.common.core.resources.XModelObjectEditorInputFactory" path="/WeiBoMovie/WebRoot/WEB-INF/web.xml"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieDetailServlet.java" partName="MovieDetailServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/MovieDetailServlet.java" title="MovieDetailServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/MovieDetailServlet.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieDetailServlet.java" partName="MovieDetailServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/MovieDetailServlet.java" title="MovieDetailServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/MovieDetailServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/MovieDetailServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2133" selectionTopPixel="1140"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2421" selectionTopPixel="1072"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieDetailData.java" partName="MovieDetailData.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java" title="MovieDetailData.java" tooltip="WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieDetailData.java" partName="MovieDetailData.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java" title="MovieDetailData.java" tooltip="WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2678" selectionTopPixel="990"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1020" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Movie.java" partName="Movie.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/model/Movie.java" title="Movie.java" tooltip="WeiBoMovie/src/com/weibomovie/model/Movie.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/model/Movie.java"/>
@@ -143,9 +145,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/model/Director.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="867" selectionTopPixel="480"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ActorDao.java" partName="ActorDao.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/dao/ActorDao.java" title="ActorDao.java" tooltip="WeiBoMovie/src/com/weibomovie/dao/ActorDao.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ActorDao.java" partName="ActorDao.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/dao/ActorDao.java" title="ActorDao.java" tooltip="WeiBoMovie/src/com/weibomovie/dao/ActorDao.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/dao/ActorDao.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="951" selectionTopPixel="418"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="348" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LikeDao.java" partName="LikeDao.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/dao/LikeDao.java" title="LikeDao.java" tooltip="WeiBoMovie/src/com/weibomovie/dao/LikeDao.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/dao/LikeDao.java"/>
@@ -155,29 +157,29 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/dao/DirectorDao.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1250" selectionTopPixel="348"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieDao.java" partName="MovieDao.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/dao/MovieDao.java" title="MovieDao.java" tooltip="WeiBoMovie/src/com/weibomovie/dao/MovieDao.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieDao.java" partName="MovieDao.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/dao/MovieDao.java" title="MovieDao.java" tooltip="WeiBoMovie/src/com/weibomovie/dao/MovieDao.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/dao/MovieDao.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="42" selectionOffset="7657" selectionTopPixel="172"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12419" selectionTopPixel="6908"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GoddessDao.java" partName="GoddessDao.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/dao/GoddessDao.java" title="GoddessDao.java" tooltip="WeiBoMovie/src/com/weibomovie/dao/GoddessDao.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/dao/GoddessDao.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3317" selectionTopPixel="1738"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LikeMovieServlet.java" partName="LikeMovieServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/LikeMovieServlet.java" title="LikeMovieServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/LikeMovieServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LikeMovieServlet.java" partName="LikeMovieServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/LikeMovieServlet.java" title="LikeMovieServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/LikeMovieServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/LikeMovieServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1565" selectionTopPixel="955"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1565" selectionTopPixel="521"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LogoutServlet.java" partName="LogoutServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/LogoutServlet.java" title="LogoutServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/LogoutServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LogoutServlet.java" partName="LogoutServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/LogoutServlet.java" title="LogoutServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/LogoutServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/LogoutServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2674" selectionTopPixel="1519"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2674" selectionTopPixel="379"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UploadImage.java" partName="UploadImage.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/UploadImage.java" title="UploadImage.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/UploadImage.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UploadImage.java" partName="UploadImage.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/UploadImage.java" title="UploadImage.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/UploadImage.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/UploadImage.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="150"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserServlet.java" partName="UserServlet.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/UserServlet.java" title="UserServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/UserServlet.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserServlet.java" partName="UserServlet.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/servlet/UserServlet.java" title="UserServlet.java" tooltip="WeiBoMovie/src/com/weibomovie/servlet/UserServlet.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/servlet/UserServlet.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="588" selectionTopPixel="286"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="588" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PageListDao.java" partName="PageListDao.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/dao/PageListDao.java" title="PageListDao.java" tooltip="WeiBoMovie/src/com/weibomovie/dao/PageListDao.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/dao/PageListDao.java"/>
@@ -186,6 +188,10 @@
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="View.java" partName="View.java" path="F:/Android/AndroidStudioProject/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/model/view/View.java" title="View.java" tooltip="WeiBoMovie/src/com/weibomovie/model/view/View.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/model/view/View.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Constant.java" partName="Constant.java" path="D:/A-MT/TagGitHub/Video/MyEclipseWorkspace/WeiBoMovie/src/com/weibomovie/db/Constant.java" title="Constant.java" tooltip="WeiBoMovie/src/com/weibomovie/db/Constant.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/WeiBoMovie/src/com/weibomovie/db/Constant.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="96" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -204,8 +210,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings (69 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -355,7 +360,7 @@
 <view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
 <view id="org.eclipse.ui.views.TaskList" ratio="0.3"/>
 <view id="com.genuitec.eclipse.ui.HTMLView" ratio="0.85"/>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.37666667"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.38049304"/>
 <view id="com.genuitec.eclipse.ast.deploy.core.serverview" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
@@ -390,21 +395,21 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.15813252" ratioLeft="210" ratioRight="1118" relationship="2" relative="cvslocation"/>
+<info part="org.eclipse.ui.editorss" ratio="0.13746631" ratioLeft="255" ratioRight="1600" relationship="2" relative="cvslocation"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@507895d8" ratio="0.75" ratioLeft="600" ratioRight="200" relationship="2" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@1cb5c12e" ratio="0.54950494" ratioLeft="333" ratioRight="273" relationship="4" relative="org.eclipse.ui.internal.ViewStack@507895d8">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="bottom" ratio="0.6147404" ratioLeft="367" ratioRight="230" relationship="4" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
 <page content="com.genuitec.eclipse.ui.HTMLView" label="LabelNotFound"/>
@@ -440,163 +445,169 @@
 <workingSets/>
 <navigationHistory>
 <editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/dao/ActorDao.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/ComingServlet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/db/Constant.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/CommentServlet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/GetMovieLikeServlet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/LikeMovieServlet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/LogoutServlet.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/MovieDetailServlet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/MovieServlet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/PageListMovieServlet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/PagelistServlet.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/UploadImage.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/UserServlet.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/dao/MovieDao.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/dao/ActorDao.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/model/Director.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/dao/DirectorDao.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/WeiBoMovie/src/com/weibomovie/servlet/MovieServlet.java"/>
 </editors>
-<item historyLabel="ActorDao.java" index="3">
-<position info="not_deleted" x="983" y="0"/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="Director.java" index="4">
-<position info="not_deleted" x="399" y="0"/>
-</item>
-<item historyLabel="Director.java" index="4">
-<position/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="DirectorDao.java" index="5">
-<position info="not_deleted" x="353" y="0"/>
-</item>
-<item historyLabel="DirectorDao.java" index="5">
-<position/>
-</item>
-<item historyLabel="ActorDao.java" index="3">
-<position info="not_deleted" x="397" y="586"/>
-</item>
-<item historyLabel="DirectorDao.java" index="5">
-<position info="not_deleted" x="1012" y="0"/>
-</item>
-<item historyLabel="ActorDao.java" index="3">
-<position info="not_deleted" x="1061" y="347"/>
-</item>
-<item historyLabel="DirectorDao.java" index="5">
-<position info="not_deleted" x="1250" y="0"/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieDao.java" index="2">
-<position info="not_deleted" x="7657" y="42"/>
-</item>
-<item historyLabel="MovieServlet.java" index="6">
-<position info="not_deleted" x="2082" y="86"/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieServlet.java" index="6">
-<position info="not_deleted" x="2098" y="0"/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieServlet.java" index="6">
-<position info="not_deleted" x="2269" y="73"/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position/>
-</item>
-<item historyLabel="MovieServlet.java" index="6">
-<position info="not_deleted" x="1827" y="51"/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position info="not_deleted" x="1950" y="0"/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position info="not_deleted" x="2134" y="0"/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
-<position info="not_deleted" x="682" y="0"/>
-</item>
-<item historyLabel="MovieDetailServlet.java" index="0">
-<position info="not_deleted" x="2133" y="0"/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
-<position/>
-</item>
-<item historyLabel="ActorDao.java" index="3">
-<position info="not_deleted" x="293" y="8"/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
-<position/>
-</item>
-<item historyLabel="ActorDao.java" index="3">
-<position info="not_deleted" x="499" y="0"/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
-<position/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
+<item historyLabel="MovieDetailData.java" index="0">
 <position info="not_deleted" x="2483" y="0"/>
 </item>
-<item historyLabel="MovieDetailData.java" index="1">
-<position info="not_deleted" x="2483" y="0"/>
-</item>
-<item historyLabel="MovieDetailData.java" index="1">
+<item historyLabel="MovieDetailData.java" index="0">
 <position/>
 </item>
-<item historyLabel="MovieDetailData.java" index="1">
+<item historyLabel="MovieDetailData.java" index="0">
 <position info="not_deleted" x="2569" y="0"/>
 </item>
-<item historyLabel="MovieDetailData.java" index="1">
+<item historyLabel="MovieDetailData.java" index="0">
 <position info="not_deleted" x="2678" y="0"/>
 </item>
-<item historyLabel="ActorDao.java" index="3">
+<item historyLabel="ActorDao.java" index="1">
 <position info="not_deleted" x="302" y="11"/>
 </item>
-<item historyLabel="ActorDao.java" index="3">
+<item historyLabel="ActorDao.java" index="1">
 <position info="not_deleted" x="320" y="0"/>
 </item>
-<item historyLabel="ActorDao.java" index="3">
+<item historyLabel="ActorDao.java" index="1">
 <position info="not_deleted" x="428" y="0"/>
 </item>
-<item historyLabel="ActorDao.java" index="3">
+<item historyLabel="ActorDao.java" index="1">
 <position info="not_deleted" x="428" y="0"/>
 </item>
-<item historyLabel="ActorDao.java" index="3">
+<item historyLabel="ActorDao.java" index="1">
 <position info="not_deleted" x="427" y="0"/>
 </item>
-<item active="true" historyLabel="ActorDao.java" index="3">
+<item historyLabel="ActorDao.java" index="1">
 <position info="not_deleted" x="745" y="0"/>
+</item>
+<item historyLabel="ActorDao.java" index="1">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ComingServlet.java" index="2">
+<position/>
+</item>
+<item historyLabel="Constant.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Constant.java" index="3">
+<position/>
+</item>
+<item historyLabel="ComingServlet.java" index="2">
+<position/>
+</item>
+<item historyLabel="Constant.java" index="3">
+<position info="not_deleted" x="151" y="0"/>
+</item>
+<item historyLabel="ComingServlet.java" index="2">
+<position/>
+</item>
+<item historyLabel="ComingServlet.java" index="2">
+<position info="not_deleted" x="822" y="0"/>
+</item>
+<item historyLabel="Constant.java" index="3">
+<position info="not_deleted" x="350" y="18"/>
+</item>
+<item historyLabel="CommentServlet.java" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="GetMovieLikeServlet.java" index="5">
+<position info="not_deleted" x="2952" y="0"/>
+</item>
+<item historyLabel="LikeMovieServlet.java" index="6">
+<position info="not_deleted" x="1565" y="0"/>
+</item>
+<item historyLabel="LogoutServlet.java" index="7">
+<position info="not_deleted" x="2674" y="0"/>
+</item>
+<item historyLabel="MovieDetailServlet.java" index="8">
+<position/>
+</item>
+<item historyLabel="MovieDetailServlet.java" index="8">
+<position/>
+</item>
+<item historyLabel="MovieServlet.java" index="9">
+<position info="not_deleted" x="1971" y="51"/>
+</item>
+<item historyLabel="MovieServlet.java" index="9">
+<position info="not_deleted" x="823" y="0"/>
+</item>
+<item historyLabel="MovieServlet.java" index="9">
+<position info="not_deleted" x="1810" y="0"/>
+</item>
+<item historyLabel="PageListMovieServlet.java" index="10">
+<position info="not_deleted" x="1637" y="35"/>
+</item>
+<item historyLabel="PagelistServlet.java" index="11">
+<position info="not_deleted" x="1715" y="0"/>
+</item>
+<item historyLabel="PagelistServlet.java" index="11">
+<position info="not_deleted" x="963" y="0"/>
+</item>
+<item historyLabel="UploadImage.java" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PagelistServlet.java" index="11">
+<position info="not_deleted" x="1142" y="0"/>
+</item>
+<item historyLabel="UploadImage.java" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="UserServlet.java" index="13">
+<position info="not_deleted" x="588" y="0"/>
+</item>
+<item historyLabel="Constant.java" index="3">
+<position info="not_deleted" x="150" y="0"/>
+</item>
+<item historyLabel="MovieDetailServlet.java" index="8">
+<position/>
+</item>
+<item historyLabel="MovieDetailData.java" index="14">
+<position info="not_deleted" x="2678" y="0"/>
+</item>
+<item historyLabel="MovieDetailData.java" index="14">
+<position info="not_deleted" x="1020" y="0"/>
+</item>
+<item historyLabel="MovieDetailServlet.java" index="8">
+<position info="not_deleted" x="2371" y="0"/>
+</item>
+<item historyLabel="MovieDao.java" index="15">
+<position info="not_deleted" x="7657" y="42"/>
+</item>
+<item historyLabel="MovieDao.java" index="15">
+<position info="not_deleted" x="12419" y="0"/>
+</item>
+<item historyLabel="MovieDetailServlet.java" index="8">
+<position/>
+</item>
+<item historyLabel="Constant.java" index="3">
+<position info="not_deleted" x="158" y="0"/>
+</item>
+<item historyLabel="MovieDetailServlet.java" index="8">
+<position/>
+</item>
+<item historyLabel="MovieDetailServlet.java" index="8">
+<position info="not_deleted" x="2418" y="0"/>
+</item>
+<item historyLabel="MovieDetailServlet.java" index="8">
+<position info="not_deleted" x="3417" y="0"/>
+</item>
+<item historyLabel="Constant.java" index="3">
+<position info="not_deleted" x="96" y="0"/>
+</item>
+<item active="true" historyLabel="MovieDetailServlet.java" index="8">
+<position info="not_deleted" x="2421" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -623,6 +634,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Constant.java" tooltip="WeiBoMovie/src/com/weibomovie/db/Constant.java">
+<persistable path="/WeiBoMovie/src/com/weibomovie/db/Constant.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="View.java" tooltip="WeiBoMovie/src/com/weibomovie/model/view/View.java">
 <persistable path="/WeiBoMovie/src/com/weibomovie/model/view/View.java"/>
 </file>
@@ -661,12 +675,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Actor.java" tooltip="WeiBoMovie/src/com/weibomovie/model/Actor.java">
 <persistable path="/WeiBoMovie/src/com/weibomovie/model/Actor.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Movie.java" tooltip="WeiBoMovie/src/com/weibomovie/model/Movie.java">
-<persistable path="/WeiBoMovie/src/com/weibomovie/model/Movie.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MovieDetailData.java" tooltip="WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java">
-<persistable path="/WeiBoMovie/src/com/weibomovie/weiboapi/MovieDetailData.java"/>
 </file>
 </mruList>
 </workbench>

@@ -1,6 +1,6 @@
-ENDORSED_DIRS="D\:\\apache-tomcat-7.0.68/common/endorsed"
-JDK_HOME=d\:\\MyEclipse\\Common\\binary\\com.sun.java.jdk.win32.x86_64_1.6.0.013
-LIBRARY_PATH="d\:\\MyEclipse\\Common\\binary\\com.sun.java.jdk.win32.x86_64_1.6.0.013\\bin;D\:\\apache-tomcat-7.0.68\\bin"
+ENDORSED_DIRS="D\:\\A-MT\\JAVA\\apache-tomcat-7.0.68-windows-x64\\apache-tomcat-7.0.68/common/endorsed"
+JDK_HOME=C\:\\Users\\jjs\\MyEclipse\\Common\\binary\\com.sun.java.jdk.win32.x86_64_1.6.0.013
+LIBRARY_PATH="C\:\\Users\\jjs\\MyEclipse\\Common\\binary\\com.sun.java.jdk.win32.x86_64_1.6.0.013\\bin;D\:\\A-MT\\JAVA\\apache-tomcat-7.0.68-windows-x64\\apache-tomcat-7.0.68\\bin"
 SERVER_ENABLEMENT=true
 TOMCAT_BASE=D\:\\A-MT\\JAVA\\apache-tomcat-7.0.68-windows-x64\\apache-tomcat-7.0.68
 TOMCAT_HOME=D\:\\A-MT\\JAVA\\apache-tomcat-7.0.68-windows-x64\\apache-tomcat-7.0.68

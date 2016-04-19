@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.weibomovie.db.Constant;
 import com.weibomovie.db.DBUtil;
 import com.weibomovie.model.Goddess;
 import com.weibomovie.model.Movie;
@@ -385,9 +384,6 @@ public class MovieDao {
 			movie.setRelease_date(rs.getString("release_date"));
 			movie.setVideo_url(rs.getString("video_url"));			
 		} 
-		if(Constant.isOpenSyso()){
-			System.out.println(name);
-		}
 		return movie; 
 	}
 }
