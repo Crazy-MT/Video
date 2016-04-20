@@ -1,3 +1,0 @@
-INDEX VERSION 1.126
-F:\Android\AndroidStudioProject\Video\MyEclipseWorkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2408223390.index
-\WeiBoMovie\src
