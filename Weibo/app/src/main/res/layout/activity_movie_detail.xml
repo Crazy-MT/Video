@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
 
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
@@ -198,4 +199,29 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/id_refresh"
+        android:background="@color/white"
+        >
+
+        <ProgressBar
+            android:id="@+id/id_refresh_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            style="?android:attr/progressBarStyleInverse"
+            android:indeterminate="true"/>
+
+        <TextView
+            android:id="@+id/id_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无数据"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
 </RelativeLayout>

@@ -33,10 +33,10 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 /**
- * Service that continues to run in background and respond to the push 
+ * Service that continues to run in background and respond to the push
  * notification events from the server. This should be registered as service
- * in AndroidManifest.xml. 
- * 
+ * in AndroidManifest.xml.
+ *
  * @author Sehwan Noh (devnoh@gmail.com)
  */
 public class NotificationService extends Service {
@@ -45,7 +45,7 @@ public class NotificationService extends Service {
             .makeLogTag(NotificationService.class);
 
     public static final String SERVICE_NAME = "org.androidpn.client.NotificationService";
-    
+
     private static NotificationService notificationService;
 
     private TelephonyManager telephonyManager;
@@ -81,10 +81,10 @@ public class NotificationService extends Service {
         taskTracker = new TaskTracker(this);
     }
 
-    public static NotificationService getNotificationService(){
-    	return notificationService;
+    public static NotificationService getNotificationService() {
+        return notificationService;
     }
-    
+
     @Override
     public void onCreate() {
         Log.d(LOGTAG, "onCreate()...");

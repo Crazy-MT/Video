@@ -34,11 +34,12 @@ public class ComingData {
 					"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
+			
 			out = new PrintWriter(conn.getOutputStream());
 			out.print(param);
 			out.flush();
 			BufferedReader br = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()));
+					conn.getInputStream() , "UTF8") );
 			String inputLine = null;
 			while ((inputLine = br.readLine()) != null) {
 				stringBuilder.append(inputLine);
@@ -47,7 +48,7 @@ public class ComingData {
 			String str = stringBuilder.toString();
 			StringBuffer stringBuffer = new StringBuffer(str);
 			JSONObject jsonobject = JSONObject.fromObject(stringBuffer
-					.toString());
+					.toString()); 
 			JSONObject jsonobject1 = (JSONObject) jsonobject.get("data");
 			JSONArray objectArr = jsonobject1.getJSONArray("ranklist_coming");
 			JSONObject rs = null;

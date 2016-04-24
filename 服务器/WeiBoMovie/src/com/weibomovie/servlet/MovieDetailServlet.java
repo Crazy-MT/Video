@@ -81,11 +81,7 @@ public class MovieDetailServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-		/*
-		 * if(Constant.isOpenDownloadData()){
-		 * 
-		 * }
-		 */
+ 
 		String result = null;
 		result = new MovieDetailData().getMovieDetail(movie_id);
 		if (Constant.isOpenSyso()) {
@@ -150,10 +146,7 @@ public class MovieDetailServlet extends HttpServlet {
 			actor = actorDao.getActor(actorArr[i].trim());
 			System.out.println(actorArr[i]);
 			creatorArray.add(i+1 , actor);
-		}
-		
-
-		System.out.println(creatorArray.toString());
+		} 
 	}
 
 	/**

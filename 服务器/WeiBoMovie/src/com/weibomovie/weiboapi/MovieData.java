@@ -44,7 +44,7 @@ public class MovieData {
 			// flush输出流的缓冲
 			out.flush();
 			BufferedReader br = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()));
+					conn.getInputStream() , "UTF8") );
 			String inputLine = null;
 			while ((inputLine = br.readLine()) != null) {
 				stringBuilder.append(inputLine);
@@ -52,6 +52,8 @@ public class MovieData {
 			br.close();
 			String str = stringBuilder.toString();
 			StringBuffer stringBuffer = new StringBuffer(str);
+			
+			
 			JSONObject jsonobject = JSONObject.fromObject(stringBuffer
 					.toString());
 			JSONObject jsonobject1 = (JSONObject) jsonobject.get("data");
@@ -76,12 +78,10 @@ public class MovieData {
 	}
 
 	private void saveData(List<Movie> movies) {
-		// TODO Auto-generated method stub
 		MovieDao movieDao = new MovieDao();
 		try {
 			movieDao.saveDatas(movies);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

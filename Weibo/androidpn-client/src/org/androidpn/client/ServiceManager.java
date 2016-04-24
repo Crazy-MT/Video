@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -103,6 +104,9 @@ public final class ServiceManager {
 			@Override
 			public void run() {
 				Intent intent = NotificationService.getIntent();
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.DONUT) {
+					intent.setPackage("com.maotong.weibo");
+				}
 				context.startService(intent);
 			}
 		});

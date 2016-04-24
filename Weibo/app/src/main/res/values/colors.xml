@@ -10,4 +10,6 @@
     <color name="movie_tab_text_origin">#959595</color>
     <color name="movie_tab_indicator">#ff6700</color>
     <color name="window_background">#FFF5F5F5</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

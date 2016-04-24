@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
+import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.main.MovieDetailActivity;
 import com.maotong.weibo.personal.LoginStatusEvent;
@@ -34,6 +36,7 @@ public class HotShowingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EventBus.getDefault().register(this);
     }
 
@@ -43,6 +46,9 @@ public class HotShowingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_hot_showing, container, false);
         mRecycler = (RecyclerView) view.findViewById(R.id.id_hot_showing_recycler);
         mSwipe = (SwipeRefreshLayout) view.findViewById(R.id.id_hot_showing_swipe);
+
+        mHotShowingList = WeiBoApplication.getInstance().getHotShowingList();
+
         if (mHotShowingList == null) {
             initData();
         } else {
@@ -96,6 +102,7 @@ public class HotShowingFragment extends Fragment {
         mSwipe.setRefreshing(false);
         HotShowingAdapter adapter = new HotShowingAdapter(getContext(), mHotShowingList);
         mRecycler.setAdapter(adapter);
+        mRecycler.setItemAnimator(new DefaultItemAnimator());
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         adapter.setOnItemClickListener(new HotShowingAdapter.OnItemClickListener() {
             @Override
@@ -131,10 +138,13 @@ public class HotShowingFragment extends Fragment {
                 } else {
                     mHotShowingList = new JsonResolveUtils().getMovie();
                 }
-
                 EventBus.getDefault().post(mHotShowingList);
             }
         }).start();
+    }
+
+    public void RecyclerNotify(){
+        mRecycler.getAdapter().notifyDataSetChanged();
     }
 
     @Override

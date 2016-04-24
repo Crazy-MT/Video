@@ -18,6 +18,7 @@ import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.personal.LoginStatusEvent;
+import com.maotong.weibo.personal.UpLikeRecyclerEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -51,7 +52,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                 movieModels.get(position).setIsLike(0);
             }
             notifyItemChanged(position);
-            EventBus.getDefault().post(new LoginStatusEvent(true));
+            EventBus.getDefault().post(new UpLikeRecyclerEvent(true));
         }
     };
 

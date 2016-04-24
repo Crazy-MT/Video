@@ -84,8 +84,7 @@ public class LogoutServlet extends HttpServlet {
 		} catch (Exception e) {
 			resultJson.put("result", "error");
 			e.printStackTrace();
-		}  
-		System.out.println(resultJson);
+		}   
 		out.println(resultJson.toString());
 		out.flush();
 		out.close();

@@ -15,6 +15,7 @@ import net.sf.json.JSONObject;
 
 import com.weibomovie.dao.MovieDao;
 import com.weibomovie.db.Constant;
+import com.weibomovie.juheapi.MovieJuheData;
 import com.weibomovie.model.Movie;
 import com.weibomovie.weiboapi.MovieData;
 
@@ -31,14 +32,14 @@ public class MovieServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		if(Constant.isOpenDownloadData()){
-			MovieData movieData = new MovieData();
-			try {
-				movieData.httpPost();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		}
+
+		
+/*		MovieJuheData movieJuheData = new MovieJuheData();
+		try {
+			movieJuheData.httpPost();
+		} catch (Exception e1) { 
+			e1.printStackTrace();
+		}*/
 		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -65,16 +66,6 @@ public class MovieServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if(Constant.isOpenDownloadData()){
-			MovieData movieData = new MovieData();
-			try {
-				movieData.httpPost();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		}
-		
-		
 		response.setContentType("text/html;charset=utf-8");
 		Long weibo_id = Long.valueOf(request.getParameter("weibo_id"));
 		PrintWriter out = response.getWriter();
@@ -92,7 +83,6 @@ public class MovieServlet extends HttpServlet {
 			jsonObject.put("ret", "error");
 			jsonObject.put("data", "");
 		} 
-		System.out.println(jsonObject);
 		out.println(jsonObject);
 		out.flush();
 		out.close();

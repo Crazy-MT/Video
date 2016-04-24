@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
+import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.main.MovieDetailActivity;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.personal.LoginStatusEvent;
@@ -46,6 +47,8 @@ public class ComingFragment extends Fragment
 		View view = inflater.inflate(R.layout.fragment_coming , container , false);
 		mRecycler = (RecyclerView) view.findViewById(R.id.id_coming_recycler);
 		mSwipe = (SwipeRefreshLayout) view.findViewById(R.id.id_coming_swipe);
+		mComingList = WeiBoApplication.getInstance().getComingList();
+
 		if (mComingList == null){
 			initData();
 		} else {
@@ -137,5 +140,9 @@ public class ComingFragment extends Fragment
 	public void onDestroy() {
 		super.onDestroy();
 		EventBus.getDefault().unregister(this);
+	}
+
+	public void RecyclerNotify(){
+		mRecycler.getAdapter().notifyDataSetChanged();
 	}
 }

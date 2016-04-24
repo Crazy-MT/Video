@@ -13,6 +13,7 @@ import com.maotong.weibo.R;
 public class VideoActivity extends AppCompatActivity {
 
     private VideoView videoView ;
+    public static String INTENT_EXTRA = "video_url";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,6 @@ public class VideoActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_video);
         String url = getIntent().getStringExtra("video_url");
-
         videoView = (VideoView) findViewById(R.id.id_movie_detail_video_view);
         MediaController mc = new MediaController(this);
         videoView.setMediaController(mc);

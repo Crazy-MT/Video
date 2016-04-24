@@ -26,6 +26,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.androidpn.client.movie.MovieNotificationDetailActivity;
+
 /** 
  * This class is to notify the user of messages with NotificationManager.
  *
@@ -68,7 +70,7 @@ public class Notifier {
             }
 
             // Notification
-            Notification notification = new Notification();
+            /*Notification notification = new Notification();
             notification.icon = getNotificationIcon();
             notification.defaults = Notification.DEFAULT_LIGHTS;
             if (isNotificationSoundEnabled()) {
@@ -80,26 +82,11 @@ public class Notifier {
             notification.flags |= Notification.FLAG_AUTO_CANCEL;
             notification.when = System.currentTimeMillis();
             notification.tickerText = message;
+            */
 
-            //            Intent intent;
-            //            if (uri != null
-            //                    && uri.length() > 0
-            //                    && (uri.startsWith("http:") || uri.startsWith("https:")
-            //                            || uri.startsWith("tel:") || uri.startsWith("geo:"))) {
-            //                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-            //            } else {
-            //                String callbackActivityPackageName = sharedPrefs.getString(
-            //                        Constants.CALLBACK_ACTIVITY_PACKAGE_NAME, "");
-            //                String callbackActivityClassName = sharedPrefs.getString(
-            //                        Constants.CALLBACK_ACTIVITY_CLASS_NAME, "");
-            //                intent = new Intent().setClassName(callbackActivityPackageName,
-            //                        callbackActivityClassName);
-            //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            //            }
 
             Intent intent = new Intent(context,
-                    NotificationDetailsActivity.class);
+                    MovieNotificationDetailActivity.class);
             intent.putExtra(Constants.NOTIFICATION_ID, notificationId);
             intent.putExtra(Constants.NOTIFICATION_API_KEY, apiKey);
             intent.putExtra(Constants.NOTIFICATION_TITLE, title);
@@ -114,9 +101,26 @@ public class Notifier {
 
             PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
                     intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            Notification notification = new Notification.Builder(context)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setSmallIcon(getNotificationIcon())
+                    .setContentIntent(contentIntent)
+                    .build();
+            notification.icon = getNotificationIcon();
+            notification.defaults = Notification.DEFAULT_LIGHTS;
+            if (isNotificationSoundEnabled()) {
+                notification.defaults |= Notification.DEFAULT_SOUND;
+            }
+            if (isNotificationVibrateEnabled()) {
+                notification.defaults |= Notification.DEFAULT_VIBRATE;
+            }
+            notification.flags |= Notification.FLAG_AUTO_CANCEL;
+            notification.when = System.currentTimeMillis();
+            notification.tickerText = message;
 
-            notification.setLatestEventInfo(context, title, message,
-                    contentIntent);
+            /*notification.setLatestEventInfo(context, title, message,
+                    contentIntent);*/
             notificationManager.notify(random.nextInt(), notification);
 
             //            Intent clickIntent = new Intent(

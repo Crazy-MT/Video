@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.maotong.weibo.R;
+import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.utils.JsonResolveUtils;
 
@@ -34,6 +35,10 @@ public class PageListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_page_list, container, false);
         mRecycler = (RecyclerView) view.findViewById(R.id.id_page_list_recycler);
+
+        mPageList = WeiBoApplication.getInstance().getPageList();
+        mPageListMovie = WeiBoApplication.getInstance().getPageListMovie();
+
         if (mPageList == null || mPageListMovie == null) {
             initData();
         } else {

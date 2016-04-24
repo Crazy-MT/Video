@@ -37,6 +37,9 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name="org.androidpn.client.movie.MovieNotificationDetailActivity"></activity>
+        <activity android:name="org.androidpn.client.movie.VideoActivity"></activity>
+
         <!--
 			<meta-data android:name="ANDROIDPN_API_KEY"
 			android:value="1234567890" />

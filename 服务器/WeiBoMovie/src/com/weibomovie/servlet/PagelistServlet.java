@@ -34,18 +34,7 @@ public class PagelistServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=utf-8");
 
-		if (Constant.isOpenDownloadData()) {
-			PageListData pageListData = new PageListData();
-
-			try {
-				// 下载pagelist数据 、 并存放到数据库
-				pageListData.httpPost();
-				// 下载pagelist对应的电影,，更新pagelist并存放电影至数据库
-				pageListData.getPageListMovie();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		
 
 		// 将pagelist展示出来
 		PrintWriter out = response.getWriter();
@@ -63,7 +52,6 @@ public class PagelistServlet extends HttpServlet {
 			jsonObject.put("ret", "error");
 			jsonObject.put("data", "");
 		}
-		System.out.println(jsonObject);
 		out.println(jsonObject);
 		out.flush();
 		out.close();

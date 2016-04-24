@@ -28,35 +28,46 @@
 				<tr id="trUsername" style="display:none;">
 					<td>Username:</td>
 					<td><input type="text" id="username" name="username" value=""
-						style="width:380px;" />
-					</td>
+						style="width:380px;" /></td>
 				</tr>
 
 				<tr id="trAlias" style="display:none;">
 					<td>Alias:</td>
 					<td><input type="text" id="alias" name="alias" value=""
-						style="width:380px;" />
-					</td>
+						style="width:380px;" /></td>
 				</tr>
 
 				<tr id="trTag" style="display:none;">
 					<td>Tag:</td>
-					<td><input type="text" id="tag" name="tag" value=""
-						style="width:380px;" />
-					</td>
+					<td><!-- <input type="text" id="tag" name="tag" value=""
+						style="width:380px;" />  -->
+						<input type="checkbox" name="tagcheck"
+						value="剧情" checked="checked" /> 剧情 <input
+						type="checkbox" name="tagcheck" value="惊悚" /> 惊悚 <input
+						type="checkbox" name="tagcheck" value="犯罪" /> 犯罪 <input
+						type="checkbox" name="tagcheck" value="喜剧" /> 喜剧 <input
+						type="checkbox" name="tagcheck" value="爱情" /> 爱情<input
+						type="checkbox" name="tagcheck" value="动作" /> 动作<input
+						type="checkbox" name="tagcheck" value="动画" /> 动画<input
+						type="checkbox" name="tagcheck" value="科幻" /> 科幻<input
+						type="checkbox" name="tagcheck" value="奇幻" /> 奇幻<input
+						type="checkbox" name="tagcheck" value="战争" /> 战争<input
+						type="checkbox" name="tagcheck" value="冒险" /> 冒险<input
+						type="checkbox" name="tagcheck" value="悬疑" /> 悬疑<input
+						type="checkbox" name="tagcheck" value="家庭" /> 家庭<input
+						type="checkbox" name="tagcheck" value="历史" /> 历史<input
+						type="checkbox" name="tagcheck" value="传记" /> 传记</td>
 				</tr>
 
 				<tr>
 					<td>Title:</td>
 					<td><input type="text" id="title" name="title"
-						value="Dokdo Island" style="width:380px;" />
-					</td>
+						value="Movie Name" style="width:380px;" /></td>
 				</tr>
 				<tr>
 					<td>Message:</td>
 					<td><textarea id="message" name="message"
-							style="width:380px; height:80px;">Dokdo is a Korean island, the far east of the Korean territory. No doubt! No question! Don't mention it any more!</textarea>
-					</td>
+							style="width:380px; height:80px;">Movie Message</textarea></td>
 				</tr>
 				<%--
 <tr>
@@ -68,18 +79,19 @@
 					<td>URI:</td>
 					<td><input type="text" id="uri" name="uri" value=""
 						style="width:380px;" /> <br /> <span style="font-size:0.8em">ex)
-							http://www.dokdocorea.com, geo:37.24,131.86, tel:111-222-3333</span></td>
+							http://www.google.com, geo:37.24,131.86, tel:111-222-3333</span>
+					</td>
 				</tr>
 				<tr>
 					<td>Image:</td>
 					<td><input type="file" id="image" name="image" value=""
 						style="width:380px;" /> <br /> <span style="font-size:0.8em">Only
-							image type is valid</span></td>
+							image type is valid</span>
+					</td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td><input type="submit" value="Submit" />
-					</td>
+					<td><input type="submit" value="Submit" /></td>
 				</tr>
 			</table>
 		</form>

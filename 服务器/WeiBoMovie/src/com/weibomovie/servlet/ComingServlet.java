@@ -28,17 +28,7 @@ public class ComingServlet extends HttpServlet {
 	}
  
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		if(Constant.isOpenDownloadData()){
-			ComingData comingData = new ComingData();
-			try {
-				comingData.httpPost();
-			} catch (Exception e1) { 
-				e1.printStackTrace();
-			}
-		}
-		
+			throws ServletException, IOException { 
 		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -55,8 +45,7 @@ public class ComingServlet extends HttpServlet {
 			e.printStackTrace();
 			jsonObject.put("ret", "error");
 			jsonObject.put("data", "");
-		}
-		System.out.println(jsonObject);
+		} 
 		out.println(jsonObject);
 		out.flush();
 		out.close();

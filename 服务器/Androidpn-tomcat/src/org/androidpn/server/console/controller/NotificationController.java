@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,10 +67,12 @@ public class NotificationController extends MultiActionController {
 		String message = null;
 		String uri = null;
 		String imageUrl = null;
+		List<String> tagCheckList = new ArrayList<String>();
 
 		String apiKey = Config.getString("apiKey", "");
 		logger.debug("apiKey=" + apiKey);
-
+		 
+		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload servletFileUpload = new ServletFileUpload(factory);
 		List<FileItem> fileItems = servletFileUpload.parseRequest(request);
@@ -90,8 +93,12 @@ public class NotificationController extends MultiActionController {
 				uri = item.getString("utf-8");
 			}else if ("image".equals(item.getFieldName())) {
 				imageUrl = uploadImage(request, item);
+			} else if ("tagcheck".equals(item.getFieldName())){
+				tagCheckList.add(item.getString("utf-8"));
+				System.out.println(item.getString("utf-8"));
 			}
 		}
+
 
  		if (broadcast.equals("0")) {
 			notificationManager.sendBroadcast(apiKey, title, message, uri , imageUrl);
@@ -102,9 +109,20 @@ public class NotificationController extends MultiActionController {
 			notificationManager.sendNotificationByAlias(apiKey, alias, title,
 					message, uri,  imageUrl ,false);
 		} else if (broadcast.equals("3")) {
-			notificationManager.sendNotificationByTag(apiKey, tag, title,
-					message, uri,  imageUrl ,false);
+		/*	notificationManager.sendNotificationByTag(apiKey, tag, title,
+					message, uri,  imageUrl ,false);*/
+			/*notificationManager.sendNotificationByTag(apiKey, tagCheck, title,
+					message, uri,  imageUrl ,false); */
+			
+			for(String tag1 : tagCheckList){
+				notificationManager.sendNotificationByTag(apiKey, tag1, title,
+						message, uri,  imageUrl ,false);
+			}
 		} 
+ 		
+ 		/*if(tagCheck.equals("剧情")){
+ 			System.out.println(tagCheck + System.currentTimeMillis());
+ 		}*/
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:notification.do");

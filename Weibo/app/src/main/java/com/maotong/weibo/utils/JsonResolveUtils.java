@@ -3,10 +3,15 @@ package com.maotong.weibo.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jivesoftware.smack.util.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.graphics.Movie;
+import android.text.TextUtils;
+import android.util.*;
+import android.util.Log;
 
 import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.main.MovieModel;
@@ -54,8 +59,9 @@ public class JsonResolveUtils {
                     movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count"),0);
+                            rs.getInt("score_count"), 0);
 
+                    Log.e("TAG", "getPageListMovie: getPageListMovie" + movie.toString());
                     movies.add(movie);
                 }
             }
@@ -90,7 +96,7 @@ public class JsonResolveUtils {
                     pageList = new PageListModel(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
                             rs.getString("cover_url"),
                             rs.getInt("movie_count"));
-
+                    Log.e("TAG", "getPageList: pageList" + pageList.toString());
                     pageLists.add(pageList);
                 }
             }
@@ -123,7 +129,7 @@ public class JsonResolveUtils {
                     movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count"),0);
+                            rs.getInt("score_count"), 0);
 
                     movies.add(movie);
                 }
@@ -159,7 +165,7 @@ public class JsonResolveUtils {
                     movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), rs.getString("release_date"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count") );
+                            rs.getInt("score_count"));
                     movie.setIsLike(0);
                     movies.add(movie);
                 }
@@ -175,17 +181,17 @@ public class JsonResolveUtils {
         String url = WeiBoApplication.getInstance().getBASE_URL()
                 + "/UserServlet";
         List<Parameter> parameters = new ArrayList<>();
-        parameters.add(new Parameter("weibo_id" , userModel.getWeibo_id()+""));
-        parameters.add(new Parameter("user_name" , userModel.getUserName()));
-        parameters.add(new Parameter("icon" , userModel.getUserIcon()));
+        parameters.add(new Parameter("weibo_id", userModel.getWeibo_id() + ""));
+        parameters.add(new Parameter("user_name", userModel.getUserName()));
+        parameters.add(new Parameter("icon", userModel.getUserIcon()));
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
-        boolean ret ;
+        boolean ret;
         try {
-            json = syncHttp.httpPost(url , parameters);
+            json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
-            if (ret){
+            if (ret) {
                 return true;
             } else {
                 return false;
@@ -196,22 +202,22 @@ public class JsonResolveUtils {
         }
     }
 
-    public boolean setLikeMovie(String uid, int movieId , boolean isLike) {
+    public boolean setLikeMovie(String uid, int movieId, boolean isLike) {
         String url = WeiBoApplication.getInstance().getBASE_URL()
                 + "/LikeMovieServlet";
 
         List<Parameter> parameters = new ArrayList<>();
-        parameters.add(new Parameter("weibo_id" , uid));
-        parameters.add(new Parameter("movie_id" , movieId+""));
-        parameters.add(new Parameter("is_like" , isLike+""));
+        parameters.add(new Parameter("weibo_id", uid));
+        parameters.add(new Parameter("movie_id", movieId + ""));
+        parameters.add(new Parameter("is_like", isLike + ""));
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
-        boolean ret ;
+        boolean ret;
         try {
-            json = syncHttp.httpPost(url , parameters);
+            json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
-            if (ret){
+            if (ret) {
                 return true;
             } else {
                 return false;
@@ -226,16 +232,16 @@ public class JsonResolveUtils {
         String url = WeiBoApplication.getInstance().getBASE_URL()
                 + "/LogoutServlet";
         List<Parameter> parameters = new ArrayList<>();
-        parameters.add(new Parameter("weibo_id" , userModel.getWeibo_id()+""));
+        parameters.add(new Parameter("weibo_id", userModel.getWeibo_id() + ""));
         SyncHttp syncHttp = new SyncHttp();
         String json = null;
-        boolean ret ;
+        boolean ret;
         try {
-            json = syncHttp.httpPost(url , parameters);
+            json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
             ret = jsonObject.getString("result").equals("success");
 
-            if (ret){
+            if (ret) {
                 return true;
             } else {
                 return false;
@@ -256,7 +262,7 @@ public class JsonResolveUtils {
 
         SyncHttp syncHttp = new SyncHttp();
         List<Parameter> parameters = new ArrayList<>();
-        parameters.add(new Parameter("weibo_id" , uid+""));
+        parameters.add(new Parameter("weibo_id", uid + ""));
         try {
             json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
@@ -271,7 +277,7 @@ public class JsonResolveUtils {
                     movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count"),rs.getInt("is_Like"));
+                            rs.getInt("score_count"), rs.getInt("is_Like"));
 
                     movies.add(movie);
                 }
@@ -292,7 +298,7 @@ public class JsonResolveUtils {
 
         SyncHttp syncHttp = new SyncHttp();
         List<Parameter> parameters = new ArrayList<>();
-        parameters.add(new Parameter("weibo_id" , uid+""));
+        parameters.add(new Parameter("weibo_id", uid + ""));
         try {
             json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
@@ -307,7 +313,7 @@ public class JsonResolveUtils {
                     movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count"),rs.getInt("is_Like"));
+                            rs.getInt("score_count"), rs.getInt("is_Like"));
 
                     movies.add(movie);
                 }
@@ -315,6 +321,14 @@ public class JsonResolveUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        String tags = "";
+        for (MovieModel movieModel : movies) {
+            if (!TextUtils.isEmpty(movieModel.getGenre())){
+                tags += movieModel.getGenre();
+                tags += "/";
+            }
+        }
+        WeiBoApplication.getInstance().setTags(tags);
         return movies;
 
     }
@@ -329,7 +343,7 @@ public class JsonResolveUtils {
 
         SyncHttp syncHttp = new SyncHttp();
         List<Parameter> parameters = new ArrayList<>();
-        parameters.add(new Parameter("weibo_id" , uid+""));
+        parameters.add(new Parameter("weibo_id", uid + ""));
         try {
             json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
@@ -346,7 +360,7 @@ public class JsonResolveUtils {
                     movie = new MovieModel(rs.getInt("id"), rs.getString("name"), rs.getString("genre"),
                             rs.getString("intro"), rs.getString("poster_url"),
                             rs.getString("large_poster_url"), rs.getString("release_date"), (float) rs.getDouble("score"),
-                            rs.getInt("score_count") , rs.getInt("is_Like") );
+                            rs.getInt("score_count"), rs.getInt("is_Like"));
 
                     movies.add(movie);
                 }
@@ -366,7 +380,7 @@ public class JsonResolveUtils {
 
         SyncHttp syncHttp = new SyncHttp();
         List<Parameter> parameters = new ArrayList<>();
-        parameters.add(new Parameter("movie_id" , id+""));
+        parameters.add(new Parameter("movie_id", id + ""));
         try {
             json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
@@ -378,7 +392,7 @@ public class JsonResolveUtils {
                 movie = new MovieModel(movieObject.getInt("id"), movieObject.getString("name"), movieObject.getString("genre"),
                         movieObject.getString("intro"), movieObject.getString("poster_url"),
                         movieObject.getString("large_poster_url"), movieObject.getString("release_date"), (float) movieObject.getDouble("score"),
-                        movieObject.getInt("score_count") , movieObject.getInt("is_Like") );
+                        movieObject.getInt("score_count"), movieObject.getInt("is_Like"));
                 movie.setVideo_url(movieObject.getString("video_url"));
 
                 movie.setActors(dataObject.getString("actors"));
@@ -401,7 +415,7 @@ public class JsonResolveUtils {
 
         SyncHttp syncHttp = new SyncHttp();
         List<Parameter> parameters = new ArrayList<>();
-        parameters.add(new Parameter("name" , query+""));
+        parameters.add(new Parameter("name", query + ""));
         try {
             json = syncHttp.httpPost(url, parameters);
             JSONObject jsonObject = new JSONObject(json);
@@ -413,7 +427,7 @@ public class JsonResolveUtils {
                 movie = new MovieModel(movieObject.getInt("id"), movieObject.getString("name"), movieObject.getString("genre"),
                         movieObject.getString("intro"), movieObject.getString("poster_url"),
                         movieObject.getString("large_poster_url"), movieObject.getString("release_date"), (float) movieObject.getDouble("score"),
-                        movieObject.getInt("score_count") , movieObject.getInt("is_Like") );
+                        movieObject.getInt("score_count"), movieObject.getInt("is_Like"));
                 movie.setVideo_url(movieObject.getString("video_url"));
 
                 movie.setActors(dataObject.getString("actors"));
@@ -431,7 +445,7 @@ public class JsonResolveUtils {
      *
      * @return
      */
-	/*public Boolean getLogin(String account, String password) {
+    /*public Boolean getLogin(String account, String password) {
 		d_User dUser = new d_User();
 		String url = WeiBoApplication.getWeiBoApplication().getBASE_URL()
 				+ "/freemeal/Login";

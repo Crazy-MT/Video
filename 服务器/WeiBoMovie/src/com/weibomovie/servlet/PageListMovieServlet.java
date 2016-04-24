@@ -57,7 +57,6 @@ public class PageListMovieServlet extends HttpServlet {
 			resultJson.put("data", "");
 			e.printStackTrace();
 		} 
-		System.out.println(resultJson);
 		out.println(resultJson.toString());
 		out.flush();
 		out.close();

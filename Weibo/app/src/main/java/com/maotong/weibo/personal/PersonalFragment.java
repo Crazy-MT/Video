@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
@@ -188,6 +189,8 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
         setMovieRecycler(isLogin);
     }
 
+
+
     private void setMovieRecycler(final boolean isLogin) {
         new Thread(new Runnable() {
             @Override
@@ -257,14 +260,26 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
 
     }
 
-    private void setUpLikeRecycler() {
+    @Subscribe
+    public void onEventMainThread(UpLikeRecyclerEvent upLikeRecyclerEvent){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setUpLikeRecycler();
+            }
+        });
+    }
 
+
+    private void setUpLikeRecycler() {
+        setMovieRecycler(true);
     }
 
     private void authLogin() {
         //登录结果会从MainActivity回调到onActivityResult
         ((MainActivity) getActivity()).Auth();
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
