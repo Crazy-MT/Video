@@ -2453,7 +2453,7 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030016;
         public static final int abc_search_view=0x7f030017;
         public static final int abc_select_dialog_material=0x7f030018;
-        public static final int activity_movie_detail=0x7f030019;
+        public static final int activity_movie_notification_detail=0x7f030019;
         public static final int activity_video=0x7f03001a;
         public static final int design_bottom_sheet_dialog=0x7f03001b;
         public static final int design_layout_snackbar=0x7f03001c;
