@@ -1,11 +1,9 @@
 package com.maotong.weibo.base;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.movie.pagelist.PageListModel;
@@ -109,8 +107,8 @@ public class WeiBoApplication extends LitePalApplication {
         tagsList.add("music");*/
         serviceManager.setTags(getTags());
 
-        setBASE_URL("http://123.56.25.178:8080/WeiBoMovie/servlet"); //家
-        //setBASE_URL("http://192.168.0.153:8080/WeiBoMovie/servlet"); //tagux
+        //setBASE_URL("http://123.56.25.178:8080/WeiBoMovie/servlet"); //家
+        setBASE_URL("http://192.168.0.104:8080/WeiBoMovie/servlet"); //tagux
         //setBASE_URL("http://192.168.1.113:8080/WeiBoMovie/servlet"); //家
 //		setBASE_URL("http://192.168.10.212:8080/WeiBoMovie/servlet");  //racemind
 

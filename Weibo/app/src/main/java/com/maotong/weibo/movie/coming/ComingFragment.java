@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.base.WeiBoApplication;
-import com.maotong.weibo.main.MovieDetailActivity;
+import com.maotong.weibo.main.moviedetail.MovieDetailActivity;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;

@@ -72,7 +72,7 @@
         <activity android:name=".openapi.WBLogoutAPIActivity" />
         <activity android:name=".openapi.WBPublicAPIActivity" />
         <activity
-            android:name=".main.MovieDetailActivity"
+            android:name=".main.moviedetail.MovieDetailActivity"
             android:parentActivityName=".main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

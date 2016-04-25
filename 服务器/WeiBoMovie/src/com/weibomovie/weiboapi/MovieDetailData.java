@@ -150,7 +150,7 @@ public class MovieDetailData {
 		String actorsArr[] = actors.split("/");
 		List<ActorMovie> actorMovieList = new ArrayList<ActorMovie>();
 		for(String actor: actorsArr){
-			actorMovieList.add(new ActorMovie(actor , movie_id));
+			actorMovieList.add(new ActorMovie(actor.trim() , movie_id));
 		} 
 		ActorMovieDao actorMovieDao = new ActorMovieDao();
 		actorMovieDao.addActor(actorMovieList);

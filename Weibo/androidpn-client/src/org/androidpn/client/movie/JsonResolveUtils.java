@@ -1,10 +1,7 @@
 package org.androidpn.client.movie;
 
 import android.content.Context;
-import android.text.TextUtils;
 
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -26,7 +23,7 @@ public class JsonResolveUtils {
         MovieModel movie = null;
         String json;
         boolean ret = false;
-        String url = "http://192.168.1.113:8080/WeiBoMovie/servlet/MovieSearchServlet";
+        String url = "http://192.168.0.104:8080/WeiBoMovie/servlet/MovieSearchServlet";
 
         SyncHttp syncHttp = new SyncHttp();
         List<Parameter> parameters = new ArrayList<>();

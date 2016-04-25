@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
@@ -89,24 +88,24 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
             @Override
             public void run() {
                 setUserView(loginStatusEvent.ismIsLogin());
-                if (LoginStatusEvent.LOGOUT_SUCCESS.equals(loginStatusEvent.getDoLogout())){
-                    Toast.makeText(mContext, "注销成功" , Toast.LENGTH_LONG).toString();
-                } else if (LoginStatusEvent.LOGOUT_ERROR.equals(loginStatusEvent.getDoLogout())){
-                    Toast.makeText(mContext, "后台注销失败" , Toast.LENGTH_LONG).toString();
+                if (LoginStatusEvent.LOGOUT_SUCCESS.equals(loginStatusEvent.getDoLogout())) {
+                    Toast.makeText(mContext, "注销成功", Toast.LENGTH_LONG).toString();
+                } else if (LoginStatusEvent.LOGOUT_ERROR.equals(loginStatusEvent.getDoLogout())) {
+                    Toast.makeText(mContext, "后台注销失败", Toast.LENGTH_LONG).toString();
                 }
             }
         });
     }
 
     @Subscribe
-    public void onEventMainThread(final PersonalLikeMovieEvent movieEvent){
+    public void onEventMainThread(final PersonalLikeMovieEvent movieEvent) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
-                PersonalLikeAdapter adapter = new PersonalLikeAdapter(mContext , movieEvent.getMovieList());
+                PersonalLikeAdapter adapter = new PersonalLikeAdapter(mContext, movieEvent.getMovieList());
                 mLikeRecycler.setAdapter(adapter);
-                mLikeRecycler.setLayoutManager(new LinearLayoutManager(mContext , LinearLayoutManager.HORIZONTAL , false));
+                mLikeRecycler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
             }
         });
     }
@@ -121,6 +120,7 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
         initEvent(view);
         return view;
     }
+
     //初始化控件
     private void initView(View view) {
         mUserName = (TextView) view.findViewById(R.id.id_personal_user_name);
@@ -190,12 +190,11 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
     }
 
 
-
     private void setMovieRecycler(final boolean isLogin) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (isLogin){
+                if (isLogin) {
                     mMovieList = new JsonResolveUtils(mContext).getMovieLike(mAccessToken.getUid());
                     EventBus.getDefault().post(new PersonalLikeMovieEvent(mMovieList));
                 } else {
@@ -224,10 +223,10 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
                             @Override
                             public void run() {
                                 boolean isLogout = new JsonResolveUtils(mContext).logout(userModel);
-                                if (isLogout){
-                                    EventBus.getDefault().post(new LoginStatusEvent(isLogin , LoginStatusEvent.LOGOUT_SUCCESS));
+                                if (isLogout) {
+                                    EventBus.getDefault().post(new LoginStatusEvent(isLogin, LoginStatusEvent.LOGOUT_SUCCESS));
                                 } else {
-                                    EventBus.getDefault().post(new LoginStatusEvent(isLogin , LoginStatusEvent.LOGOUT_ERROR));
+                                    EventBus.getDefault().post(new LoginStatusEvent(isLogin, LoginStatusEvent.LOGOUT_ERROR));
                                 }
                             }
                         }).start();
@@ -255,13 +254,12 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
     }
 
 
-
     private void setUpCommentRecycler() {
 
     }
 
     @Subscribe
-    public void onEventMainThread(UpLikeRecyclerEvent upLikeRecyclerEvent){
+    public void onEventMainThread(UpLikeRecyclerEvent upLikeRecyclerEvent) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -287,7 +285,7 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
         mAccessToken = AccessTokenKeeper.readAccessToken(getContext());
         if (mAccessToken != null && mAccessToken.isSessionValid()) {
             isLogin = true;
-            EventBus.getDefault().post(new LoginStatusEvent(isLogin , "" , LoginStatusEvent.LOGIN_SUCCESS));
+            EventBus.getDefault().post(new LoginStatusEvent(isLogin, "", LoginStatusEvent.LOGIN_SUCCESS));
         }
     }
 
@@ -353,10 +351,11 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
                 }
             });
             Glide.with(mContext).load(userModel.getUserIcon()).asBitmap().placeholder(R.mipmap.weibomovie_my_icon_head_default).into(new SimpleTarget(250, 250) {
-
                 @Override
                 public void onResourceReady(Object resource, GlideAnimation glideAnimation) {
-                    mIconBlur.setImageBitmap(new FastBlur().doBlur((Bitmap) resource, 8, false));
+                    if (resource != null) {
+                        mIconBlur.setImageBitmap(new FastBlur().doBlur((Bitmap) resource, 8, false));
+                    }
                 }
             });
         }

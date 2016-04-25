@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.maotong.weibo.R;
-import com.maotong.weibo.main.MovieDetailActivity;
+import com.maotong.weibo.main.moviedetail.MovieDetailActivity;
 import com.maotong.weibo.main.MovieModel;
 
 import java.util.List;

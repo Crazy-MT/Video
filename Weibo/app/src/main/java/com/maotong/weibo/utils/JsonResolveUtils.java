@@ -1,22 +1,19 @@
 package com.maotong.weibo.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jivesoftware.smack.util.StringUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.content.Context;
-import android.graphics.Movie;
 import android.text.TextUtils;
-import android.util.*;
-import android.util.Log;
 
 import com.maotong.weibo.base.WeiBoApplication;
+import com.maotong.weibo.main.moviedetail.Actor;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.movie.pagelist.PageListModel;
 import com.maotong.weibo.personal.UserModel;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class JsonResolveUtils {
@@ -61,7 +58,6 @@ public class JsonResolveUtils {
                             rs.getString("large_poster_url"), (float) rs.getDouble("score"),
                             rs.getInt("score_count"), 0);
 
-                    Log.e("TAG", "getPageListMovie: getPageListMovie" + movie.toString());
                     movies.add(movie);
                 }
             }
@@ -96,7 +92,7 @@ public class JsonResolveUtils {
                     pageList = new PageListModel(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
                             rs.getString("cover_url"),
                             rs.getInt("movie_count"));
-                    Log.e("TAG", "getPageList: pageList" + pageList.toString());
+
                     pageLists.add(pageList);
                 }
             }
@@ -438,6 +434,39 @@ public class JsonResolveUtils {
             e.printStackTrace();
         }
         return movie;
+    }
+
+    public List<Actor> getActor(int mMovieId) {
+        List<Actor> actorList = new ArrayList<>();
+        Actor actor = null;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASE_URL()
+                + "/ActorsServlet";
+
+        SyncHttp syncHttp = new SyncHttp();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("movie_id", mMovieId + ""));
+        try {
+            json = syncHttp.httpPost(url, parameters);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("ret").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONArray actorObject = dataObject.getJSONArray("actor");
+                for (int i = 0; i< actorObject.length(); i++){
+                    JSONObject rs = (JSONObject) actorObject.opt(i);
+                    actor = new Actor(rs.getInt("id"),rs.getString("name") ,
+                            rs.getString("url"));
+                    actorList.add(actor);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return actorList;
     }
 
     /**

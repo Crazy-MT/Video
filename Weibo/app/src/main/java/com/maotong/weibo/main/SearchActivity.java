@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
+import com.maotong.weibo.main.moviedetail.MovieDetailActivity;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.maotong.weibo.widget.FlowLayout;
 

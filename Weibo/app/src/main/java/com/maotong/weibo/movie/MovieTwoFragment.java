@@ -10,11 +10,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.maotong.weibo.R;
@@ -139,7 +137,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("tag", "onResume: MovieTwo" );
     }
 
     @Override
@@ -155,7 +152,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.e("tag", "onDestroyView: MovieOneFragment" );
     }
 
     @Override

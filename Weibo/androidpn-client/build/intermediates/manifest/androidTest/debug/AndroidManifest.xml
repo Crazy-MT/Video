@@ -47,6 +47,9 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <activity android:name="org.androidpn.client.movie.MovieNotificationDetailActivity" />
+        <activity android:name="org.androidpn.client.movie.VideoActivity" />
     </application>
 
 </manifest>
