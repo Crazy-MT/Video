@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -29,12 +30,7 @@ import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
 
-import org.androidpn.client.ServiceManager;
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by MaoTong on 2016/4/6.
@@ -64,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         mContext = this;
         initViews();
         initEvents();
@@ -88,6 +82,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.add(R.id.id_content, mMovieOneFragment , MOVIEONEFRAGMENT);
         transaction.add(R.id.id_content, mReviewFragment);
         transaction.add(R.id.id_content, mPersonalFragment, PERSONALFRAGMENT);
+        transaction.hide(mReviewFragment);
+        transaction.hide(mPersonalFragment);
+        transaction.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.hide(mReviewFragment);
         transaction.hide(mPersonalFragment);
         transaction.commit();
@@ -255,5 +259,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(mContext,
                     "Auth exception : " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * 双击返回键退出
+     */
+    private boolean mIsExit;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            if (mIsExit) {
+                this.finish();
+            } else {
+                Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                mIsExit = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mIsExit = false;
+                    }
+                } , 2000);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

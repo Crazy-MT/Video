@@ -353,7 +353,7 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
             Glide.with(mContext).load(userModel.getUserIcon()).asBitmap().placeholder(R.mipmap.weibomovie_my_icon_head_default).into(new SimpleTarget(250, 250) {
                 @Override
                 public void onResourceReady(Object resource, GlideAnimation glideAnimation) {
-                    if (resource != null) {
+                    if ((Bitmap)resource != null) {
                         mIconBlur.setImageBitmap(new FastBlur().doBlur((Bitmap) resource, 8, false));
                     }
                 }
