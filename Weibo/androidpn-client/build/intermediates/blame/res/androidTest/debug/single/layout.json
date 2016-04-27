@@ -44,16 +44,16 @@
         "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_list_menu_item_icon.xml"
     },
     {
-        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\select_dialog_item_material.xml",
-        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\select_dialog_item_material.xml"
+        "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_history.xml",
+        "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\bundles\\debug\\res\\layout\\notification_history.xml"
     },
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_lines.xml",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_template_lines.xml"
     },
     {
-        "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_history.xml",
-        "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\bundles\\debug\\res\\layout\\notification_history.xml"
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_checkbox.xml",
@@ -148,12 +148,12 @@
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_dialog_title_material.xml"
     },
     {
-        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_chronometer.xml",
-        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_template_part_chronometer.xml"
-    },
-    {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_screen_content_include.xml",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_media_action.xml",
@@ -166,6 +166,10 @@
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item.xml",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\layout\\design_navigation_item.xml"
+    },
+    {
+        "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_movie_notification_detail.xml",
+        "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_movie_notification_detail.xml"
     },
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_layout.xml",

@@ -8,28 +8,28 @@
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_btn_colored_material.xml"
     },
     {
-        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_borderless_material.xml",
-        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_btn_borderless_material.xml"
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification.png",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\bundles\\debug\\res\\drawable\\notification.png"
     },
     {
         "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_tab_indicator_material.xml",
         "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_tab_indicator_material.xml"
     },
     {
-        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\notification.png",
-        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\bundles\\debug\\res\\drawable\\notification.png"
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_btn_borderless_material.xml"
     },
     {
         "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_textfield_search_material.xml",
         "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
-        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_text_cursor_material.xml",
-        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_text_cursor_material.xml"
-    },
-    {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ratingbar_full_material.xml",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_ratingbar_full_material.xml"
+    },
+    {
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_text_cursor_material.xml",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_text_cursor_material.xml"
     },
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_seekbar_thumb_material.xml",

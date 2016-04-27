@@ -12,12 +12,12 @@
         "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_action_bar_up_container.xml"
     },
     {
-        "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
-        "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_media_action.xml"
-    },
-    {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\layout\\design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_media_action.xml"
     },
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
@@ -68,12 +68,12 @@
         "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
-        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
-        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
-    },
-    {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
@@ -334,6 +334,10 @@
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\activity_movie_notification_detail.xml",
+        "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\res\\layout\\activity_movie_notification_detail.xml"
     },
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
