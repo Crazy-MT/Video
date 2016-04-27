@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 封装了 "access_token"，"expires_in"，"refresh_token"，并提供了他们的管理功能
      */
     private Oauth2AccessToken mAccessToken;
-
+    FragmentManager fragmentManager = getSupportFragmentManager();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,34 +67,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
 
     private void setDefaultFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         mMovieOneFragment = new MovieTwoFragment();
         mReviewFragment = new ReviewFragment();
         mPersonalFragment = new PersonalFragment();
-        transaction.add(R.id.id_content, mMovieOneFragment , MOVIEONEFRAGMENT);
-        transaction.add(R.id.id_content, mReviewFragment);
+        transaction.add(R.id.id_content, mMovieOneFragment, MOVIEONEFRAGMENT);
+        /*transaction.add(R.id.id_content, mReviewFragment);
         transaction.add(R.id.id_content, mPersonalFragment, PERSONALFRAGMENT);
         transaction.hide(mReviewFragment);
-        transaction.hide(mPersonalFragment);
+        transaction.hide(mPersonalFragment);*/
         transaction.commit();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        /*FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.hide(mReviewFragment);
         transaction.hide(mPersonalFragment);
-        transaction.commit();
+        transaction.commit();*/
     }
 
     private void initEvents() {
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         switch (v.getId()) {
@@ -122,27 +121,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (mMovieOneFragment == null) {
                     mMovieOneFragment = new MovieTwoFragment();
                 }
-                transaction.hide(mReviewFragment);
+                transaction.replace(R.id.id_content, mMovieOneFragment);
+/*                transaction.hide(mReviewFragment);
                 transaction.hide(mPersonalFragment);
-                transaction.show(mMovieOneFragment);
+                transaction.show(mMovieOneFragment);*/
                 break;
             case R.id.id_review_btn:
                 changeDrawableTop(false, true, false);
                 if (mReviewFragment == null) {
                     mReviewFragment = new ReviewFragment();
                 }
-                transaction.hide(mMovieOneFragment);
+                transaction.replace(R.id.id_content, mReviewFragment);
+          /*      transaction.hide(mMovieOneFragment);
                 transaction.hide(mPersonalFragment);
-                transaction.show(mReviewFragment);
+                transaction.show(mReviewFragment);*/
                 break;
             case R.id.id_personal_btn:
                 changeDrawableTop(false, false, true);
                 if (mPersonalFragment == null) {
                     mPersonalFragment = new PersonalFragment();
                 }
-                transaction.hide(mReviewFragment);
+                transaction.replace(R.id.id_content, mPersonalFragment);
+               /* transaction.hide(mReviewFragment);
                 transaction.hide(mMovieOneFragment);
-                transaction.show(mPersonalFragment);
+                transaction.show(mPersonalFragment);*/
                 break;
             default:
                 break;
@@ -243,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (!TextUtils.isEmpty(code)) {
                     message = message + "\nObtained the code: " + code;
                 }
-                EventBus.getDefault().post(new LoginStatusEvent(false , "" , LoginStatusEvent.LOGIN_ERROR));
+                EventBus.getDefault().post(new LoginStatusEvent(false, "", LoginStatusEvent.LOGIN_ERROR));
                 Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
             }
         }
@@ -268,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (mIsExit) {
                 this.finish();
             } else {
@@ -279,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         mIsExit = false;
                     }
-                } , 2000);
+                }, 2000);
             }
             return true;
         }
