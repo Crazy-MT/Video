@@ -239,6 +239,19 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
 
         });
 
+        mCommentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCommentMovie(movie);
+            }
+
+
+        });
+
+    }
+
+    private void setCommentMovie(MovieModel movie) {
+        
     }
 
     private void setShareMovie(MovieModel movie) {
