@@ -55,7 +55,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieDetailActivity extends AppCompatActivity implements IWeiboHandler.Response {
+public class MovieDetailActivity extends AppCompatActivity implements IWeiboHandler.Response , CommentFragment.CommentListener {
 
     public static final String MOVIE = "电影";
     private Context mContext;
@@ -251,7 +251,8 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
     }
 
     private void setCommentMovie(MovieModel movie) {
-        
+        CommentFragment commentFragment = new CommentFragment();
+        commentFragment.show(getSupportFragmentManager() , "CommentFragment");
     }
 
     private void setShareMovie(MovieModel movie) {
@@ -435,5 +436,10 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(mContext);
+    }
+
+    @Override
+    public void onCommentComplete(String comment) {
+        Toast.makeText(MovieDetailActivity.this, comment, Toast.LENGTH_SHORT).show();
     }
 }

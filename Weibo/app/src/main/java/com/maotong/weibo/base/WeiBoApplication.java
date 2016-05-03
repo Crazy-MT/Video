@@ -108,7 +108,7 @@ public class WeiBoApplication extends LitePalApplication {
         serviceManager.setTags(getTags());
 
         //setBASE_URL("http://123.56.25.178:8080/WeiBoMovie/servlet"); //家
-        setBASE_URL("http://192.168.0.107:8080/WeiBoMovie/servlet"); //tagux
+        setBASE_URL("http://192.168.0.104:8080/WeiBoMovie/servlet"); //tagux
         //setBASE_URL("http://192.168.1.113:8080/WeiBoMovie/servlet"); //家
 //		setBASE_URL("http://192.168.10.212:8080/WeiBoMovie/servlet");  //racemind
 
