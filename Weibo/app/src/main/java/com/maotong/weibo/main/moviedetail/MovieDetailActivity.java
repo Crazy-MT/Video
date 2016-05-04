@@ -31,6 +31,7 @@ import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.api.Constants;
+import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.main.VideoActivity;
 import com.maotong.weibo.personal.UpLikeRecyclerEvent;
@@ -48,6 +49,9 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.constant.WBConstants;
 import com.sina.weibo.sdk.exception.WeiboShareException;
 import com.sina.weibo.sdk.utils.Utility;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,7 +59,9 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieDetailActivity extends AppCompatActivity implements IWeiboHandler.Response , CommentFragment.CommentListener {
+import okhttp3.Call;
+
+public class MovieDetailActivity extends AppCompatActivity implements IWeiboHandler.Response, CommentFragment.CommentListener {
 
     public static final String MOVIE = "电影";
     private Context mContext;
@@ -252,7 +258,7 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
 
     private void setCommentMovie(MovieModel movie) {
         CommentFragment commentFragment = new CommentFragment();
-        commentFragment.show(getSupportFragmentManager() , "CommentFragment");
+        commentFragment.show(getSupportFragmentManager(), "CommentFragment");
     }
 
     private void setShareMovie(MovieModel movie) {
@@ -440,6 +446,25 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
 
     @Override
     public void onCommentComplete(String comment) {
-        Toast.makeText(MovieDetailActivity.this, comment, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MovieDetailActivity.this, comment, Toast.LENGTH_SHORT).show();
+        if (mAccessToken != null && mAccessToken.isSessionValid() && mMovie != null) {
+            //发送评论信息
+            OkHttpUtils.post().url(WeiBoApplication.getInstance().getBASE_URL() + "/CommentServlet")
+                    .addParams("userid", mAccessToken.getUid())
+                    .addParams("comment", comment)
+                    .addParams("movieid", mMovie.getId() + "").build().execute(new StringCallback() {
+                @Override
+                public void onError(Call call, Exception e) {
+                    Toast.makeText(MovieDetailActivity.this, "评论失败", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(MovieDetailActivity.this, response, Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(MovieDetailActivity.this, "请登录", Toast.LENGTH_SHORT).show();
+        }
     }
 }
