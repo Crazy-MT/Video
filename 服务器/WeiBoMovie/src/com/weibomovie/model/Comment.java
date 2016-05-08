@@ -3,17 +3,17 @@ package com.weibomovie.model;
 public class Comment {
 
 	private int id ;
-	private int userid;
+	private long userid;
 	private int movieid;
 	private String text;
 	private float score;
-	private int createdtime;
+	private long createdtime;
 	
 	
 	public Comment() {
 		super();
 	}
-	public Comment(int id, int userid, int movieid, String text, float score , int createdtime) {
+	public Comment(int id, long userid, int movieid, String text, float score , long createdtime) {
 		super();
 		this.id = id;
 		this.userid = userid;
@@ -33,10 +33,10 @@ public class Comment {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserid() {
+	public long getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(long userid) {
 		this.userid = userid;
 	}
 	public int getMovieid() {
@@ -57,10 +57,10 @@ public class Comment {
 	public void setScore(float score) {
 		this.score = score;
 	}
-	public int getCreatedtime() {
+	public long getCreatedtime() {
 		return createdtime;
 	}
-	public void setCreatedtime(int createdtime) {
+	public void setCreatedtime(long createdtime) {
 		this.createdtime = createdtime;
 	}
 	

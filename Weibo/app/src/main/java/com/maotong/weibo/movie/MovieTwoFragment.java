@@ -1,6 +1,7 @@
 package com.maotong.weibo.movie;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -42,6 +43,7 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
         super.onAttach(activity);
 
         Log.e("Fragment", "oAttach:");
+
     }
 
     @Override

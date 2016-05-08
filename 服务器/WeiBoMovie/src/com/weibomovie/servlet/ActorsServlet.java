@@ -73,7 +73,7 @@ public class ActorsServlet extends HttpServlet {
 		ActorDao actorDao = new ActorDao(); 
 		
 		JSONObject jsonObject = new JSONObject();
-		JSONObject dataObject = new JSONObject();
+		JSONObject dataObject = new JSONObject();	
 		try {
 			actorList = actorDao.getActorByMovieId(actorMovieDao.getActorByMovie(movie_id).split("/"));
 			dataObject.put("actor",actorList);

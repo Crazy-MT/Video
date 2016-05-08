@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.weibomovie.db.DBUtil;
-import com.weibomovie.model.Goddess;
 import com.weibomovie.model.User;
 
 public class UserDao {

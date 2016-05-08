@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.weibomovie.db.DBUtil;
-import com.weibomovie.model.Goddess;
 import com.weibomovie.model.Movie;
 import com.weibomovie.model.Pagelist;
 import com.weibomovie.model.User;

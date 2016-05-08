@@ -73,11 +73,12 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
     TextView scoreText;
     TextView scoreCountText;
     TextView genreText;
-    private RecyclerView mPeopleRecycle;
+    private RecyclerView mPeopleRecycle , mCommentRecycle;
     private RelativeLayout mRefreshLayout;
     private TextView mNoDataText;
     private ProgressBar mRefreshPB;
     private List<Actor> mActorList;
+    private List<Comment> mCommentList;
     private LinearLayout mLikeLayout, mCommentLayout, mShareLayout;
     private ImageView mLikeImg;
     private TextView mLikeText;
@@ -115,6 +116,7 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
         mRefreshLayout = (RelativeLayout) findViewById(R.id.id_refresh);
         mNoDataText = (TextView) findViewById(R.id.id_no_data);
         mRefreshPB = (ProgressBar) findViewById(R.id.id_refresh_progressbar);
+        mCommentRecycle = (RecyclerView) findViewById(R.id.id_comment_recycler);
         initWeiBoShare(savedInstanceState);
         initData();
 
@@ -201,8 +203,9 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
             public void run() {
                 mMovie = new JsonResolveUtils(mContext).getMovieDetail(mMovie.getId());
                 mActorList = new JsonResolveUtils(mContext).getActor(mMovie.getId());
+                mCommentList = new JsonResolveUtils(mContext).getComment(mMovie.getId());
                 mMovie.setIsLike(finalIsLike);
-                EventBus.getDefault().post(new MovieDetailEvent(mMovie, mActorList));
+                EventBus.getDefault().post(new MovieDetailEvent(mMovie, mActorList , mCommentList));
             }
         }).start();
     }

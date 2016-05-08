@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.main.moviedetail.Actor;
 import com.maotong.weibo.main.MovieModel;
+import com.maotong.weibo.main.moviedetail.Comment;
 import com.maotong.weibo.movie.pagelist.PageListModel;
 import com.maotong.weibo.personal.UserModel;
 
@@ -467,6 +468,39 @@ public class JsonResolveUtils {
         }
 
         return actorList;
+    }
+
+    public List<Comment> getComment(int id) {
+
+        List<Comment> commentList = new ArrayList<>();
+        Comment comment = null;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASE_URL()
+                + "/CommentServlet";
+
+        SyncHttp syncHttp = new SyncHttp();
+        List<Parameter> parameters = new ArrayList<>();
+            parameters.add(new Parameter("movie_id", id + ""));
+        try {
+            json = syncHttp.httpPost(url, parameters);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("ret").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONArray actorObject = dataObject.getJSONArray("comment");
+                for (int i = 0; i< actorObject.length(); i++){
+                    JSONObject rs = (JSONObject) actorObject.opt(i);
+                    comment = new Comment(rs.getString("text") , rs.getString("user_name") , rs.getString("user_icon"));
+                    commentList.add(comment);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return commentList;
     }
 
     /**
