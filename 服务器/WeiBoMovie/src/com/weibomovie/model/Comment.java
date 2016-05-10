@@ -8,7 +8,37 @@ public class Comment {
 	private String text;
 	private float score;
 	private long createdtime;
+	private String userName;
+	private String userIcon; 
 	
+	
+	
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserIcon() {
+		return userIcon;
+	}
+
+	public void setUserIcon(String userIcon) {
+		this.userIcon = userIcon;
+	}
+
+	public Comment(long userid, int movieid, String text, String userName,
+			String userIcon) {
+		super();
+		this.userid = userid;
+		this.movieid = movieid;
+		this.text = text;
+		this.userName = userName;
+		this.userIcon = userIcon;
+	}
 	
 	public Comment() {
 		super();
@@ -22,11 +52,15 @@ public class Comment {
 		this.score = score;
 		this.createdtime = createdtime;
 	}
+ 
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", userid=" + userid + ", movieid="
-				+ movieid + ", text=" + text + ", score=" + score +  "]";
+				+ movieid + ", text=" + text + ", score=" + score
+				+ ", createdtime=" + createdtime + ", userName=" + userName
+				+ ", userIcon=" + userIcon + "]";
 	}
+
 	public int getId() {
 		return id;
 	}

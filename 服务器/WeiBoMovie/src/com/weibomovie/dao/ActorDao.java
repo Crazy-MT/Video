@@ -39,7 +39,7 @@ public class ActorDao {
 		while (rs.next()) {
 			actor = new Actor(rs.getInt("id"), rs.getString("name"),
 					rs.getString("url"));
-			System.out.println(actor.toString());
+			//System.out.println(actor.toString());
 		}
 		return actor;
 	}
@@ -53,7 +53,7 @@ public class ActorDao {
 		Actor actor = null;
 		for (int i = 0; i < actorStrArr.length; ++i) {
 			actor = getActor(actorStrArr[i].trim());
-			System.out.println(actorStrArr[i]);
+			//System.out.println(actorStrArr[i]);
 			if (actor != null) {
 				actorList.add(actor);
 			}
