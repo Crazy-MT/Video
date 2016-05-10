@@ -2,6 +2,8 @@ package com.maotong.weibo.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.*;
+import android.util.Log;
 
 import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.main.moviedetail.Actor;
@@ -491,13 +493,14 @@ public class JsonResolveUtils {
                 JSONArray actorObject = dataObject.getJSONArray("comment");
                 for (int i = 0; i< actorObject.length(); i++){
                     JSONObject rs = (JSONObject) actorObject.opt(i);
-                    comment = new Comment(rs.getString("text") , rs.getString("user_name") , rs.getString("user_icon"));
+                    comment = new Comment(rs.getString("text") , rs.getString("userName") , rs.getString("userIcon"));
                     commentList.add(comment);
+                    Log.e("tag", "getComment: comment.toString()" + comment.toString());
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("tag", "getComment: comment.toString()" + e.toString());
         }
 
         return commentList;

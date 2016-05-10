@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (mPersonalFragment == null) {
                     mPersonalFragment = new PersonalFragment();
                 }
-                transaction.replace(R.id.id_content, mPersonalFragment);
+                transaction.replace(R.id.id_content, mPersonalFragment , PERSONALFRAGMENT);
                /* transaction.hide(mReviewFragment);
                 transaction.hide(mMovieOneFragment);
                 transaction.show(mPersonalFragment);*/
@@ -218,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     class AuthListener implements WeiboAuthListener {
         @Override
         public void onComplete(Bundle values) {
-            Intent intent = new Intent();
             Fragment personalFragment = getSupportFragmentManager().findFragmentByTag(PERSONALFRAGMENT);
             Fragment movieFragment = getSupportFragmentManager().findFragmentByTag(MOVIEONEFRAGMENT);
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -236,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Toast.makeText(mContext, R.string.weibosdk_demo_toast_auth_success, Toast.LENGTH_SHORT).show();
 
+                Intent intent = new Intent();
                 intent.putExtra("complete", mAccessToken.toString());
                 personalFragment.onActivityResult(1, 0, intent);
             } else {

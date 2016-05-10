@@ -73,7 +73,7 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
     TextView scoreText;
     TextView scoreCountText;
     TextView genreText;
-    private RecyclerView mPeopleRecycle , mCommentRecycle;
+    private RecyclerView mPeopleRecycle, mCommentRecycle;
     private RelativeLayout mRefreshLayout;
     private TextView mNoDataText;
     private ProgressBar mRefreshPB;
@@ -117,8 +117,47 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
         mNoDataText = (TextView) findViewById(R.id.id_no_data);
         mRefreshPB = (ProgressBar) findViewById(R.id.id_refresh_progressbar);
         mCommentRecycle = (RecyclerView) findViewById(R.id.id_comment_recycler);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        detail = (TextView) findViewById(R.id.id_detail);
+        imageView = (ImageView) findViewById(R.id.backdrop);
+        scoreText = (TextView) findViewById(R.id.id_movie_score);
+        scoreCountText = (TextView) findViewById(R.id.id_movie_score_count);
+        genreText = (TextView) findViewById(R.id.id_movie_genre);
+        mPeopleRecycle = (RecyclerView) findViewById(R.id.id_movie_people);
+
+        mLikeLayout = (LinearLayout) findViewById(R.id.id_movie_detail_like);
+        mCommentLayout = (LinearLayout) findViewById(R.id.id_movie_detail_comment);
+        mShareLayout = (LinearLayout) findViewById(R.id.id_movie_detail_share);
+        mLikeImg = (ImageView) findViewById(R.id.id_movie_detail_like_img);
+        mLikeText = (TextView) findViewById(R.id.id_movie_detail_like_text);
         initWeiBoShare(savedInstanceState);
         initData();
+
+        mLikeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLikeMovie(mMovie);
+            }
+        });
+
+        mShareLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setShareMovie(mMovie);
+            }
+
+
+        });
+
+        mCommentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCommentMovie(mMovie);
+            }
+
+        });
 
     }
 
@@ -205,58 +244,36 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
                 mActorList = new JsonResolveUtils(mContext).getActor(mMovie.getId());
                 mCommentList = new JsonResolveUtils(mContext).getComment(mMovie.getId());
                 mMovie.setIsLike(finalIsLike);
-                EventBus.getDefault().post(new MovieDetailEvent(mMovie, mActorList , mCommentList));
+                EventBus.getDefault().post(new MovieDetailEvent(mMovie, mActorList, mCommentList));
             }
         }).start();
     }
 
-    private void initView(final MovieModel movie, List<Actor> actorList) {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        detail = (TextView) findViewById(R.id.id_detail);
-        imageView = (ImageView) findViewById(R.id.backdrop);
-        scoreText = (TextView) findViewById(R.id.id_movie_score);
-        scoreCountText = (TextView) findViewById(R.id.id_movie_score_count);
-        genreText = (TextView) findViewById(R.id.id_movie_genre);
-        mPeopleRecycle = (RecyclerView) findViewById(R.id.id_movie_people);
+    private void initView(final MovieModel movie, List<Actor> actorList, List<Comment> commentList) {
 
-        mLikeLayout = (LinearLayout) findViewById(R.id.id_movie_detail_like);
-        mCommentLayout = (LinearLayout) findViewById(R.id.id_movie_detail_comment);
-        mShareLayout = (LinearLayout) findViewById(R.id.id_movie_detail_share);
-        mLikeImg = (ImageView) findViewById(R.id.id_movie_detail_like_img);
-        mLikeText = (TextView) findViewById(R.id.id_movie_detail_like_text);
+        if (movie != null) {
+            setTopLayout(movie);
+        }
 
-        setTopLayout(movie);
+        if (actorList != null) {
+            setRecyclerView(actorList);
+        }
 
-        setRecyclerView(actorList);
+        if(commentList != null){
+            setRecyclerViewComment(commentList);
+        }
 
         setBottomLayout();
-        mLikeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setLikeMovie(movie);
-            }
-        });
-
-        mShareLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setShareMovie(movie);
-            }
 
 
-        });
+    }
 
-        mCommentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setCommentMovie(movie);
-            }
-
-
-        });
-
+    private void setRecyclerViewComment(List<Comment> commentList) {
+        CommentAdapter commentAdapter = new CommentAdapter(mContext, commentList);
+        mCommentRecycle.setAdapter(commentAdapter);
+        mCommentRecycle.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager
+                .VERTICAL
+                , false));
     }
 
     private void setCommentMovie(MovieModel movie) {
@@ -434,7 +451,7 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
                     mRefreshPB.setVisibility(View.GONE);
                 } else {
                     mRefreshLayout.setVisibility(View.GONE);
-                    initView(movieDetailEvent.getMovie(), movieDetailEvent.getActorList());
+                    initView(movieDetailEvent.getMovie(), movieDetailEvent.getActorList(), movieDetailEvent.getmCommentList());
                 }
             }
         });
@@ -464,6 +481,13 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
                 @Override
                 public void onResponse(String response) {
                     Toast.makeText(MovieDetailActivity.this, response, Toast.LENGTH_SHORT).show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mCommentList = new JsonResolveUtils(mContext).getComment(mMovie.getId());
+                            EventBus.getDefault().post(new MovieDetailEvent(mMovie, mActorList, mCommentList));
+                        }
+                    }).start();
                 }
             });
         } else {
