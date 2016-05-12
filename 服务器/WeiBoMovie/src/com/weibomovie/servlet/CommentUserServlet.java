@@ -93,7 +93,7 @@ public class CommentUserServlet extends HttpServlet {
 				e.printStackTrace();
 				jsonObject.put("ret", "error");
 				jsonObject.put("data", "");
-			}
+			} 
 			out.println(jsonObject);
 			out.flush();
 			out.close();

@@ -2,12 +2,11 @@ package com.maotong.weibo.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.*;
 import android.util.Log;
 
 import com.maotong.weibo.base.WeiBoApplication;
-import com.maotong.weibo.main.moviedetail.Actor;
 import com.maotong.weibo.main.MovieModel;
+import com.maotong.weibo.main.moviedetail.Actor;
 import com.maotong.weibo.main.moviedetail.Comment;
 import com.maotong.weibo.movie.pagelist.PageListModel;
 import com.maotong.weibo.personal.UserModel;
@@ -506,54 +505,38 @@ public class JsonResolveUtils {
         return commentList;
     }
 
-    /**
-     * 用户登陆
-     *
-     * @return
-     */
-    /*public Boolean getLogin(String account, String password) {
-		d_User dUser = new d_User();
-		String url = WeiBoApplication.getWeiBoApplication().getBASE_URL()
-				+ "/freemeal/Login";
-		List<Parameter> params = new ArrayList<Parameter>();
-		params.add(new Parameter("username", account));
-		params.add(new Parameter("password", password));
+    public List<MovieModel> getCommentMovieByUserId(String uid) {
+        List<MovieModel> movies = new ArrayList<MovieModel>();
+        MovieModel movie;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASE_URL()
+                + "/CommentUserServlet";
 
-		SyncHttp syncHttp = new SyncHttp();
-		String json = null;
+        SyncHttp syncHttp = new SyncHttp();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("userid", uid + ""));
+        try {
+            json = syncHttp.httpPost(url, parameters);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("ret").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONArray objectArr = dataObject.getJSONArray("movie");
 
-		boolean ret = false;
-		// 获取返回码
-		try {
-			json = syncHttp.httpPost(url, params);
-			JSONObject jsonObject = new JSONObject(json);
-			ret = jsonObject.getString("result").equals("success");
-
-			if (ret) {
-				JSONObject dataObject = jsonObject.getJSONObject("data");
-				JSONObject rs = null;
-				JSONArray objectArr = dataObject.getJSONArray("user");
-				for (int i = 0; i < objectArr.length(); i++) {
-					rs = (JSONObject) objectArr.opt(i);
-					dUser = new d_User(rs.getInt("id"),
-							rs.getString("username"), "我是密码",
-							rs.getString("nickname"), rs.getString("sex"),
-							rs.getString("email"), rs.getString("face"),
-							rs.getString("regtime"), rs.getInt("logincounts"),
-							rs.getString("lastlogin"),
-							rs.getInt("loginstatus"), rs.getInt("joincounts"));
-				}
-
-				WeiBoApplication.getWeiBoApplication().setdUser(dUser);
-				WeiBoApplication.getWeiBoApplication().setUser(true);
-			}
-			return jsonObject.getString("result").equals("success");
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			return false;
-		}
-	}
-
-*/
-
+                JSONObject rs = null;
+                for (int i = 0; i < objectArr.length(); i++) {
+                    rs = (JSONObject) objectArr.opt(i);
+                    movie = new MovieModel();
+                    movie.setName(rs.getString("name"));
+                    movie.setPoster_url(rs.getString("poster_url"));
+                    movie.setId(rs.getInt("id"));
+                    movies.add(movie);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        return movies;
+    }
 }

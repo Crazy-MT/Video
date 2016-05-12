@@ -53,15 +53,12 @@ public class CommentDao {
 	public List<Movie> getCommentFromUserId(Long userId) throws SQLException {
 		Connection conn = DBUtil.getConnection();
 		List<Movie> movieList = new ArrayList<Movie>();
-		Movie movie  = null;
-		System.out.println(userId);
+		Movie movie  = null; 
 		String sql = "SELECT b.movie_name , b.poster_url , b.id  FROM comment AS a,movie AS b WHERE a.userid=? AND a.movieid=b.id";
 		PreparedStatement ptmt = conn.prepareStatement(sql);
 		ptmt.setLong(1, userId);
-		ResultSet rs = ptmt.executeQuery();
-		//System.out.println(rs.toString());
-		while (rs.next()) {
-			//System.out.println(rs.toString());
+		ResultSet rs = ptmt.executeQuery(); 
+		while (rs.next()) { 
 			movie = new Movie();
 			movie.setName(rs.getString("movie_name"));
 			movie.setPoster_url(rs.getString("poster_url"));

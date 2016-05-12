@@ -73,6 +73,8 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
     private RecyclerView mLikeRecycler;
     private RecyclerView mCommentRecycler;
     private List<MovieModel> mMovieList;
+    private List<MovieModel> mCommentMovieList;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,7 +100,7 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
     }
 
     @Subscribe
-    public void onEventMainThread(final PersonalLikeMovieEvent movieEvent) {
+    public void onEventMainThread(final PersonalMovieEvent movieEvent) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -106,6 +108,10 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
                 PersonalLikeAdapter adapter = new PersonalLikeAdapter(mContext, movieEvent.getMovieList());
                 mLikeRecycler.setAdapter(adapter);
                 mLikeRecycler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+                adapter = new PersonalLikeAdapter(mContext, movieEvent.getMovieCommentList());
+                mCommentRecycler.setAdapter(adapter);
+                mCommentRecycler.setLayoutManager(new LinearLayoutManager(mContext ,
+                        LinearLayoutManager.HORIZONTAL,false));
             }
         });
     }
@@ -196,7 +202,9 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
             public void run() {
                 if (isLogin) {
                     mMovieList = new JsonResolveUtils(mContext).getMovieLike(mAccessToken.getUid());
-                    EventBus.getDefault().post(new PersonalLikeMovieEvent(mMovieList));
+                    mCommentMovieList = new JsonResolveUtils(mContext).getCommentMovieByUserId
+                            (mAccessToken.getUid());
+                    EventBus.getDefault().post(new PersonalMovieEvent(mMovieList , mCommentMovieList));
                 } else {
                     //mLikeRecycler.setVisibility(View.GONE);
                 }
