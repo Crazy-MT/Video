@@ -1,14 +1,11 @@
 package com.maotong.weibo.base;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Message;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
+import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.maotong.weibo.R;
@@ -17,10 +14,7 @@ import com.maotong.weibo.main.MainActivity;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.movie.pagelist.PageListModel;
 import com.maotong.weibo.utils.JsonResolveUtils;
-import com.maotong.weibo.utils.Log;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-
-import org.androidpn.client.ServiceManager;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.maotong.weibo.movie;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,17 +39,12 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
-        Log.e("Fragment", "oAttach:");
-
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.init();
-
-        Log.e("Fragment", "onCreate:");
     }
 
     @Nullable
@@ -61,8 +54,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
         initViews(view);
         initData();
         initEvents();
-
-        Log.e("Fragment", "onCreateView:");
         return view;
     }
 
@@ -131,43 +122,36 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.e("Freagment", "onActivityCreated:");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.e("Freagment", "onStart:");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("Freagment", "onResume:");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.e("Freagment", "onPause:");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.e("Freagment", "onStop:");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.e("Freagment", "onDestroyView:");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("Freagment", "onDestroy:");
     }
 
     /**
@@ -176,7 +160,6 @@ public class MovieTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.e("Freagment", "onDetach:");
     }
 
     @Override

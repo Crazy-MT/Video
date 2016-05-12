@@ -34,6 +34,7 @@ import com.maotong.weibo.api.Constants;
 import com.maotong.weibo.base.WeiBoApplication;
 import com.maotong.weibo.main.MovieModel;
 import com.maotong.weibo.main.VideoActivity;
+import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.personal.UpLikeRecyclerEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.api.TextObject;
@@ -50,7 +51,6 @@ import com.sina.weibo.sdk.constant.WBConstants;
 import com.sina.weibo.sdk.exception.WeiboShareException;
 import com.sina.weibo.sdk.utils.Utility;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.greenrobot.eventbus.EventBus;
@@ -104,6 +104,8 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
             }
             setBottomLayout();
             EventBus.getDefault().post(new UpLikeRecyclerEvent(true));
+            EventBus.getDefault().post(new LoginStatusEvent(true, "", LoginStatusEvent
+                    .LOGIN_SUCCESS));
         }
     };
 
@@ -480,7 +482,7 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
 
                 @Override
                 public void onResponse(String response) {
-                    Toast.makeText(MovieDetailActivity.this, response, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MovieDetailActivity.this, response, Toast.LENGTH_SHORT).show();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
