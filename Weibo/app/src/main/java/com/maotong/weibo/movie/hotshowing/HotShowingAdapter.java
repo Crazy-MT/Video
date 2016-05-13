@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
 import com.maotong.weibo.main.MovieModel;
-import com.maotong.weibo.personal.LoginStatusEvent;
 import com.maotong.weibo.personal.UpLikeRecyclerEvent;
 import com.maotong.weibo.utils.JsonResolveUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -57,7 +56,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
     };
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position , int isLike);
+        void onItemClick(View view, int position , int isLike , ImageView imageView);
 
         void onItemLongClick(View view, int position);
     }
@@ -147,7 +146,7 @@ public class HotShowingAdapter extends RecyclerView.Adapter<HotShowingAdapter.Ho
                 public void onClick(View v) {
                     int pos = holder.getLayoutPosition();
                     int isLike = movieModel.getIsLike();
-                    onItemClickListener.onItemClick(holder.itemView, pos , isLike);
+                    onItemClickListener.onItemClick(holder.itemView, pos , isLike ,  holder.movieBg);
                 }
             });
         }

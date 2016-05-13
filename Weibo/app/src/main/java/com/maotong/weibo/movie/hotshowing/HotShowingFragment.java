@@ -1,5 +1,6 @@
 package com.maotong.weibo.movie.hotshowing;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.maotong.weibo.R;
 import com.maotong.weibo.api.AccessTokenKeeper;
@@ -106,14 +108,21 @@ public class HotShowingFragment extends Fragment {
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         adapter.setOnItemClickListener(new HotShowingAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position , int isLike) {
+            public void onItemClick(View view, int position , int isLike ,
+                                    ImageView imageView) {
                 mHotShowingList.get(position).setIsLike(isLike);
                 //跳转到电影页面
                 Intent intent = new Intent(getActivity(), MovieDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(MovieDetailActivity.MOVIE, mHotShowingList.get(position));
                 intent.putExtras(bundle);
-                startActivity(intent);
+
+                View sharedView = imageView;
+                String transitionName = getString(R.string.square_blue_name);
+                ActivityOptions transitionActivityOptions = ActivityOptions
+                        .makeSceneTransitionAnimation(getActivity(),sharedView ,
+                                transitionName);
+                startActivity(intent , transitionActivityOptions.toBundle());
             }
 
             @Override

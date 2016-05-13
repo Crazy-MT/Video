@@ -22,8 +22,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,9 +72,6 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
     TextView scoreCountText;
     TextView genreText;
     private RecyclerView mPeopleRecycle, mCommentRecycle;
-    private RelativeLayout mRefreshLayout;
-    private TextView mNoDataText;
-    private ProgressBar mRefreshPB;
     private List<Actor> mActorList;
     private List<Comment> mCommentList;
     private LinearLayout mLikeLayout, mCommentLayout, mShareLayout;
@@ -113,11 +108,10 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+
+
         mContext = this;
         EventBus.getDefault().register(mContext);
-        mRefreshLayout = (RelativeLayout) findViewById(R.id.id_refresh);
-        mNoDataText = (TextView) findViewById(R.id.id_no_data);
-        mRefreshPB = (ProgressBar) findViewById(R.id.id_refresh_progressbar);
         mCommentRecycle = (RecyclerView) findViewById(R.id.id_comment_recycler);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         collapsingToolbar =
@@ -134,6 +128,8 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
         mShareLayout = (LinearLayout) findViewById(R.id.id_movie_detail_share);
         mLikeImg = (ImageView) findViewById(R.id.id_movie_detail_like_img);
         mLikeText = (TextView) findViewById(R.id.id_movie_detail_like_text);
+
+
         initWeiBoShare(savedInstanceState);
         initData();
 
@@ -234,7 +230,7 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
         if (bundle != null && bundle.containsKey(MOVIE)) {
             mMovie = (MovieModel) bundle.get(MOVIE);
         }
-
+        Glide.with(this).load(mMovie.getPoster_url()).into(imageView);
         if (mMovie != null) {
             isLike = mMovie.getIsLike();
         }
@@ -403,11 +399,11 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
             collapsingToolbar.setTitle(movie.getName());
         }
 
-        if (TextUtils.isEmpty(movie.getLarge_poster_url()) && imageView != null) {
+        /*if (TextUtils.isEmpty(movie.getLarge_poster_url()) && imageView != null) {
             Glide.with(this).load(movie.getPoster_url()).centerCrop().into(imageView);
         } else if (imageView != null) {
             Glide.with(this).load(movie.getLarge_poster_url()).centerCrop().into(imageView);
-        }
+        }*/
 
         detail.setText(movie.getIntro());
         scoreText.setText(movie.getScore() + "");
@@ -449,10 +445,7 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
             @Override
             public void run() {
                 if (TextUtils.isEmpty(movieDetailEvent.getMovie().getName())) {
-                    mNoDataText.setVisibility(View.VISIBLE);
-                    mRefreshPB.setVisibility(View.GONE);
                 } else {
-                    mRefreshLayout.setVisibility(View.GONE);
                     initView(movieDetailEvent.getMovie(), movieDetailEvent.getActorList(), movieDetailEvent.getmCommentList());
                 }
             }
