@@ -2,5 +2,9 @@
     {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\raw\\androidpn.properties",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\res\\raw\\androidpn.properties"
+    },
+    {
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\debug\\raw\\androidpn.properties",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\res\\raw\\androidpn.properties"
     }
 ]

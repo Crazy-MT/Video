@@ -399,7 +399,7 @@ public class MovieDetailActivity extends AppCompatActivity implements IWeiboHand
             collapsingToolbar.setTitle(movie.getName());
         }
 
-        /*if (TextUtils.isEmpty(movie.getLarge_poster_url()) && imageView != null) {
+/*        if (TextUtils.isEmpty(movie.getLarge_poster_url()) && imageView != null) {
             Glide.with(this).load(movie.getPoster_url()).centerCrop().into(imageView);
         } else if (imageView != null) {
             Glide.with(this).load(movie.getLarge_poster_url()).centerCrop().into(imageView);

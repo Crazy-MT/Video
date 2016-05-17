@@ -4,6 +4,14 @@
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim-v21\\design_bottom_sheet_slide_in.xml"
     },
     {
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\release\\anim-v21\\design_bottom_sheet_slide_in.xml",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim-v21\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\release\\anim-v21\\design_bottom_sheet_slide_out.xml",
+        "source": "F:\\Android\\AndroidStudioProject\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim-v21\\design_bottom_sheet_slide_out.xml"
+    },
+    {
         "merged": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\res\\merged\\release\\anim-v21\\design_bottom_sheet_slide_out.xml",
         "source": "D:\\A-MT\\personal\\Video\\Weibo\\androidpn-client\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\anim-v21\\design_bottom_sheet_slide_out.xml"
     }
