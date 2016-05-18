@@ -81,11 +81,6 @@ public class NotificationPacketListener implements PacketListener {
                         notificationMessage);
                 intent.putExtra(Constants.NOTIFICATION_URI, notificationUri);
                 intent.putExtra(Constants.NOTIFICATION_IMAGE_URL, notificationImageUrl);
-                //                intent.setData(Uri.parse((new StringBuilder(
-                //                        "notif://notification.androidpn.org/")).append(
-                //                        notificationApiKey).append("/").append(
-                //                        System.currentTimeMillis()).toString()));
-
                 xmppManager.getContext().sendBroadcast(intent);
                 DeliverConfirmIQ deliverConfirmIQ = new DeliverConfirmIQ();
                 deliverConfirmIQ.setUuid(notificationId);

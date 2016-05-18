@@ -115,7 +115,6 @@ public class SearchActivity extends AppCompatActivity {
                 }).start();
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;

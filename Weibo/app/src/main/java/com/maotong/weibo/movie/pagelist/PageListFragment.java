@@ -66,6 +66,7 @@ public class PageListFragment extends Fragment {
     }
 
     private void initData() {
+        //得到影单以及对应的电影
         mPageList = new ArrayList<>();
         mPageListMovie = new ArrayList<>();
         new Thread(new Runnable() {

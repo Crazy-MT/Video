@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Comment"
+            android:text="请评论"
             android:textSize="20sp" />
 
         <android.support.design.widget.TextInputEditText
@@ -22,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_edittext"
-            android:hint="Comment"
             android:layout_margin="10dp"
             android:minLines="3"/>
 

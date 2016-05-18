@@ -63,6 +63,8 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.PageLi
         final List<MovieModel> movies = mPageListMovie.get(position);
         holder.name.setText(pageListModel.getName());
         holder.count.setText(movies.size()+"部");
+
+        //一个recyclerview控件的嵌套，有必要mark ， 重点掌握
         PageListItemAdapter pageListItemAdapter = new PageListItemAdapter(context , movies);
         holder.recyclerView.setAdapter(pageListItemAdapter);
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context , LinearLayoutManager.HORIZONTAL , false));

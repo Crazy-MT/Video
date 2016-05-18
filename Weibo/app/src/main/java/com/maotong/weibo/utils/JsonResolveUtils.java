@@ -476,14 +476,12 @@ public class JsonResolveUtils {
     }
 
     public List<Comment> getComment(int id) {
-
         List<Comment> commentList = new ArrayList<>();
         Comment comment = null;
         String json;
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
                 + "/CommentServlet";
-
         SyncHttp syncHttp = new SyncHttp();
         List<Parameter> parameters = new ArrayList<>();
             parameters.add(new Parameter("movie_id", id + ""));
@@ -503,7 +501,6 @@ public class JsonResolveUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return commentList;
     }
 
@@ -514,7 +511,6 @@ public class JsonResolveUtils {
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
                 + "/CommentUserServlet";
-
         SyncHttp syncHttp = new SyncHttp();
         List<Parameter> parameters = new ArrayList<>();
         parameters.add(new Parameter("userid", uid + ""));
@@ -549,7 +545,6 @@ public class JsonResolveUtils {
         boolean ret = false;
         String url = WeiBoApplication.getInstance().getBASE_URL()
                 + "/CommentServlet";
-
         SyncHttp syncHttp = new SyncHttp();
         try {
             json = syncHttp.httpGet(url , null);
@@ -566,14 +561,11 @@ public class JsonResolveUtils {
                     comment.setUserIcon(rs.getString("userIcon"));
                     comment.setUserName(rs.getString("userName"));
                     commentList.add(comment);
-                    Log.e("tag", "getComment: comment.toString()" + comment.toString());
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("tag", "getComment: comment.toString()" + e.toString());
         }
-
         return commentList;
     }
 }

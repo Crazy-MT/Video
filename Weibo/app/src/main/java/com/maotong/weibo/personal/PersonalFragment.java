@@ -191,6 +191,7 @@ public class PersonalFragment extends android.support.v4.app.Fragment {
             mIconBlur.setImageResource(R.mipmap.weibomovie_my_icon_head_default);
             mUserName.setText("请登录");
             mLikeRecycler.setVisibility(View.GONE);
+            mCommentRecycler.setVisibility(View.GONE);
         }
         setMovieRecycler(isLogin);
     }

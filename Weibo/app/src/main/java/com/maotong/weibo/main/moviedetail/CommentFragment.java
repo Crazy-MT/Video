@@ -31,7 +31,7 @@ public class CommentFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_comment, null);
         mComment = (EditText) view.findViewById(R.id.id_movie_detail_comment_edit);
         builder.setView(view)
-                .setPositiveButton("OK",
+                .setPositiveButton("确定",
                         new DialogInterface.OnClickListener()
                         {
                             @Override
@@ -41,7 +41,7 @@ public class CommentFragment extends DialogFragment {
                                 listener.onCommentComplete(mComment
                                         .getText().toString());
                             }
-                        }).setNegativeButton("CANCEL", null);
+                        }).setNegativeButton("取消", null);
         return builder.create();
     }
 }
