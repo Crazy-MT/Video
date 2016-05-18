@@ -10,6 +10,7 @@ import com.maotong.weibo.main.moviedetail.Actor;
 import com.maotong.weibo.main.moviedetail.Comment;
 import com.maotong.weibo.movie.pagelist.PageListModel;
 import com.maotong.weibo.personal.UserModel;
+import com.maotong.weibo.review.ReviewModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -105,6 +106,7 @@ public class JsonResolveUtils {
     }
 
     public List<MovieModel> getMovie() {
+        //未登录时获取电影信息
         List<MovieModel> movies = new ArrayList<MovieModel>();
         MovieModel movie;
         String json;
@@ -251,6 +253,7 @@ public class JsonResolveUtils {
     }
 
     public List<MovieModel> getMovie(String uid) {
+        //根据用户名获取电影信息
         List<MovieModel> movies = new ArrayList<MovieModel>();
         MovieModel movie;
         String json;
@@ -332,6 +335,7 @@ public class JsonResolveUtils {
     }
 
     public List<MovieModel> getComing(String uid) {
+
         List<MovieModel> movies = new ArrayList<MovieModel>();
         MovieModel movie;
         String json;
@@ -494,12 +498,10 @@ public class JsonResolveUtils {
                     JSONObject rs = (JSONObject) actorObject.opt(i);
                     comment = new Comment(rs.getString("text") , rs.getString("userName") , rs.getString("userIcon"));
                     commentList.add(comment);
-                    Log.e("tag", "getComment: comment.toString()" + comment.toString());
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("tag", "getComment: comment.toString()" + e.toString());
         }
 
         return commentList;
@@ -538,5 +540,40 @@ public class JsonResolveUtils {
             e.printStackTrace();
         } 
         return movies;
+    }
+
+    public List<ReviewModel> getComment() {
+        List<ReviewModel> commentList = new ArrayList<>();
+        ReviewModel comment = null;
+        String json;
+        boolean ret = false;
+        String url = WeiBoApplication.getInstance().getBASE_URL()
+                + "/CommentServlet";
+
+        SyncHttp syncHttp = new SyncHttp();
+        try {
+            json = syncHttp.httpGet(url , null);
+            JSONObject jsonObject = new JSONObject(json);
+            ret = jsonObject.getString("ret").equals("success");
+            if (ret) {
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONArray actorObject = dataObject.getJSONArray("comment");
+                for (int i = 0; i< actorObject.length(); i++){
+                    JSONObject rs = (JSONObject) actorObject.opt(i);
+                    comment = new ReviewModel();
+                    comment.setMovieName(rs.getString("movieName"));
+                    comment.setText(rs.getString("text"));
+                    comment.setUserIcon(rs.getString("userIcon"));
+                    comment.setUserName(rs.getString("userName"));
+                    commentList.add(comment);
+                    Log.e("tag", "getComment: comment.toString()" + comment.toString());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("tag", "getComment: comment.toString()" + e.toString());
+        }
+
+        return commentList;
     }
 }

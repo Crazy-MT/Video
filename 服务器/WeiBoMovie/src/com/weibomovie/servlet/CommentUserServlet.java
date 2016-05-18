@@ -80,6 +80,7 @@ public class CommentUserServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if(request.getParameter("userid") != null ){
 			CommentDao commentDao = new CommentDao();
+			
 			List<Movie> movieList = new ArrayList<Movie>();
 			JSONObject jsonObject = new JSONObject();
 			JSONObject dataObject = new JSONObject();

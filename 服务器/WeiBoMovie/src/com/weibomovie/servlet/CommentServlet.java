@@ -30,12 +30,24 @@ public class CommentServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=utf-8");
 		
-		//从接口得到长影评，并且写入数据库
-		
-		//将所有影评信息返回
-		
+		//将所有影评信息返回 
 		PrintWriter out = response.getWriter();
-		
+		CommentDao commentDao = new CommentDao();
+		List<Comment> commentList = new ArrayList<Comment>();
+		JSONObject jsonObject = new JSONObject();
+		JSONObject dataObject = new JSONObject();
+		try {
+			commentList = commentDao.getComment();
+			dataObject.put("comment",commentList);
+			jsonObject.put("ret", "success");
+			jsonObject.put("data", dataObject); 
+			
+		} catch (Exception e) { 
+			e.printStackTrace();
+			jsonObject.put("ret", "error");
+			jsonObject.put("data", "");
+		}
+		out.println(jsonObject); 
 		out.flush();
 		out.close();
 	}

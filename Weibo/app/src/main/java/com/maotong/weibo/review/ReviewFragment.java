@@ -41,7 +41,7 @@ public class ReviewFragment extends android.support.v4.app.Fragment{
 
     private void setUpViewPager() {
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new HotShowingFragment(), getResources().getString(R.string
+        adapter.addFragment(new AllReviewFragment(), getResources().getString(R.string
                 .review));
         mViewPager.setAdapter(adapter);
     }

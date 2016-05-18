@@ -34,17 +34,9 @@ public class SearchActivity extends AppCompatActivity {
     private TextView mScore;
     private TextView mName;
     private TextView mComment;
-    /**
-     * ret : success
-     * data : {"movie":{"genre":"爱情 / 科幻","page_list_id":0,"score":8.300000190734863,"score_count":1510216,"intro":"周星驰电影《美人鱼》，主演邓超、罗志祥、张雨绮、林允，正式定档2016年2月8日，大年初一，人鱼无敌。\t\t\t\t\t\t\t\t\t\t\t","id":176971,"poster_url":"http://weiyinyue.music.sina.com.cn/movie_cover/176971_big.jpg","video_url":"http://v.iask.com/v_play_ipad.php?vid=139734603","is_coming":0,"name":"美人鱼","release_date":"","is_Like":0,"is_showing":0,"large_poster_url":"http://mu1.sinaimg.cn/frame.750x1080/weiyinyue.music.sina.com.cn/movie_cover/176971_big.jpg"},"actors":"邓超 / 罗志祥 / 张雨绮 / 林允 / 卢正雨/","director":"周星驰"}
-     */
+
 
     private String ret;
-    /**
-     * movie : {"genre":"爱情 / 科幻","page_list_id":0,"score":8.300000190734863,"score_count":1510216,"intro":"周星驰电影《美人鱼》，主演邓超、罗志祥、张雨绮、林允，正式定档2016年2月8日，大年初一，人鱼无敌。\t\t\t\t\t\t\t\t\t\t\t","id":176971,"poster_url":"http://weiyinyue.music.sina.com.cn/movie_cover/176971_big.jpg","video_url":"http://v.iask.com/v_play_ipad.php?vid=139734603","is_coming":0,"name":"美人鱼","release_date":"","is_Like":0,"is_showing":0,"large_poster_url":"http://mu1.sinaimg.cn/frame.750x1080/weiyinyue.music.sina.com.cn/movie_cover/176971_big.jpg"}
-     * actors : 邓超 / 罗志祥 / 张雨绮 / 林允 / 卢正雨/
-     * director : 周星驰
-     */
 
     private DataBean data;
 

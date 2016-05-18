@@ -67,5 +67,25 @@ public class CommentDao {
 		} 
 		return movieList;
 	}
+
+
+	public List<Comment> getComment() throws SQLException {
+		Connection conn = DBUtil.getConnection();
+		List<Comment> commentList = new ArrayList<Comment>();
+		Comment comment  = null; 
+		String sql = "SELECT c.user_name , c.icon , a.text , b.movie_name FROM comment AS a, movie AS b , user AS c WHERE a.movieid=b.id AND a.userid=c.weibo_id";
+		PreparedStatement ptmt = conn.prepareStatement(sql); 
+		ResultSet rs = ptmt.executeQuery(); 
+		while (rs.next()) { 
+			comment = new Comment();
+			comment.setUserName(rs.getString("user_name"));
+			comment.setUserIcon(rs.getString("icon"));
+			comment.setText(rs.getString("text"));
+			comment.setMovieName(rs.getString("movie_name"));
+			commentList.add(comment);
+		}
+		
+		return commentList;
+	}
  
 }

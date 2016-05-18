@@ -33,12 +33,7 @@
                 android:layout_marginRight="5dp"
                 android:text="26部"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/common_arrow_right"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"/>
+
         </LinearLayout>
 
 

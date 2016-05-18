@@ -42,43 +42,19 @@
         <TextView
             style="@style/text_flag_01"
             android:background="@drawable/flag_04"
-            android:text="Welcome"
+            android:text="美国队长"
             android:textColor="#323232" />
 
         <TextView
             style="@style/text_flag_01"
             android:background="@drawable/flag_04"
-            android:text="IT工程师"
+            android:text="百鸟朝凤"
             android:textColor="#323232" />
 
         <TextView
             style="@style/text_flag_01"
             android:background="@drawable/flag_04"
-            android:text="学习ing"
-            android:textColor="#323232" />
-
-        <TextView
-            style="@style/text_flag_01"
-            android:background="@drawable/flag_04"
-            android:text="恋爱ing"
-            android:textColor="#323232" />
-
-        <TextView
-            style="@style/text_flag_01"
-            android:background="@drawable/flag_04"
-            android:text="挣钱ing"
-            android:textColor="#323232" />
-
-        <TextView
-            style="@style/text_flag_01"
-            android:background="@drawable/flag_04"
-            android:text="努力ing"
-            android:textColor="#323232" />
-
-        <TextView
-            style="@style/text_flag_01"
-            android:background="@drawable/flag_04"
-            android:text="I thick i can"
+            android:text="奇幻森林"
             android:textColor="#323232" />
     </com.maotong.weibo.widget.FlowLayout>
 

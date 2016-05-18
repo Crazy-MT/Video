@@ -84,7 +84,6 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
     @Override
     public void onBindViewHolder(final ComingViewHolder holder, final int position) {
         final MovieModel comingModel = comingModels.get(position);
-        holder.like.setText("" + "人想看");
         holder.releaseDate.setText(comingModel.getRelease_date() + "上映");
         holder.name.setText(comingModel.getName());
         Glide.with(context).load(comingModel.getPoster_url()).into(holder.movieBg);
@@ -160,8 +159,6 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
 
         // 电影背景图
         private ImageView movieBg;
-        //电影评分
-        private TextView like;
         //评论数量
         private TextView releaseDate;
         //电影名
@@ -172,7 +169,6 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
         public ComingViewHolder(View itemView) {
             super(itemView);
             movieBg = (ImageView) itemView.findViewById(R.id.id_item_coming);
-            like = (TextView) itemView.findViewById(R.id.id_item_coming_like);
             name = (TextView) itemView.findViewById(R.id.id_item_coming_name);
             releaseDate = (TextView) itemView.findViewById(R.id.id_item_coming_premiere_text);
             isLike = (ImageView) itemView.findViewById(R.id.id_item_coming_like_img);

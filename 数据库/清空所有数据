@@ -1,0 +1,14 @@
+TRUNCATE TABLE actor;
+TRUNCATE TABLE actormovie;
+TRUNCATE TABLE apn_notification;
+TRUNCATE TABLE apn_user;
+TRUNCATE TABLE coming;
+TRUNCATE TABLE comment;
+TRUNCATE TABLE director;
+TRUNCATE TABLE directormovie;
+TRUNCATE TABLE likemovie;
+TRUNCATE TABLE log;
+TRUNCATE TABLE movie;
+TRUNCATE TABLE pagelist;
+TRUNCATE TABLE pagelistmovie;
+TRUNCATE TABLE user;

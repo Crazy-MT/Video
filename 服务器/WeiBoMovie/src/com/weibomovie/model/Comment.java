@@ -5,6 +5,7 @@ public class Comment {
 	private int id ;
 	private long userid;
 	private int movieid;
+	private String movieName;
 	private String text;
 	private float score;
 	private long createdtime;
@@ -14,6 +15,14 @@ public class Comment {
 	
 	
 	
+	public String getMovieName() {
+		return movieName;
+	}
+
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
+
 	public String getUserName() {
 		return userName;
 	}

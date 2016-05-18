@@ -32,15 +32,6 @@ public class MovieServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-
-		
-/*		MovieJuheData movieJuheData = new MovieJuheData();
-		try {
-			movieJuheData.httpPost();
-		} catch (Exception e1) { 
-			e1.printStackTrace();
-		}*/
-		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		List<Movie> movieList = new ArrayList<Movie>();
@@ -48,6 +39,7 @@ public class MovieServlet extends HttpServlet {
 		JSONObject jsonObject = new JSONObject();
 		JSONObject dataObject = new JSONObject();
 		try {
+			//查询数据库，获得电影信息
 			movieList = movieDao.queryIsShowing();
 			dataObject.put("movie",movieList);
 			jsonObject.put("ret", "success");
@@ -56,8 +48,7 @@ public class MovieServlet extends HttpServlet {
 			e.printStackTrace();
 			jsonObject.put("ret", "error");
 			jsonObject.put("data", "");
-		} 
-		System.out.println(jsonObject);
+		}  
 		out.println(jsonObject);
 		out.flush();
 		out.close();
