@@ -35,7 +35,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.taguxdesign.maotong.myvideo.R;
-import com.taguxdesign.maotong.myvideo.baoman.BaoManFragment;
 import com.taguxdesign.maotong.myvideo.movie.MovieFragment;
 import com.taguxdesign.maotong.myvideo.tv.TVFragment;
 
@@ -106,10 +105,9 @@ public class MainActivity extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new MovieFragment(), getResources().getString(R.string.movie));
         adapter.addFragment(new TVFragment(), getResources().getString(R.string.tv));
-        adapter.addFragment(new BaoManFragment(), getResources().getString(R.string.bao_man));
+        //adapter.addFragment(new BaoManFragment(), getResources().getString(R.string.bao_man));
 
-
-/*        adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.movie));
+/*      adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.movie));
         adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.tv));
         adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.bao_man));*/
         viewPager.setAdapter(adapter);
