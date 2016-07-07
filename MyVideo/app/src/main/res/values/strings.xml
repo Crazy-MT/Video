@@ -13,5 +13,7 @@
     <string name="movie">Movie</string>
     <string name="tv">Tv</string>
     <string name="bao_man">Bao Man</string>
+    <string name="copy">复制</string>
+    <string name="download">下载</string>
 
 </resources>
