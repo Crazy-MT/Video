@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -67,7 +68,7 @@ public class VideoDetailActivity extends AppCompatActivity {
         tvDownloadHref = (TextView) findViewById(R.id.id_text_download_href);
         wv.loadUrl(mHref);
 
-        View popupView = getLayoutInflater().inflate(R.layout.window_href , null);
+        View popupView = getLayoutInflater().inflate(R.layout.window_href , wv);
          mPopupWindow = new PopupWindow(popupView , WindowManager.LayoutParams
                 .WRAP_CONTENT , WindowManager.LayoutParams.WRAP_CONTENT);
         mPopupWindow.setTouchable(true);
@@ -132,20 +133,13 @@ public class VideoDetailActivity extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_VIEW , Uri.parse(tvDownloadHref.getText().toString()));
         if(i.resolveActivity(getPackageManager()) != null){
             startActivity(i);
+        } else {
         }
     }
 
     private void getHref() {
         Bundle bundle = getIntent().getBundleExtra(URL);
         mHref = bundle.getString(HREF);
-    }
-    public static int dip2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
-
-    public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
+        Log.e(TAG, "getHref: " + mHref);
     }
 }

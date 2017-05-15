@@ -1,5 +1,7 @@
 package com.taguxdesign.maotong.myvideo.movie;
 
+import android.util.Log;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,6 +26,7 @@ public class DownloadHref {
         String downloadHref = "";
         try {
             doc = Jsoup.connect(url).get();
+            Log.e(TAG, "getDownloadHref: " + doc);
             Elements links = doc.select("a[href]");
             Elements media = doc.select("[src]");
             Elements imports = doc.select("link[href]");

@@ -33,4 +33,10 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_view"/>
 
+    <com.lapism.searchview.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/searchView"
+        ></com.lapism.searchview.SearchView>
+
 </android.support.v4.widget.DrawerLayout>

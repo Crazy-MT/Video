@@ -34,7 +34,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.lapism.searchview.SearchView;
 import com.taguxdesign.maotong.myvideo.R;
+import com.taguxdesign.maotong.myvideo.baoman.BaoManFragment;
 import com.taguxdesign.maotong.myvideo.movie.MovieFragment;
 import com.taguxdesign.maotong.myvideo.tv.TVFragment;
 
@@ -47,6 +49,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    private SearchView mSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        mSearchView = (SearchView) findViewById(R.id.searchView);
+        mSearchView.setVersion(SearchView.VERSION_MENU_ITEM);
     }
 
     @Override
@@ -97,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.action_search:
+                mSearchView.open(true);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -105,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new MovieFragment(), getResources().getString(R.string.movie));
         adapter.addFragment(new TVFragment(), getResources().getString(R.string.tv));
-        //adapter.addFragment(new BaoManFragment(), getResources().getString(R.string.bao_man));
+        adapter.addFragment(new BaoManFragment(), getResources().getString(R.string.bao_man));
 
 /*      adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.movie));
         adapter.addFragment(new CheeseListFragment(), getResources().getString(R.string.tv));
