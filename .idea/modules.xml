@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Video.iml" filepath="$PROJECT_DIR$/Video.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Video.iml" filepath="$PROJECT_DIR$/Video.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Video.iml" filepath="$PROJECT_DIR$/Video.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Video.iml" filepath="$PROJECT_DIR$/.idea/modules/Video.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Video.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Video.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Video.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Video.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Video.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Video.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Video.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Video.app.unitTest.iml" />
     </modules>
   </component>
 </project>
